@@ -7,6 +7,7 @@ int main(int argc, char *argv[]){
   double data;
   double difference;
   double section[SECTION_DATA_MAX] = {0};
+  int 
   int i=0,j=0;
   int datafrag=0;
   FILE *input, *output;
