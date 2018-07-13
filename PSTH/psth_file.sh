@@ -1,0 +1,5 @@
+#!/bin/bash
+nkf -w $2  |tr '\r\n' \\n > time.csv
+./beta $1 time.csv $3
+paste -d , 1-$3 2-$3 3-$3 4-$3 5-$3 > $3
+rm *-$3

@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
 	  spike++;
 	  fscanf(input,"%lf ",&data);
 	}
-      }
+    }
       else if(hd+H>data)
 	fscanf(input,"%lf ",&data);
       fprintf(output,"%lf,%lf\n", hd, (spike*(1.0/H)));
