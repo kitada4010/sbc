@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
   char gomi[DATA_LEN];
   char kasu;
   char file_name[DATA_LEN];
-  FILE *ipevent, *iptime, *output[DATA_NUMBER];
+  FILE *ipevent, *iptime, *output[DATA_NUMBER*2];
   
   
   if((ipevent=fopen(argv[1] ,"r")) ==NULL || (iptime=fopen(argv[2], "r")) ==  NULL){
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
     return 0;
   }
 
-  for(i=0; i<DATA_NUMBER; i++){
+  for(i=0; i<DATA_NUMBER*2; i++){
     sprintf(file_name,"%d-%s",(i+1),argv[3]);
     output[i]=fopen(file_name,"w");
   }
@@ -48,12 +48,13 @@ int main(int argc, char *argv[]){
     }
     do{
       fscanf(iptime,"%lf,", &section[i]);
-      printf("%lf\n",section[i]);
+      // printf("%lf\n",section[i]);
     }while(section[i++] != 0);
    
     
-    for(j=0; j<i; j+=2){
+    for(j=0; j<i-1; j+=2){
       start=section[j+1]-section[j];
+      //printf("%lf\n",section[j]);
       start-=(int)start;
       while(section[j]+start>data)
 	fscanf(ipevent, "%lf ", &data);
@@ -61,21 +62,24 @@ int main(int argc, char *argv[]){
       for(hd=(section[j]+start); hd<=section[j+1]; hd+=H){
 	if(hd<data && (hd+H)>=data){
 	  while(hd<data && (hd+H)>=data){
-	    printf("%d",spike++);
+	    spike++;
 	    fscanf(ipevent,"%lf ",&data);
+	   
 	  }
 	}
 	else if(hd+H>data)
 	  fscanf(ipevent,"%lf ",&data);
-	fprintf(output[k],"%lf,%lf\n", hd, ((double)spike*t));
+	//printf("%lf,,,%lf\n",hd, data);
+	fprintf(output[2*k],"%lf\n", hd);
+	fprintf(output[(2*k)+1],"%lf\n", ((double)spike*t));
 	spike=0;
       }
       
-      fprintf(output[k],",\n,\n");
+      fprintf(output[k],"\n\n");
     } 
     
-    fclose(ipevent);
-    ipevent=fopen(argv[1], "r");
+    data=0;
+    ipevent=freopen(argv[1], "r+",ipevent);
   }
   
     
