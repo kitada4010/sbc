@@ -3,7 +3,7 @@
 
 //#define FILE_NAME_MAX 256
 #define SECTION_DATA_MAX 256
-#define DATA_NUMBER 5
+#define DATA_NUMBER 6
 #define DATA_LEN 256
 #define H 0.1
 
@@ -75,7 +75,8 @@ int main(int argc, char *argv[]){
 	spike=0;
       }
       
-      fprintf(output[k],"\n\n");
+      fprintf(output[2*k],"\n\n");
+      fprintf(output[(2*k)+1],"\n\n");
     } 
     
     data=0;
