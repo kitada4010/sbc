@@ -28,7 +28,7 @@ int main(int argc, char *argv[]){
   output=fopen(argv[3],"w");
   for(k=0; k<DATA_NUMBER; k++){
     i=0;
-    printf("%d\n",k);
+    //    printf("%d\n",k);
     /*
     do{
       fscanf(iptime,"%lf ,", &section[i]);
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]){
     if(k>0){
       do{
 	fscanf(iptime,"%c", &kasu);
-	printf("%c",kasu);
+	//	printf("%c",kasu);
 	if(kasu =='\n')
 	  kfrag++;
       }while(kfrag < 3);
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]){
     }
     do{
       fscanf(iptime,"%lf,", &section[i]);
-      printf("%lf\n",section[i]);
+      //  printf("%lf\n",section[i]);
     }while(section[i++] != 0);
     
     for(j=0; j<i-1; j+=2){
@@ -81,7 +81,7 @@ int main(int argc, char *argv[]){
     data=0;
     if(max < len[k])
       max=len[k];
-    printf("kokomade\n");
+    //  printf("kokomade\n");
   }
 
   for(i=0; i<max; i++){
