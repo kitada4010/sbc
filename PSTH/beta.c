@@ -6,6 +6,7 @@
 #define DATA_NUMBER 6
 #define DATA_LEN 256
 #define H 0.1
+#define G 0.0000001
 
 int main(int argc, char *argv[]){
   double data;
@@ -15,7 +16,7 @@ int main(int argc, char *argv[]){
   double t=1.0/H;
   double section[SECTION_DATA_MAX] = {0};
   double outdata[DATA_NUMBER][DATA_LEN] = {0};
-  int i,j,k,l;
+  int i,j,k,l,n=0;
   int datafrag=0;
   int spike;
   char gomi[DATA_LEN];
@@ -55,11 +56,11 @@ int main(int argc, char *argv[]){
     for(j=0; j<i-1; j+=2){
       start=section[j+1]-section[j];
       //printf("%lf\n",section[j]);
-      start-=(int)start;
+      start-=(double)((int)(start*10.0)/10.0);
       while(section[j]+start>data)
 	fscanf(ipevent, "%lf ", &data);
       spike=0;
-      for(hd=(section[j]+start); hd<=section[j+1]; hd+=H){
+      for(hd=(section[j]+start); hd <section[j+1]-G; hd+=H){
 	if(hd<data && (hd+H)>=data){
 	  while(hd<data && (hd+H)>=data){
 	    spike++;
@@ -77,12 +78,16 @@ int main(int argc, char *argv[]){
       
       fprintf(output[2*k],"\n\n");
       fprintf(output[(2*k)+1],"\n\n");
+      n++;
     } 
     
     data=0;
     ipevent=freopen(argv[1], "r+",ipevent);
+    printf("%d\n",n);
+    n=0;
+    
   }
-  
+  printf("\n");
     
   fclose(ipevent);
   fclose(iptime);
