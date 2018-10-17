@@ -1,13 +1,12 @@
 #include<stdio.h>
-#include<stdlib.h>
 
 //#define FILE_NAME_MAX 256
 #define SECTION_DATA_MAX 256
 #define DATA_NUMBER 6
-#define DATA_LEN 2048
-//#define DATA_LEN 512
-//#define MIN_LINE 0.03
-//#define MIN_COUNT 3
+//#define DATA_LEN 2048
+#define DATA_LEN 512
+#define MIN_LINE 0.03
+#define MIN_COUNT 3
 
 int main(int argc, char *argv[]){
   double data;
@@ -27,18 +26,12 @@ int main(int argc, char *argv[]){
   int aidacount=0;
   int mcount=0;
   int midledata[DATA_LEN]={0};
-  double min_line;
-  int min_count;
   
   if((ipevent=fopen(argv[1] ,"r")) ==NULL || (iptime=fopen(argv[2], "r")) ==  NULL){
     printf("non file\n");
     return 0;
   }
 
-  min_line=atof(argv[5])/1000.0;
-  min_count=atoi(argv[6]);
-
-  
   output=fopen(argv[3],"w");
   
   for(k=0; k<DATA_NUMBER; k++){
@@ -81,26 +74,24 @@ int main(int argc, char *argv[]){
 	  if(difference){
 	    outdata[k][len[k]++]=data-difference;
 	    frag_data=0;
-	    //	    if( outdata[k][len[k]-1] <= min_line && aidafrag!=2){
-	    if( outdata[k][len[k]-1] <= min_line ){
+	    if( outdata[k][len[k]-1] <= MIN_LINE && aidafrag!=2){
 	      aidacount++;
-	      //	      aidafrag=1;
+	      aidafrag=1;
 	    }
-	    //	    else if(outdata[k][len[k]-1] <= min_line && aidafrag==2){
-	    /* 	    else if(outdata[k][len[k]-1] <= min_line ){
+	    else if(outdata[k][len[k]-1] <= MIN_LINE && aidafrag==2){
 	      aidacount++;
-	      }*/
-	    else{ //if(outdata[k][len[k]-1] > min_line){
+	    }
+	    else if(outdata[k][len[k]-1] > MIN_LINE){
 	      aidacount=0;
-	      //  aidafrag=0;
+	      aidafrag=0;
 	      //	      frag_data=0;
 	    }
-	    //	    else
-	    //printf("あるやん\n");
+	    else
+	      printf("あるやん\n");
 	    printf("count:%d  frad:%d  mcount:%d isi:%lf\n",aidacount,aidafrag,mcount,outdata[k][len[k]-1]);
-	    if( aidacount !=0 && (aidacount%min_count == 0)){
+	    if( aidacount >= MIN_COUNT &&  aidafrag==1){
 	      mcount++;
-	      //	      aidafrag=2;
+	      aidafrag=2;
 	    }
 	    printf("count:%d  frad:%d  mcount:%d\n\n",aidacount,aidafrag,mcount);
 	  }

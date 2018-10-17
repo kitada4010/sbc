@@ -1,0 +1,7 @@
+#!/bin/bash
+i=0
+while [ i <= $1 ]
+do
+    cut -d ',' -f $i $2 > $i-$2
+    i=i+1
+done
