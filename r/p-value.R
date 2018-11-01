@@ -189,7 +189,7 @@ print(B31Rq3)
 ##B32L##-------------------------
 B32LSMe <-(var(restraintB32Lbase[1:10,1]) + var(restraintB32L10[1:10,1]) + var(restraintB32L30[1:10,1]))/3
 B32LSE <- sqrt(B32LSMe/10)
-B32Lq <- (mean(restraintB32L30[1:10,1]) - mean(restraintB32Lbase[1:10,1])) / B32LSE
+B32Lq <- (mean(restraintB32L30[1:10,1]) - mean(restraintB32L10[1:10,1])) / B32LSE
 print(B32Lq)
 
 B32Lq1 <- abs(mean(restraintB32Lbase[1:10,1]) - mean(restraintB32L10[1:10,1])) / B32LSE
