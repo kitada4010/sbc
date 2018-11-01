@@ -146,7 +146,7 @@ mean(restraintB39R30[1:10,1])
 ######個体ごとの比較########------------------------------------------------------------------------------------------
 ##A30L##-------------------------
 A30LSMe <-(var(restraintA30Lbase[1:10,1]) + var(restraintA30L10[1:10,1]) + var(restraintA30L30[1:10,1]))/3
-A30LSE <- sqrt(SMe/10)
+A30LSE <- sqrt(A30LSMe/10)
 A30Lq <- (mean(restraintA30L10[1:10,1]) - mean(restraintA30Lbase[1:10,1])) / A30LSE
 print(A30Lq)
 
@@ -159,7 +159,7 @@ print(A30Lq3)
 
 ##A30R##-------------------------
 A30RSMe <-(var(restraintA30Rbase[1:10,1]) + var(restraintA30R10[1:10,1]) + var(restraintA30R30[1:10,1]))/3
-A30RSE <- sqrt(SMe/10)
+A30RSE <- sqrt(A30RSMe/10)
 A30Rq <- (mean(restraintA30R30[1:10,1]) - mean(restraintA30Rbase[1:10,1])) / A30RSE
 print(A30Rq)
 
@@ -174,7 +174,7 @@ print(A30Rq3)
 
 ##B31R##-------------------------
 B31RSMe <-(var(restraintB31Rbase[1:10,1]) + var(restraintB31R10[1:10,1]) + var(restraintB31R30[1:10,1]))/3
-B31RSE <- sqrt(SMe/10)
+B31RSE <- sqrt(B31RSMe/10)
 B31Rq <- (mean(restraintB31R30[1:10,1]) - mean(restraintB31R10[1:10,1])) / B31RSE
 print(B31Rq)
 
@@ -188,7 +188,7 @@ print(B31Rq3)
 
 ##B32L##-------------------------
 B32LSMe <-(var(restraintB32Lbase[1:10,1]) + var(restraintB32L10[1:10,1]) + var(restraintB32L30[1:10,1]))/3
-B32LSE <- sqrt(SMe/10)
+B32LSE <- sqrt(B32LSMe/10)
 B32Lq <- (mean(restraintB32L30[1:10,1]) - mean(restraintB32Lbase[1:10,1])) / B32LSE
 print(B32Lq)
 
@@ -202,7 +202,7 @@ print(B32Lq3)
 
 ##B38L##-------------------------
 B38LSMe <-(var(restraintB38Lbase[1:10,1]) + var(restraintB38L10[1:10,1]) + var(restraintB38L30[1:10,1]))/3
-B38LSE <- sqrt(SMe/10)
+B38LSE <- sqrt(B38LSMe/10)
 B38Lq <- (mean(restraintB38L30[1:10,1]) - mean(restraintB38L10[1:10,1])) / B38LSE
 print(B38Lq)
 
@@ -216,7 +216,7 @@ print(B38Lq3)
 
 ##B38R##-------------------------
 B38RSMe <-(var(restraintB38Rbase[1:10,1]) + var(restraintB38R10[1:10,1]) + var(restraintB38R30[1:10,1]))/3
-B38RSE <- sqrt(SMe/10)
+B38RSE <- sqrt(B38RSMe/10)
 B38Rq <- (mean(restraintB38R10[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / B38RSE
 print(B38Rq)
 
@@ -230,7 +230,7 @@ print(B38Rq3)
 
 ##B39R##-------------------------
 B39RSMe <-(var(restraintB39Rbase[1:10,1]) + var(restraintB39R10[1:10,1]) + var(restraintB39R30[1:10,1]))/3
-B39RSE <- sqrt(SMe/10)
+B39RSE <- sqrt(B39RSMe/10)
 B39Rq <- (mean(restraintB39Rbase[1:10,1]) - mean(restraintB39R10[1:10,1])) / B39RSE
 print(B39Rq)
 
