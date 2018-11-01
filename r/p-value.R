@@ -142,35 +142,16 @@ mean(restraintB39R30[1:10,1])
 
 ##標準誤差の導出##
 
-mean(restraintA30Lbase[1:10,1])
-mean(restraintA30L10[1:10,1])
-mean(restraintA30L30[1:10,1])
-#A30R
-mean(restraintA30Rbase[1:10,1])
-mean(restraintA30R10[1:10,1])
-mean(restraintA30R30[1:10,1])
-#B31R
-mean(restraintB31Rbase[1:10,1])
-mean(restraintB31R10[1:10,1])
-mean(restraintB31R30[1:10,1])
-#B32L
-mean(restraintB32Lbase[1:10,1])
-mean(restraintB32L10[1:10,1])
-mean(restraintB32L30[1:10,1])
-#B38L
-mean(restraintB38Lbase[1:10,1])
-mean(restraintB38L10[1:10,1])
-mean(restraintB38L30[1:10,1])
-#B38R
-mean(restraintB38Rbase[1:10,1])
-mean(restraintB38R10[1:10,1])
-mean(restraintB38R30[1:10,1])
-#B39R
-mean(restraintB39Rbase[1:10,1])
-mean(restraintB39R10[1:10,1])
-mean(restraintB39R30[1:10,1])
+SMe <-(var(restraintA30Lbase[1:10,1]) + var(restraintA30L10[1:10,1]) + var(restraintA30L30[1:10,1]) 
+     + var(restraintA30Rbase[1:10,1]) + var(restraintA30R10[1:10,1]) + var(restraintA30R30[1:10,1])
+     + var(restraintB31Rbase[1:10,1]) + var(restraintB31R10[1:10,1]) + var(restraintB31R30[1:10,1])
+     + var(restraintB32Lbase[1:10,1]) + var(restraintB32L10[1:10,1]) + var(restraintB32L30[1:10,1])
+     + var(restraintB38Lbase[1:10,1]) + var(restraintB38L10[1:10,1]) + var(restraintB38L30[1:10,1])
+     + var(restraintB38Rbase[1:10,1]) + var(restraintB38R10[1:10,1]) + var(restraintB38R30[1:10,1])
+     + var(restraintB39Rbase[1:10,1]) + var(restraintB39R10[1:10,1]) + var(restraintB39R30[1:10,1]))/21
 
-SE <- sqrt(sum(var(datarestraintbase[,1])+var(datarestraint10[,1])+var(datarestraint30[,1]))/(length(datarestraintbase[,1]+length(datarestraint10[,1]+length(datarestraint30[,1])))))
+SE <- sqrt(SMe/10)
+
 q <- (mean(datarestraint10[,1]) - mean(datarestraintbase[,1])) / SE
 print(q)
 
