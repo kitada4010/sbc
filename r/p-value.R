@@ -141,27 +141,6 @@ mean(restraintB39R30[1:10,1])
 
 
 
-#####全体##########---------------------------------------------------------------------------------------------------
-##標準誤差の導出##
-
-SMe <-(var(restraintA30Lbase[1:10,1]) + var(restraintA30L10[1:10,1]) + var(restraintA30L30[1:10,1]) 
-     + var(restraintA30Rbase[1:10,1]) + var(restraintA30R10[1:10,1]) + var(restraintA30R30[1:10,1])
-     + var(restraintB31Rbase[1:10,1]) + var(restraintB31R10[1:10,1]) + var(restraintB31R30[1:10,1])
-     + var(restraintB32Lbase[1:10,1]) + var(restraintB32L10[1:10,1]) + var(restraintB32L30[1:10,1])
-     + var(restraintB38Lbase[1:10,1]) + var(restraintB38L10[1:10,1]) + var(restraintB38L30[1:10,1])
-     + var(restraintB38Rbase[1:10,1]) + var(restraintB38R10[1:10,1]) + var(restraintB38R30[1:10,1])
-     + var(restraintB39Rbase[1:10,1]) + var(restraintB39R10[1:10,1]) + var(restraintB39R30[1:10,1]))/21
-
-SE <- sqrt(SMe/10)
-print(SE)
-
-##q値の導出##
-
-q <- (mean(restraintB31R30[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / SE
-print(q)
-
-
-##
 
 
 ######個体ごとの比較########------------------------------------------------------------------------------------------
@@ -196,7 +175,7 @@ print(A30Rq3)
 ##B31R##-------------------------
 B31RSMe <-(var(restraintB31Rbase[1:10,1]) + var(restraintB31R10[1:10,1]) + var(restraintB31R30[1:10,1]))/3
 B31RSE <- sqrt(SMe/10)
-B31Rq <- (mean(restraintB31R10[1:10,1]) - mean(restraintB31R10[1:10,1])) / B31RSE
+B31Rq <- (mean(restraintB31R30[1:10,1]) - mean(restraintB31R10[1:10,1])) / B31RSE
 print(B31Rq)
 
 B31Rq1 <- abs(mean(restraintB31Rbase[1:10,1]) - mean(restraintB31R10[1:10,1])) / B31RSE
@@ -273,3 +252,24 @@ print(B39Rq3)
 
 
 
+#####全体##########---------------------------------------------------------------------------------------------------
+##標準誤差の導出##
+
+SMe <-(var(restraintA30Lbase[1:10,1]) + var(restraintA30L10[1:10,1]) + var(restraintA30L30[1:10,1]) 
+     + var(restraintA30Rbase[1:10,1]) + var(restraintA30R10[1:10,1]) + var(restraintA30R30[1:10,1])
+     + var(restraintB31Rbase[1:10,1]) + var(restraintB31R10[1:10,1]) + var(restraintB31R30[1:10,1])
+     + var(restraintB32Lbase[1:10,1]) + var(restraintB32L10[1:10,1]) + var(restraintB32L30[1:10,1])
+     + var(restraintB38Lbase[1:10,1]) + var(restraintB38L10[1:10,1]) + var(restraintB38L30[1:10,1])
+     + var(restraintB38Rbase[1:10,1]) + var(restraintB38R10[1:10,1]) + var(restraintB38R30[1:10,1])
+     + var(restraintB39Rbase[1:10,1]) + var(restraintB39R10[1:10,1]) + var(restraintB39R30[1:10,1]))/21
+
+SE <- sqrt(SMe/10)
+print(SE)
+
+##q値の導出##
+
+q <- (mean(restraintB31R30[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / SE
+print(q)
+
+
+##
