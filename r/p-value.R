@@ -151,8 +151,10 @@ SMe <-(var(restraintA30Lbase[1:10,1]) + var(restraintA30L10[1:10,1]) + var(restr
      + var(restraintB39Rbase[1:10,1]) + var(restraintB39R10[1:10,1]) + var(restraintB39R30[1:10,1]))/21
 
 SE <- sqrt(SMe/10)
+print(SE)
 
-q <- (mean(datarestraint10[,1]) - mean(datarestraintbase[,1])) / SE
+
+q <- (mean(restraintB31R30[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / SE
 print(q)
 
 
