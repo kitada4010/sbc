@@ -174,8 +174,7 @@ print(B38Rq)
 
 B38Rq1 <- abs(mean(maleB38Rbase[1:10,3]) - mean(maleB38R10[1:10,3])) / B38RSE
 B38Rq2 <- abs(mean(maleB38R10[1:10,3]) - mean(maleB38R30[1:10,3])) / B38RSE
-B38Rq3 <- abs(mean(maleB38R30[1:10,3]) - mean(male
-B38Rbase[1:10,3])) / B38RSE
+B38Rq3 <- abs(mean(maleB38R30[1:10,3]) - mean(maleB38Rbase[1:10,3])) / B38RSE
 print(B38Rq1)
 print(B38Rq2)
 print(B38Rq3)
