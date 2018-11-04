@@ -1,18 +1,18 @@
 ####エピソードごとの比較に変更####---------------------------------------------------------------------------
 ##データの読み込み
-#male#---------------------------------------------
+#B38Rの比較#---------------------------------------------
 #restraint
-maleB38Rbase=read.table("./male/B38Rbase.txt")
-maleB38R10=read.table("./male/B38R10.txt")
-maleB38R30=read.table("./male/B38R30.txt")
+restraintB38Rbase=read.table("./restraint/B38Rbase.txt")
+restraintB38R10=read.table("./restraint/B38R10.txt")
+restraintB38R30=read.table("./restraint/B38R30.txt")
 #male
 maleB38Rbase=read.table("./male/B38Rbase.txt")
 maleB38R10=read.table("./male/B38R10.txt")
 maleB38R30=read.table("./male/B38R30.txt")
 #object
-maleB38Rbase=read.table("./male/B38Rbase.txt")
-maleB38R10=read.table("./male/B38R10.txt")
-maleB38R30=read.table("./male/B38R30.txt")
+objectB38Rbase=read.table("./object/B38Rbase.txt")
+objectB38R10=read.table("./object/B38R10.txt")
+objectB38R30=read.table("./object/B38R30.txt")
 
 
 
@@ -23,203 +23,183 @@ maleB38R30=read.table("./male/B38R30.txt")
 
 ####開始########---------------------------------------------------------------------------------
 #restraint
-mean(maleB38Rbase[1:10,1])
-mean(maleB38R10[1:10,1])
-mean(maleB38R30[1:10,1])
+mean(restraintB38Rbase[1:10,1])
+mean(restraintB38R10[1:10,1])
+mean(restraintB38R30[1:10,1])
 #male
 mean(maleB38Rbase[1:10,1])
 mean(maleB38R10[1:10,1])
 mean(maleB38R30[1:10,1])
 #object
-mean(maleB38Rbase[1:10,1])
-mean(maleB38R10[1:10,1])
-mean(maleB38R30[1:10,1])
+mean(objectB38Rbase[1:10,1])
+mean(objectB38R10[1:10,1])
+mean(objectB38R30[1:10,1])
 
 
 ######個体ごとの比較########------------------------------------------------------------------------------------------
-##B26R##-------------------------
-B26RSMe <-(var(maleB26Rbase[1:10,1]) + var(maleB26R10[1:10,1]) + var(maleB26R30[1:10,1]))/3
-B26RSE <- sqrt(B26RSMe/10)
-B26Rq <- (mean(maleB26R10[1:10,1]) - mean(maleB26Rbase[1:10,1])) / B26RSE
-print(B26Rq)
+##restraint##-------------------------
+restraintSMe <-(var(restraintB38Rbase[1:10,1]) + var(restraintB38R10[1:10,1]) + var(restraintB38R30[1:10,1]))/3
+restraintSE <- sqrt(restraintSMe/10)
+restraintq <- (mean(restraintB38R10[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / restraintSE
+print(restraintq)
 
-B26Rq1 <- abs(mean(maleB26Rbase[1:10,1]) - mean(maleB26R10[1:10,1])) / B26RSE
-B26Rq2 <- abs(mean(maleB26R10[1:10,1]) - mean(maleB26R30[1:10,1])) / B26RSE
-B26Rq3 <- abs(mean(maleB26R30[1:10,1]) - mean(maleB26Rbase[1:10,1])) / B26RSE
-print(B26Rq1)
-print(B26Rq2)
-print(B26Rq3)
-
-
-##B38R##-------------------------
-B38RSMe <-(var(maleB38Rbase[1:10,1]) + var(maleB38R10[1:10,1]) + var(maleB38R30[1:10,1]))/3
-B38RSE <- sqrt(B38RSMe/10)
-B38Rq <- (mean(maleB38Rbase[1:10,1]) - mean(maleB38R10[1:10,1])) / B38RSE
-print(B38Rq)
-
-B38Rq1 <- abs(mean(maleB38Rbase[1:10,1]) - mean(maleB38R10[1:10,1])) / B38RSE
-B38Rq2 <- abs(mean(maleB38R10[1:10,1]) - mean(maleB38R30[1:10,1])) / B38RSE
-B38Rq3 <- abs(mean(maleB38R30[1:10,1]) - mean(maleB38Rbase[1:10,1])) / B38RSE
-print(B38Rq1)
-print(B38Rq2)
-print(B38Rq3)
+restraintq1 <- abs(mean(restraintB38Rbase[1:10,1]) - mean(restraintB38R10[1:10,1])) / restraintSE
+restraintq2 <- abs(mean(restraintB38R10[1:10,1]) - mean(restraintB38R30[1:10,1])) / restraintSE
+restraintq3 <- abs(mean(restraintB38R30[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / restraintSE
+print(restraintq1)
+print(restraintq2)
+print(restraintq3)
 
 
-##B38R##-------------------------
-B38RSMe <-(var(maleB38Rbase[1:10,1]) + var(maleB38R10[1:10,1]) + var(maleB38R30\
+##male##-------------------------
+maleSMe <-(var(maleB38Rbase[1:10,1]) + var(maleB38R10[1:10,1]) + var(maleB38R30[1:10,1]))/3
+maleSE <- sqrt(maleSMe/10)
+maleq <- (mean(maleB38Rbase[1:10,1]) - mean(maleB38R10[1:10,1])) / maleSE
+print(maleq)
+
+maleq1 <- abs(mean(maleB38Rbase[1:10,1]) - mean(maleB38R10[1:10,1])) / maleSE
+maleq2 <- abs(mean(maleB38R10[1:10,1]) - mean(maleB38R30[1:10,1])) / maleSE
+maleq3 <- abs(mean(maleB38R30[1:10,1]) - mean(maleB38Rbase[1:10,1])) / maleSE
+print(maleq1)
+print(maleq2)
+print(maleq3)
+
+
+##object##-------------------------
+objectSMe <-(var(objectB38Rbase[1:10,1]) + var(objectB38R10[1:10,1]) + var(objectB38R30\
 [1:10,1]))/3
-B38RSE <- sqrt(B38RSMe/10)
-B38Rq <- (mean(maleB38Rbase[1:10,1]) - mean(maleB38R10[1:10,1])) / B38RSE
-print(B38Rq)
+objectSE <- sqrt(objectSMe/10)
+objectq <- (mean(objectB38Rbase[1:10,1]) - mean(objectB38R10[1:10,1])) / objectSE
+print(objectq)
 
-B38Rq1 <- abs(mean(maleB38Rbase[1:10,1]) - mean(maleB38R10[1:10,1])) / B38RSE
-B38Rq2 <- abs(mean(maleB38R10[1:10,1]) - mean(maleB38R30[1:10,1])) / B38RSE
-B38Rq3 <- abs(mean(maleB38R30[1:10,1]) - mean(maleB38Rbase[1:10,1])) / B38RSE
-print(B38Rq1)
-print(B38Rq2)
-print(B38Rq3)
-
-
-
-
-#install.packages("gplots")
-#library(gplots)
-#plotmeans(x=list(datamalebase[,1],datamale10[,1],datamale30[,1]), data=x, connect=F, ylim=c(-180,180))
-
-#plotmeans(x=list(datamalebase[,1],datamale10[,1],datamale30[,1]))
+objectq1 <- abs(mean(objectB38Rbase[1:10,1]) - mean(objectB38R10[1:10,1])) / objectSE
+objectq2 <- abs(mean(objectB38R10[1:10,1]) - mean(objectB38R30[1:10,1])) / objectSE
+objectq3 <- abs(mean(objectB38R30[1:10,1]) - mean(objectB38Rbase[1:10,1])) / objectSE
+print(objectq1)
+print(objectq2)
+print(objectq3)
 
 
 
-##q値の導出##
-
-q <- (mean(maleB31R30[1:10,1]) - mean(maleB38Rbase[1:10,1])) / SE
-print(q)
 
 
 ####終了########----------------------------------------------------------------------------------------------
 #####平均の導出####----------------------------------
-#B26R
-mean(maleB26Rbase[1:10,2])
-mean(maleB26R10[1:10,2])
-mean(maleB26R30[1:10,2])
-#B38R
+#restraint
+mean(restraintB38Rbase[1:10,2])
+mean(restraintB38R10[1:10,2])
+mean(restraintB38R30[1:10,2])
+#male
 mean(maleB38Rbase[1:10,2])
 mean(maleB38R10[1:10,2])
 mean(maleB38R30[1:10,2])
-#B38R
-mean(maleB38Rbase[1:10,2])
-mean(maleB38R10[1:10,2])
-mean(maleB38R30[1:10,2])
+#object
+mean(objectB38Rbase[1:10,2])
+mean(objectB38R10[1:10,2])
+mean(objectB38R30[1:10,2])
 
 
 ######個体ごとの比較########------------------------------------------------------------------------------------------
-##B26R##-------------------------
-B26RSMe <-(var(maleB26Rbase[1:10,2]) + var(maleB26R10[1:10,2]) + var(maleB26R30[1:10,2]))/3
-B26RSE <- sqrt(B26RSMe/10)
-B26Rq <- (mean(maleB26R10[1:10,2]) - mean(maleB26Rbase[1:10,2])) / B26RSE
-print(B26Rq)
+##restraint##-------------------------
+restraintSMe <-(var(restraintB38Rbase[1:10,2]) + var(restraintB38R10[1:10,2]) + var(restraintB38R30[1:10,2]))/3
+restraintSE <- sqrt(restraintSMe/10)
+restraintq <- (mean(restraintB38R10[1:10,2]) - mean(restraintB38Rbase[1:10,2])) / restraintSE
+print(restraintq)
 
-B26Rq1 <- abs(mean(maleB26Rbase[1:10,2]) - mean(maleB26R10[1:10,2])) / B26RSE
-B26Rq2 <- abs(mean(maleB26R10[1:10,2]) - mean(maleB26R30[1:10,2])) / B26RSE
-B26Rq3 <- abs(mean(maleB26R30[1:10,2]) - mean(maleB26Rbase[1:10,2])) / B26RSE
-print(B26Rq1)
-print(B26Rq2)
-print(B26Rq3)
-
-
-##B38R##-------------------------
-B38RSMe <-(var(maleB38Rbase[1:10,2]) + var(maleB38R10[1:10,2]) + var(maleB38R30[1:10,2]))/3
-B38RSE <- sqrt(B38RSMe/10)
-B38Rq <- (mean(maleB38Rbase[1:10,2]) - mean(maleB38R10[1:10,2])) / B38RSE
-print(B38Rq)
-
-B38Rq1 <- abs(mean(maleB38Rbase[1:10,2]) - mean(maleB38R10[1:10,2])) / B38RSE
-B38Rq2 <- abs(mean(maleB38R10[1:10,2]) - mean(maleB38R30[1:10,2])) / B38RSE
-B38Rq3 <- abs(mean(maleB38R30[1:10,2]) - mean(maleB38Rbase[1:10,2])) / B38RSE
-print(B38Rq1)
-print(B38Rq2)
-print(B38Rq3)
+restraintq1 <- abs(mean(restraintB38Rbase[1:10,2]) - mean(restraintB38R10[1:10,2])) / restraintSE
+restraintq2 <- abs(mean(restraintB38R10[1:10,2]) - mean(restraintB38R30[1:10,2])) / restraintSE
+restraintq3 <- abs(mean(restraintB38R30[1:10,2]) - mean(restraintB38Rbase[1:10,2])) / restraintSE
+print(restraintq1)
+print(restraintq2)
+print(restraintq3)
 
 
-##B38R##-------------------------
-B38RSMe <-(var(maleB38Rbase[1:10,2]) + var(maleB38R10[1:10,2]) + var(maleB38R30\
+##male##-------------------------
+maleSMe <-(var(maleB38Rbase[1:10,2]) + var(maleB38R10[1:10,2]) + var(maleB38R30[1:10,2]))/3
+maleSE <- sqrt(maleSMe/10)
+maleq <- (mean(maleB38Rbase[1:10,2]) - mean(maleB38R10[1:10,2])) / maleSE
+print(maleq)
+
+maleq1 <- abs(mean(maleB38Rbase[1:10,2]) - mean(maleB38R10[1:10,2])) / maleSE
+maleq2 <- abs(mean(maleB38R10[1:10,2]) - mean(maleB38R30[1:10,2])) / maleSE
+maleq3 <- abs(mean(maleB38R30[1:10,2]) - mean(maleB38Rbase[1:10,2])) / maleSE
+print(maleq1)
+print(maleq2)
+print(maleq3)
+
+
+##object##-------------------------
+objectSMe <-(var(objectB38Rbase[1:10,2]) + var(objectB38R10[1:10,2]) + var(objectB38R30\
 [1:10,2]))/3
-B38RSE <- sqrt(B38RSMe/10)
-B38Rq <- (mean(maleB38Rbase[1:10,2]) - mean(maleB38R10[1:10,2])) / B38RSE
-print(B38Rq)
+objectSE <- sqrt(objectSMe/10)
+objectq <- (mean(objectB38Rbase[1:10,2]) - mean(objectB38R10[1:10,2])) / objectSE
+print(objectq)
 
-B38Rq1 <- abs(mean(maleB38Rbase[1:10,2]) - mean(maleB38R10[1:10,2])) / B38RSE
-B38Rq2 <- abs(mean(maleB38R10[1:10,2]) - mean(maleB38R30[1:10,2])) / B38RSE
-B38Rq3 <- abs(mean(maleB38R30[1:10,2]) - mean(maleB38Rbase[1:10,2])) / B38RSE
-print(B38Rq1)
-print(B38Rq2)
-print(B38Rq3)
+objectq1 <- abs(mean(objectB38Rbase[1:10,2]) - mean(objectB38R10[1:10,2])) / objectSE
+objectq2 <- abs(mean(objectB38R10[1:10,2]) - mean(objectB38R30[1:10,2])) / objectSE
+objectq3 <- abs(mean(objectB38R30[1:10,2]) - mean(objectB38Rbase[1:10,2])) / objectSE
+print(objectq1)
+print(objectq2)
+print(objectq3)
 
-
-
-#install.packages("gplots")
-#library(gplots)
-#plotmeans(x=list(datamalebase[,2],datamale10[,2],datamale30[,2]), data=x, connect=F, ylim=c(-180,180))
-
-#plotmeans(x=list(datamalebase[,2],datamale10[,2],datamale30[,2]))
 
 
 
 
 ####中央########---------------------------------------------------------------------------------------------------------------
 #####平均の導出####----------------------------------
-#B26R
-mean(maleB26Rbase[1:10,3])
-mean(maleB26R10[1:10,3])
-mean(maleB26R30[1:10,3])
-#B38R
+#restraint
+mean(restraintB38Rbase[1:10,3])
+mean(restraintB38R10[1:10,3])
+mean(restraintB38R30[1:10,3])
+#male
 mean(maleB38Rbase[1:10,3])
 mean(maleB38R10[1:10,3])
 mean(maleB38R30[1:10,3])
-#B38R
-mean(maleB38Rbase[1:10,3])
-mean(maleB38R10[1:10,3])
-mean(maleB38R30[1:10,3])
+#objenct
+mean(objectB38Rbase[1:10,3])
+mean(objectB38R10[1:10,3])
+mean(objectB38R30[1:10,3])
 
 
 ######個体ごとの比較########------------------------------------------------------------------------------------------
-##B26R##-------------------------
-B26RSMe <-(var(maleB26Rbase[1:10,3]) + var(maleB26R10[1:10,3]) + var(maleB26R30[1:10,3]))/3
-B26RSE <- sqrt(B26RSMe/10)
-B26Rq <- (mean(maleB26R10[1:10,3]) - mean(maleB26Rbase[1:10,3])) / B26RSE
-print(B26Rq)
+##restraint##-------------------------
+restraintSMe <-(var(restraintB38Rbase[1:10,3]) + var(restraintB38R10[1:10,3]) + var(restraintB38R30[1:10,3]))/3
+restraintSE <- sqrt(restraintSMe/10)
+restraintq <- (mean(restraintB38R10[1:10,3]) - mean(restraintB38Rbase[1:10,3])) / restraintSE
+print(restraintq)
 
-B26Rq1 <- abs(mean(maleB26Rbase[1:10,3]) - mean(maleB26R10[1:10,3])) / B26RSE
-B26Rq2 <- abs(mean(maleB26R10[1:10,3]) - mean(maleB26R30[1:10,3])) / B26RSE
-B26Rq3 <- abs(mean(maleB26R30[1:10,3]) - mean(maleB26Rbase[1:10,3])) / B26RSE
-print(B26Rq1)
-print(B26Rq2)
-print(B26Rq3)
-
-
-##B38R##-------------------------
-B38RSMe <-(var(maleB38Rbase[1:10,3]) + var(maleB38R10[1:10,3]) + var(maleB38R30[1:10,3]))/3
-B38RSE <- sqrt(B38RSMe/10)
-B38Rq <- (mean(maleB38Rbase[1:10,3]) - mean(maleB38R10[1:10,3])) / B38RSE
-print(B38Rq)
-
-B38Rq1 <- abs(mean(maleB38Rbase[1:10,3]) - mean(maleB38R10[1:10,3])) / B38RSE
-B38Rq2 <- abs(mean(maleB38R10[1:10,3]) - mean(maleB38R30[1:10,3])) / B38RSE
-B38Rq3 <- abs(mean(maleB38R30[1:10,3]) - mean(maleB38Rbase[1:10,3])) / B38RSE
-print(B38Rq1)
-print(B38Rq2)
-print(B38Rq3)
+restraintq1 <- abs(mean(restraintB38Rbase[1:10,3]) - mean(restraintB38R10[1:10,3])) / restraintSE
+restraintq2 <- abs(mean(restraintB38R10[1:10,3]) - mean(restraintB38R30[1:10,3])) / restraintSE
+restraintq3 <- abs(mean(restraintB38R30[1:10,3]) - mean(restraintB38Rbase[1:10,3])) / restraintSE
+print(restraintq1)
+print(restraintq2)
+print(restraintq3)
 
 
-##B38R##-------------------------
-B38RSMe <-(var(maleB38Rbase[1:10,3]) + var(maleB38R10[1:10,3]) + var(maleB38R30[1:10,3]))/3
-B38RSE <- sqrt(B38RSMe/10)
-B38Rq <- (mean(maleB38Rbase[1:10,3]) - mean(maleB38R10[1:10,3])) / B38RSE
-print(B38Rq)
+##male##-------------------------
+maleSMe <-(var(maleB38Rbase[1:10,3]) + var(maleB38R10[1:10,3]) + var(maleB38R30[1:10,3]))/3
+maleSE <- sqrt(maleSMe/10)
+maleq <- (mean(maleB38Rbase[1:10,3]) - mean(maleB38R10[1:10,3])) / maleSE
+print(maleq)
 
-B38Rq1 <- abs(mean(maleB38Rbase[1:10,3]) - mean(maleB38R10[1:10,3])) / B38RSE
-B38Rq2 <- abs(mean(maleB38R10[1:10,3]) - mean(maleB38R30[1:10,3])) / B38RSE
-B38Rq3 <- abs(mean(maleB38R30[1:10,3]) - mean(maleB38Rbase[1:10,3])) / B38RSE
-print(B38Rq1)
-print(B38Rq2)
-print(B38Rq3)
+maleq1 <- abs(mean(maleB38Rbase[1:10,3]) - mean(maleB38R10[1:10,3])) / maleSE
+maleq2 <- abs(mean(maleB38R10[1:10,3]) - mean(maleB38R30[1:10,3])) / maleSE
+maleq3 <- abs(mean(maleB38R30[1:10,3]) - mean(maleB38Rbase[1:10,3])) / maleSE
+print(maleq1)
+print(maleq2)
+print(maleq3)
+
+
+##object##-------------------------
+objectSMe <-(var(objectB38Rbase[1:10,3]) + var(objectB38R10[1:10,3]) + var(objectB38R30[1:10,3]))/3
+objectSE <- sqrt(objectSMe/10)
+objectq <- (mean(objectB38Rbase[1:10,3]) - mean(objectB38R10[1:10,3])) / objectSE
+print(objectq)
+
+objectq1 <- abs(mean(objectB38Rbase[1:10,3]) - mean(objectB38R10[1:10,3])) / objectSE
+objectq2 <- abs(mean(objectB38R10[1:10,3]) - mean(objectB38R30[1:10,3])) / objectSE
+objectq3 <- abs(mean(objectB38R30[1:10,3]) - mean(objectB38Rbase[1:10,3])) / objectSE
+print(objectq1)
+print(objectq2)
+print(objectq3)
