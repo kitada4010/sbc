@@ -49,54 +49,54 @@ mean(object30[,1])
 
 ######個体ごとの比較########------------------------------------------------------------------------------------------
 ##restraint##-------------------------
-restraintSMe <-(var(restraintbase[1:10,1]) + var(restraint10[1:10,1]) + var(restraint30[1:10,1]))/3
+restraintSMe <-(var(restraintbase[,1]) + var(restraint10[,1]) + var(restraint30[,1]))/3
 restraintSE <- sqrt(restraintSMe/10)
-restraintq <- (mean(restraint10[1:10,1]) - mean(restraintbase[1:10,1])) / restraintSE
+restraintq <- (mean(restraint10[,1]) - mean(restraintbase[,1])) / restraintSE
 print(restraintq)
 
-restraintq1 <- abs(mean(restraintbase[1:10,1]) - mean(restraint10[1:10,1])) / restraintSE
-restraintq2 <- abs(mean(restraint10[1:10,1]) - mean(restraint30[1:10,1])) / restraintSE
-restraintq3 <- abs(mean(restraint30[1:10,1]) - mean(restraintbase[1:10,1])) / restraintSE
+restraintq1 <- abs(mean(restraintbase[,1]) - mean(restraint10[,1])) / restraintSE
+restraintq2 <- abs(mean(restraint10[,1]) - mean(restraint30[,1])) / restraintSE
+restraintq3 <- abs(mean(restraint30[,1]) - mean(restraintbase[,1])) / restraintSE
 print(restraintq1)
 print(restraintq2)
 print(restraintq3)
 
 
 ##female##-------------------------
-femaleSMe <-(var(femalebase[1:10,1]) + var(female10[1:10,1]) + var(female30[1:10,1]))/3
+femaleSMe <-(var(femalebase[,1]) + var(female10[,1]) + var(female30[,1]))/3
 femaleSE <- sqrt(femaleSMe/10)
-femaleq <- (mean(female10[1:10,1]) - mean(femalebase[1:10,1])) / femaleSE
+femaleq <- (mean(female10[,1]) - mean(femalebase[,1])) / femaleSE
 print(femaleq)
 
-femaleq1 <- abs(mean(femalebase[1:10,1]) - mean(female10[1:10,1])) / femaleSE
-femaleq2 <- abs(mean(female10[1:10,1]) - mean(female30[1:10,1])) / femaleSE
-femaleq3 <- abs(mean(female30[1:10,1]) - mean(femalebase[1:10,1])) / femaleSE
+femaleq1 <- abs(mean(femalebase[,1]) - mean(female10[,1])) / femaleSE
+femaleq2 <- abs(mean(female10[,1]) - mean(female30[,1])) / femaleSE
+femaleq3 <- abs(mean(female30[,1]) - mean(femalebase[,1])) / femaleSE
 print(femaleq1)
 print(femaleq2)
 print(femaleq3)
 
 ##male##-------------------------
-maleSMe <-(var(malebase[1:10,1]) + var(male10[1:10,1]) + var(male30[1:10,1]))/3
+maleSMe <-(var(malebase[,1]) + var(male10[,1]) + var(male30[,1]))/3
 maleSE <- sqrt(maleSMe/10)
-maleq <- (mean(male10[1:10,1]) - mean(malebase[1:10,1])) / maleSE
+maleq <- (mean(male10[,1]) - mean(malebase[,1])) / maleSE
 print(maleq)
 
-maleq1 <- abs(mean(malebase[1:10,1]) - mean(male10[1:10,1])) / maleSE
-maleq2 <- abs(mean(male10[1:10,1]) - mean(male30[1:10,1])) / maleSE
-maleq3 <- abs(mean(male30[1:10,1]) - mean(malebase[1:10,1])) / maleSE
+maleq1 <- abs(mean(malebase[,1]) - mean(male10[,1])) / maleSE
+maleq2 <- abs(mean(male10[,1]) - mean(male30[,1])) / maleSE
+maleq3 <- abs(mean(male30[,1]) - mean(malebase[,1])) / maleSE
 print(maleq1)
 print(maleq2)
 print(maleq3)
 
 ##object##-------------------------
-objectSMe <-(var(objectbase[1:10,1]) + var(object10[1:10,1]) + var(object30[1:10,1]))/3
+objectSMe <-(var(objectbase[,1]) + var(object10[,1]) + var(object30[,1]))/3
 objectSE <- sqrt(objectSMe/10)
-objectq <- (mean(object10[1:10,1]) - mean(objectbase[1:10,1])) / objectSE
+objectq <- (mean(object10[,1]) - mean(objectbase[,1])) / objectSE
 print(objectq)
 
-objectq1 <- abs(mean(objectbase[1:10,1]) - mean(object10[1:10,1])) / objectSE
-objectq2 <- abs(mean(object10[1:10,1]) - mean(object30[1:10,1])) / objectSE
-objectq3 <- abs(mean(object30[1:10,1]) - mean(objectbase[1:10,1])) / objectSE
+objectq1 <- abs(mean(objectbase[,1]) - mean(object10[,1])) / objectSE
+objectq2 <- abs(mean(object10[,1]) - mean(object30[,1])) / objectSE
+objectq3 <- abs(mean(object30[,1]) - mean(objectbase[,1])) / objectSE
 print(objectq1)
 print(objectq2)
 print(objectq3)
@@ -130,54 +130,54 @@ mean(object30[,2])
 
 ######個体ごとの比較########------------------------------------------------------------------------------------------
 ##restraint##-------------------------
-restraintSMe <-(var(restraintbase[1:10,2]) + var(restraint10[1:10,2]) + var(restraint30[1:10,2]))/3
+restraintSMe <-(var(restraintbase[,2]) + var(restraint10[,2]) + var(restraint30[,2]))/3
 restraintSE <- sqrt(restraintSMe/10)
-restraintq <- (mean(restraint10[1:10,2]) - mean(restraintbase[1:10,2])) / restraintSE
+restraintq <- (mean(restraint10[,2]) - mean(restraintbase[,2])) / restraintSE
 print(restraintq)
 
-restraintq1 <- abs(mean(restraintbase[1:10,2]) - mean(restraint10[1:10,2])) / restraintSE
-restraintq2 <- abs(mean(restraint10[1:10,2]) - mean(restraint30[1:10,2])) / restraintSE
-restraintq3 <- abs(mean(restraint30[1:10,2]) - mean(restraintbase[1:10,2])) / restraintSE
+restraintq1 <- abs(mean(restraintbase[,2]) - mean(restraint10[,2])) / restraintSE
+restraintq2 <- abs(mean(restraint10[,2]) - mean(restraint30[,2])) / restraintSE
+restraintq3 <- abs(mean(restraint30[,2]) - mean(restraintbase[,2])) / restraintSE
 print(restraintq1)
 print(restraintq2)
 print(restraintq3)
 
 
 ##female##-------------------------
-femaleSMe <-(var(femalebase[1:10,2]) + var(female10[1:10,2]) + var(female30[1:10,2]))/3
+femaleSMe <-(var(femalebase[,2]) + var(female10[,2]) + var(female30[,2]))/3
 femaleSE <- sqrt(femaleSMe/10)
-femaleq <- (mean(female10[1:10,2]) - mean(femalebase[1:10,2])) / femaleSE
+femaleq <- (mean(female10[,2]) - mean(femalebase[,2])) / femaleSE
 print(femaleq)
 
-femaleq1 <- abs(mean(femalebase[1:10,2]) - mean(female10[1:10,2])) / femaleSE
-femaleq2 <- abs(mean(female10[1:10,2]) - mean(female30[1:10,2])) / femaleSE
-femaleq3 <- abs(mean(female30[1:10,2]) - mean(femalebase[1:10,2])) / femaleSE
+femaleq1 <- abs(mean(femalebase[,2]) - mean(female10[,2])) / femaleSE
+femaleq2 <- abs(mean(female10[,2]) - mean(female30[,2])) / femaleSE
+femaleq3 <- abs(mean(female30[,2]) - mean(femalebase[,2])) / femaleSE
 print(femaleq1)
 print(femaleq2)
 print(femaleq3)
 
 ##male##-------------------------
-maleSMe <-(var(malebase[1:10,2]) + var(male10[1:10,2]) + var(male30[1:10,2]))/3
+maleSMe <-(var(malebase[,2]) + var(male10[,2]) + var(male30[,2]))/3
 maleSE <- sqrt(maleSMe/10)
-maleq <- (mean(male10[1:10,2]) - mean(malebase[1:10,2])) / maleSE
+maleq <- (mean(male10[,2]) - mean(malebase[,2])) / maleSE
 print(maleq)
 
-maleq1 <- abs(mean(malebase[1:10,2]) - mean(male10[1:10,2])) / maleSE
-maleq2 <- abs(mean(male10[1:10,2]) - mean(male30[1:10,2])) / maleSE
-maleq3 <- abs(mean(male30[1:10,2]) - mean(malebase[1:10,2])) / maleSE
+maleq1 <- abs(mean(malebase[,2]) - mean(male10[,2])) / maleSE
+maleq2 <- abs(mean(male10[,2]) - mean(male30[,2])) / maleSE
+maleq3 <- abs(mean(male30[,2]) - mean(malebase[,2])) / maleSE
 print(maleq1)
 print(maleq2)
 print(maleq3)
 
 ##object##-------------------------
-objectSMe <-(var(objectbase[1:10,2]) + var(object10[1:10,2]) + var(object30[1:10,2]))/3
+objectSMe <-(var(objectbase[,2]) + var(object10[,2]) + var(object30[,2]))/3
 objectSE <- sqrt(objectSMe/10)
-objectq <- (mean(object10[1:10,2]) - mean(objectbase[1:10,2])) / objectSE
+objectq <- (mean(object10[,2]) - mean(objectbase[,2])) / objectSE
 print(objectq)
 
-objectq1 <- abs(mean(objectbase[1:10,2]) - mean(object10[1:10,2])) / objectSE
-objectq2 <- abs(mean(object10[1:10,2]) - mean(object30[1:10,2])) / objectSE
-objectq3 <- abs(mean(object30[1:10,2]) - mean(objectbase[1:10,2])) / objectSE
+objectq1 <- abs(mean(objectbase[,2]) - mean(object10[,2])) / objectSE
+objectq2 <- abs(mean(object10[,2]) - mean(object30[,2])) / objectSE
+objectq3 <- abs(mean(object30[,2]) - mean(objectbase[,2])) / objectSE
 print(objectq1)
 print(objectq2)
 print(objectq3)
@@ -207,54 +207,54 @@ mean(object30[,3])
 
 ######個体ごとの比較########------------------------------------------------------------------------------------------
 ##restraint##-------------------------
-restraintSMe <-(var(restraintbase[1:10,3]) + var(restraint10[1:10,3]) + var(restraint30[1:10,3]))/3
+restraintSMe <-(var(restraintbase[,3]) + var(restraint10[,3]) + var(restraint30[,3]))/3
 restraintSE <- sqrt(restraintSMe/10)
-restraintq <- (mean(restraint10[1:10,3]) - mean(restraintbase[1:10,3])) / restraintSE
+restraintq <- (mean(restraint10[,3]) - mean(restraintbase[,3])) / restraintSE
 print(restraintq)
 
-restraintq1 <- abs(mean(restraintbase[1:10,3]) - mean(restraint10[1:10,3])) / restraintSE
-restraintq2 <- abs(mean(restraint10[1:10,3]) - mean(restraint30[1:10,3])) / restraintSE
-restraintq3 <- abs(mean(restraint30[1:10,3]) - mean(restraintbase[1:10,3])) / restraintSE
+restraintq1 <- abs(mean(restraintbase[,3]) - mean(restraint10[,3])) / restraintSE
+restraintq2 <- abs(mean(restraint10[,3]) - mean(restraint30[,3])) / restraintSE
+restraintq3 <- abs(mean(restraint30[,3]) - mean(restraintbase[,3])) / restraintSE
 print(restraintq1)
 print(restraintq2)
 print(restraintq3)
 
 
 ##female##-------------------------
-femaleSMe <-(var(femalebase[1:10,3]) + var(female10[1:10,3]) + var(female30[1:10,3]))/3
+femaleSMe <-(var(femalebase[,3]) + var(female10[,3]) + var(female30[,3]))/3
 femaleSE <- sqrt(femaleSMe/10)
-femaleq <- (mean(female10[1:10,3]) - mean(femalebase[1:10,3])) / femaleSE
+femaleq <- (mean(female10[,3]) - mean(femalebase[,3])) / femaleSE
 print(femaleq)
 
-femaleq1 <- abs(mean(femalebase[1:10,3]) - mean(female10[1:10,3])) / femaleSE
-femaleq2 <- abs(mean(female10[1:10,3]) - mean(female30[1:10,3])) / femaleSE
-femaleq3 <- abs(mean(female30[1:10,3]) - mean(femalebase[1:10,3])) / femaleSE
+femaleq1 <- abs(mean(femalebase[,3]) - mean(female10[,3])) / femaleSE
+femaleq2 <- abs(mean(female10[,3]) - mean(female30[,3])) / femaleSE
+femaleq3 <- abs(mean(female30[,3]) - mean(femalebase[,3])) / femaleSE
 print(femaleq1)
 print(femaleq2)
 print(femaleq3)
 
 ##male##-------------------------
-maleSMe <-(var(malebase[1:10,3]) + var(male10[1:10,3]) + var(male30[1:10,3]))/3
+maleSMe <-(var(malebase[,3]) + var(male10[,3]) + var(male30[,3]))/3
 maleSE <- sqrt(maleSMe/10)
-maleq <- (mean(male10[1:10,3]) - mean(malebase[1:10,3])) / maleSE
+maleq <- (mean(male10[,3]) - mean(malebase[,3])) / maleSE
 print(maleq)
 
-maleq1 <- abs(mean(malebase[1:10,3]) - mean(male10[1:10,3])) / maleSE
-maleq2 <- abs(mean(male10[1:10,3]) - mean(male30[1:10,3])) / maleSE
-maleq3 <- abs(mean(male30[1:10,3]) - mean(malebase[1:10,3])) / maleSE
+maleq1 <- abs(mean(malebase[,3]) - mean(male10[,3])) / maleSE
+maleq2 <- abs(mean(male10[,3]) - mean(male30[,3])) / maleSE
+maleq3 <- abs(mean(male30[,3]) - mean(malebase[,3])) / maleSE
 print(maleq1)
 print(maleq2)
 print(maleq3)
 
 ##object##-------------------------
-objectSMe <-(var(objectbase[1:10,3]) + var(object10[1:10,3]) + var(object30[1:10,3]))/3
+objectSMe <-(var(objectbase[,3]) + var(object10[,3]) + var(object30[,3]))/3
 objectSE <- sqrt(objectSMe/10)
-objectq <- (mean(object10[1:10,3]) - mean(objectbase[1:10,3])) / objectSE
+objectq <- (mean(object10[,3]) - mean(objectbase[,3])) / objectSE
 print(objectq)
 
-objectq1 <- abs(mean(objectbase[1:10,3]) - mean(object10[1:10,3])) / objectSE
-objectq2 <- abs(mean(object10[1:10,3]) - mean(object30[1:10,3])) / objectSE
-objectq3 <- abs(mean(object30[1:10,3]) - mean(objectbase[1:10,3])) / objectSE
+objectq1 <- abs(mean(objectbase[,3]) - mean(object10[,3])) / objectSE
+objectq2 <- abs(mean(object10[,3]) - mean(object30[,3])) / objectSE
+objectq3 <- abs(mean(object30[,3]) - mean(objectbase[,3])) / objectSE
 print(objectq1)
 print(objectq2)
 print(objectq3)
