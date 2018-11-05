@@ -80,6 +80,44 @@ print(objectq2)
 print(objectq3)
 
 
+##base##-------------------------
+allSMe <-(var(restraintB38Rbase[1:10,1]) + var(maleB38Rbase[1:10,1]) + var(objectB38Rbase[1:10,1]))/3
+allSE <- sqrt(allSMe/10)
+
+restraintq1 <- abs(mean(restraintB38Rbase[1:10,1]) - mean(restraintB38R10[1:10,1])) / restraintSE
+restraintq2 <- abs(mean(restraintB38R10[1:10,1]) - mean(restraintB38R30[1:10,1])) / restraintSE
+restraintq3 <- abs(mean(restraintB38R30[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / restraintSE
+print(restraintq1)
+print(restraintq2)
+print(restraintq3)
+
+
+##restraint##-------------------------
+restraintSMe <-(var(restraintB38Rbase[1:10,1]) + var(restraintB38R10[1:10,1]) + var(restraintB38R30[1:10,1]))/3
+restraintSE <- sqrt(restraintSMe/10)
+restraintq <- (mean(restraintB38R10[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / restraintSE
+print(restraintq)
+
+restraintq1 <- abs(mean(restraintB38Rbase[1:10,1]) - mean(restraintB38R10[1:10,1])) / restraintSE
+restraintq2 <- abs(mean(restraintB38R10[1:10,1]) - mean(restraintB38R30[1:10,1])) / restraintSE
+restraintq3 <- abs(mean(restraintB38R30[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / restraintSE
+print(restraintq1)
+print(restraintq2)
+print(restraintq3)
+
+
+##restraint##-------------------------
+restraintSMe <-(var(restraintB38Rbase[1:10,1]) + var(restraintB38R10[1:10,1]) + var(restraintB38R30[1:10,1]))/3
+restraintSE <- sqrt(restraintSMe/10)
+restraintq <- (mean(restraintB38R10[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / restraintSE
+print(restraintq)
+
+restraintq1 <- abs(mean(restraintB38Rbase[1:10,1]) - mean(restraintB38R10[1:10,1])) / restraintSE
+restraintq2 <- abs(mean(restraintB38R10[1:10,1]) - mean(restraintB38R30[1:10,1])) / restraintSE
+restraintq3 <- abs(mean(restraintB38R30[1:10,1]) - mean(restraintB38Rbase[1:10,1])) / restraintSE
+print(restraintq1)
+print(restraintq2)
+print(restraintq3)
 
 
 
