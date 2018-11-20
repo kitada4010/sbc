@@ -2,6 +2,13 @@ import pickle
 import numpy as np
 import wave
 from pylab import *
+import matplotlib as mpl
+#mpl.use('Agg')
+import matplotlib.pyplot as plt
+plt.switch_backend('agg')
+#from mpl_toolkits.mplot3d import axes3d
+#from matplotlib import cm
+
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
 with open('/home/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B36 Rd.pickle',mode='rb') as fp:
@@ -90,6 +97,8 @@ plt.ylim([0,2056])
 ylabel("frequency [Hz]")
 plt.colorbar()
 
-plt.savefig('hikakutamesi.png',dpi=300)
+plt.savefig('B36hikakunotameno.png',dpi=300)
+#plt.imwrite('B36hikakunotameno.png',img)
+
 
 del df, specdataa, specdatab, pxx, freqs, bins, im, hammingWindow

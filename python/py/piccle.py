@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import pickle
 import csv
-%matplotlib inline
-%config InlineBackend.figure_format = 'retina'
+#%matplotlib inline
+#%config InlineBackend.figure_format = 'retina'
 #vine linux
 #f = pd.read_csv('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.csv',header=None)
 #f.to_pickle('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.pickle')
@@ -16,4 +16,4 @@ import csv
 #ubuntu
 f = pd.read_csv('/home/nodoka/spike-data/25kHz-data/B36 Rd.csv',header=None)
 f.to_pickle('/home/nodoka/spike-data/25kHz-data/B36 Rd.pickle')
-f.close
+#f.close
