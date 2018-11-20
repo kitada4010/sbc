@@ -1,2 +1,7 @@
-#!/bin/sh
-cd ~/txt-data/restrant && ~/sbc/shell/filechage.sh && cd ../female && ~/sbc/shell/filechage.sh && cd ../male && ~/sbc/shell/filechage.sh && cd ../object && ~/sbc/shell/filechage.sh
+#!/bin/bash
+POINT="/home/nodoka/txt-data"
+#POINT="~/txt-data"
+cd ${POINT}/restrant && ~/sbc/shell/filechange.sh
+cd ${POINT}/female && ~/sbc/shell/filechange.sh
+cd ${POINT}/male && ~/sbc/shell/filechange.sh
+cd ${POINT}/object  ~/sbc/shell/filechange.sh 
