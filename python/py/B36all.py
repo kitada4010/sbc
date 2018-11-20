@@ -6,8 +6,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 
-with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
+with open('/home/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B36 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
     
@@ -45,14 +45,14 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(3, 2, 2)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow)
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow)
 axis([0, length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,N/2)
 ylabel("frequency [Hz]")
 plt.colorbar()
 
-del df, specdataa, specdatab, pxx, freqs, bins, im
+del specdataa, specdatab, pxx, freqs, bins, im
 ####10min---------------------------------------------------------------------------------------------
 starttime = 1600
 endtime = 2000
@@ -87,7 +87,7 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(3, 2, 4)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow)
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow)
 axis([0, length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,N/2)
@@ -95,7 +95,7 @@ ylabel("frequency [Hz]")
 plt.colorbar()
 
 
-del df, specdataa, specdatab, pxx, freqs, bins, im
+del specdataa, specdatab, pxx, freqs, bins, im
 ####10min---------------------------------------------------------------------------------------------
 starttime = 2800
 endtime = 3200
@@ -130,7 +130,7 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(3, 2, 6)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow)
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow)
 axis([0, length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,N/2)
