@@ -47,7 +47,7 @@ length = (end - start)/samplingrate
 # FFTで用いるハミング窓
 hammingWindow = np.hamming(N)
 
-plt.figure(figsize=(7, 2))
+#plt.figure(figsize=(7, 2))
 
 # スペクトログラムを描画
 plt.subplot(2, 1, 2)
