@@ -24,7 +24,7 @@ for i in range(len(df[start:end])):
     datatime.append([(starttime+(i*0.00004))])
 #print(datatime)
 
-plt.subplot(1, 2, 1)
+plt.subplot(2, 1, 1)
 plt.plot(datatime,df[start:end])
 del datatime
 
@@ -46,7 +46,7 @@ length = (end - start)/samplingrate
 hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
-plt.subplot(1, 2, 2)
+plt.subplot(2, 1, 2)
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow)
 axis([0, length, 0, samplingrate / 2])
 xlabel("time [second]")
