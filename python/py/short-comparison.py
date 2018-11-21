@@ -2,6 +2,9 @@ import pickle
 import numpy as np
 import wave
 import sys
+import matplotlib as mpl
+mpl.use('Agg')
+import matplotlib.pyplot as plt
 from pylab import *
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
 with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
