@@ -24,6 +24,8 @@ for i in range(len(df[start:end])):
     datatime.append([(starttime+(i*0.00004))])
 #print(datatime)
 
+plt.figure(figsize=(6, 2))
+
 plt.subplot(2, 1, 1)
 plt.plot(datatime,df[start:end])
 del datatime
