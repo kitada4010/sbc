@@ -1,5 +1,7 @@
 #!/bin/bash
+#POINT="/home2/nodoka"
+POINT="/home/nodoka"
 while read line
 do
-    echo $line
+    python ${POINT}/sbc/python/py/short-comparison.py $line
 done < $1

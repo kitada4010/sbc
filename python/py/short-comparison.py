@@ -3,14 +3,14 @@ import numpy as np
 import wave
 import sys
 from pylab import *
-with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
-#with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
+#with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
+with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
     
 ####base---------------------------------------------------------------------------------------------
-starttime = sys.argv[1]
-endtime = sys.argv[2]
+starttime = float(sys.argv[1])
+endtime = float(sys.argv[2])
 start = int(starttime/0.00004)
 end = int(endtime/0.00004)
 datatime = []
@@ -51,6 +51,7 @@ plt.ylim(0,N/2)
 ylabel("frequency [Hz]")
 plt.colorbar()
 
-plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'ripple-spec.png',dpi=300)
+#plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'ripple-spec.png',dpi=300)
+plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'spec-ripple.png',dpi=300)
 
 del specdataa, pxx, freqs, bins, im
