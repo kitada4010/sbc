@@ -47,6 +47,8 @@ length = (end - start)/samplingrate
 # FFTで用いるハミング窓
 hammingWindow = np.hamming(N)
 
+plt.figure(figsize=(7, 2))
+
 # スペクトログラムを描画
 plt.subplot(2, 1, 2)
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow)
