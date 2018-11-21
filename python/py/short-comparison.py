@@ -56,7 +56,7 @@ axis([0, length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,N/2)
 ylabel("frequency [Hz]")
-plt.colorbar(cax=cax)
+plt.colorbar(orientation='horizontal')
 
 #plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'ripple-spec.png',dpi=300)
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'spec-ripple.png',dpi=300)
