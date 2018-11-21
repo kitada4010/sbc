@@ -58,7 +58,7 @@ plt.ylim(0,N/2)
 ylabel("frequency [Hz]")
 plt.colorbar(orientation='horizontal')
 
-#plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'ripple-spec.png',dpi=300)
-plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'spec-ripple.png',dpi=300)
+plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'ripple-spec.png',dpi=300)
+#plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'spec-ripple.png',dpi=300)
 
 del specdataa, pxx, freqs, bins, im
