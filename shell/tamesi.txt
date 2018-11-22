@@ -1,0 +1,12 @@
+#directorychange.sh#
+B39_more_short_spec_timedata.txt
+B39_ripple_timedata.txt
+B39_ripple_timedata.txt~
+B39_short_spec_timedata.txt
+B39_spec_timedata.txt
+directorychange.sh
+filechange.sh
+short-comparison.sh
+short10-comparison.sh
+short10-comparison.sh~
+tamesi.txt
