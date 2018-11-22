@@ -29,7 +29,7 @@ fp.close
 #print(specdataa)
 N = 2048
 hammingWindow = np.hamming(N)
-samplingrate = 25000
+samplingrate = 5000
 length = (end - start)/samplingrate
 
 # FFTで用いるハミング窓
@@ -37,8 +37,8 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(3, 2, 2)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow, xextent=(starttime,endtime))
-axis([starttime, starttime+length, 0, samplingrate / 2])
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow)
+axis([0, length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,N/2)
 ylabel("frequency [Hz]")
@@ -65,7 +65,7 @@ specdataa = specdatab.flatten()
 fp.close
 N = 2048
 hammingWindow = np.hamming(N)
-samplingrate = 25000
+samplingrate = 5000
 length = (end - start)/samplingrate
 
 # FFTで用いるハミング窓
@@ -73,8 +73,8 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(3, 2, 4)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow, xextent=(starttime,endtime))
-axis([starttime, starttime+length, 0, samplingrate / 2])
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow)
+axis([0, length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,N/2)
 ylabel("frequency [Hz]")
@@ -101,7 +101,7 @@ specdataa = specdatab.flatten()
 fp.close
 N = 2048
 hammingWindow = np.hamming(N)
-samplingrate = 25000
+samplingrate = 5000
 length = (end - start)/samplingrate
 
 # FFTで用いるハミング窓
@@ -109,8 +109,8 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(3, 2, 6)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow, xextent=(starttime,endtime))
-axis([starttime, starttime+length, 0, samplingrate / 2])
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow)
+axis([0, length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,N/2)
 ylabel("frequency [Hz]")

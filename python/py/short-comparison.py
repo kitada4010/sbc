@@ -51,14 +51,14 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(2, 1, 2)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow)
-axis([0, length, 0, samplingrate / 2])
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow, xextent=(starttime,endtime))
+axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,N/2)
 ylabel("frequency [Hz]")
 plt.colorbar(orientation='horizontal')
 
-plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'ripple-spec.png',dpi=300)
-#plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'spec-ripple.png',dpi=300)
+plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.png',dpi=300)
+#plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] + '.png',dpi=300)
 
 del specdataa, pxx, freqs, bins, im
