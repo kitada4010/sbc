@@ -2,7 +2,8 @@ import pickle
 import numpy as np
 import sys
 import wave
-from pylab import *
+import pandas
+#from pylab import *
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
 with open(sys.argv[1]+ '.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B36 Rd.pickle',mode='rb') as fp:

@@ -39,7 +39,8 @@ specdataa = specdatab.flatten()
 del specdatab
 fp.close
 #print(specdataa)
-N = 2048
+#N = 2048
+N = 512
 hammingWindow = np.hamming(N)
 samplingrate = 25000
 length = (end - start)/samplingrate
@@ -54,7 +55,7 @@ plt.subplot(2, 1, 2)
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow, xextent=(starttime,endtime))
 axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
-plt.ylim(0,N/2)
+plt.ylim(0,4096)
 ylabel("frequency [Hz]")
 plt.colorbar(orientation='horizontal')
 
