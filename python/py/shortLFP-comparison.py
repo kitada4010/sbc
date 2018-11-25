@@ -6,26 +6,18 @@ import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 from pylab import *
-<<<<<<< HEAD:python/py/shortLFP-comparison.py
-with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39R-LFPd.pickle', mode='rb') as fp:
-#with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
-=======
-#with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
+#with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39R-LFPd.pickle', mode='rb') as fp:
 with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
->>>>>>> e84f667c29143085cfae4db93c11a4b3aad1c918:python/py/short-comparison.py~
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
     
 ####base---------------------------------------------------------------------------------------------
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
-<<<<<<< HEAD:python/py/shortLFP-comparison.py
+
 start = int(starttime/0.0002)
 end = int(endtime/0.0002)
-=======
-start = int(starttime/0.00004)
-end = int(endtime/0.00004)
->>>>>>> e84f667c29143085cfae4db93c11a4b3aad1c918:python/py/short-comparison.py~
+
 datatime = []
 #print(df[start:end])
 #specdatab = np.array(df[start:end])
@@ -49,7 +41,7 @@ specdataa = specdatab.flatten()
 del specdatab
 fp.close
 #print(specdataa)
-N = 2048
+N = 512
 hammingWindow = np.hamming(N)
 samplingrate = 5000
 length = (end - start)/samplingrate
@@ -67,7 +59,7 @@ axis([starttime, starttime + length, 0, samplingrate / 2])
 
 
 xlabel("time [second]")
-plt.ylim(0,N/2)
+plt.ylim(0,512)
 ylabel("frequency [Hz]")
 plt.colorbar(orientation='horizontal')
 
