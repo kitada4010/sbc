@@ -20,6 +20,7 @@ for i in range(len(df[start:end])):
 
 
 plt.subplot(3, 2, 1)
+plt.xlim(starttime,endtime)
 plt.plot(datatime,df[start:end])
 del datatime
 
@@ -57,6 +58,7 @@ for i in range(len(df[start:end])):
 
 
 plt.subplot(3, 2, 3)
+plt.xlim(starttime,endtime)
 plt.plot(datatime,df[start:end])
 del datatime
 
@@ -93,6 +95,7 @@ for i in range(len(df[start:end])):
 
 
 plt.subplot(3, 2, 5)
+plt.xlim(starttime,endtime)
 plt.plot(datatime,df[start:end])
 del datatime
 
