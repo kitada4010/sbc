@@ -59,7 +59,7 @@ axis([starttime, starttime + length, 0, samplingrate / 2])
 
 
 xlabel("time [second]")
-plt.ylim(0,512)
+plt.ylim(0,1024)
 ylabel("frequency [Hz]")
 plt.colorbar(orientation='horizontal')
 
