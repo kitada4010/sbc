@@ -41,7 +41,8 @@ del specdatab
 fp.close
 #print(specdataa)
 #N = 2048
-N = 512
+#N = 512
+N = 128
 hammingWindow = np.hamming(N)
 samplingrate = 25000
 length = (end - start)/samplingrate
