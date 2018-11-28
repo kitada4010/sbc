@@ -1,4 +1,4 @@
-import pylab as p
+#import pylab as p
 #import iwavelets.pycwt as w
 import math,numpy,matplotlib
 import pickle
@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 from scipy import signal
 from pylab import *
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
-#with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
-with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
+with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
+#with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
 
 
@@ -32,7 +32,7 @@ plt.figure(figsize=(6, 4))
 
 plt.subplot(2, 1, 1)
 xlim(starttime,endtime)
-ylabel(" [mV]")
+ylabel("電圧")
 plt.plot(datatime,df[start:end])
 del datatime
 

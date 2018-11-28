@@ -3,5 +3,5 @@
 POINT="/home/nodoka"
 while read line
 do
-    python ${POINT}/sbc/python/py/short-comparison.py  $line ripple-spec
+    python ${POINT}/sbc/python/py/spectrogram/short-comparison.py  $line ripple-spec
 done < $1
