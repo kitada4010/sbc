@@ -28,6 +28,7 @@ plt.figure(figsize=(6, 4))
 
 plt.subplot(2, 1, 1)
 plt.xlim(starttime,endtime)
+plt.ylim(-2.2,2.2)
 plt.plot(datatime,df[start:end])
 del datatime
 
