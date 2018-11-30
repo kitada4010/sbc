@@ -32,7 +32,7 @@ specdatab = np.array(df[start:end])
 specdataa = specdatab.flatten()
 fp.close
 #print(specdataa)
-N = 128
+N = 4096
 hammingWindow = np.hamming(N)
 samplingrate = 25000
 length = (end - start)/samplingrate
@@ -42,7 +42,7 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(3, 2, 2)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=0, window=hammingWindow, xextent=(starttime,endtime))
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow, xextent=(starttime,endtime))
 axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,4096)
@@ -79,7 +79,7 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(3, 2, 4)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=0, window=hammingWindow, xextent=(starttime,endtime))
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow, xextent=(starttime,endtime))
 axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,4096)
@@ -115,10 +115,10 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(3, 2, 6)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=0, window=hammingWindow, xextent=(starttime,endtime))
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow, xextent=(starttime,endtime))
 axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
-plt.ylim(0,128)
+plt.ylim(0,4096)
 ylabel("frequency [Hz]")
 plt.colorbar()
 
