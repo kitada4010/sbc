@@ -16,6 +16,6 @@ POINT="/home/nodoka"
 #rm *LFP.pikle
 
 for picklefile in `\find .  -name '*.pickle' `; do
-    python ${POINT}/sbc/python/py/spectrogram/400s-comparison.py ${picklefile/.pickle/}
+    python ${POINT}/sbc/python/py/wavelet/400s-comparison.py ${picklefile/.pickle/}
 done
 

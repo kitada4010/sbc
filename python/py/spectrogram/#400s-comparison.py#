@@ -3,9 +3,7 @@ import numpy as np
 import sys
 import wave
 import pandas
-import matplotlib as mpl
-mpl.use('Agg')
-import matplotlib.pyplot as plt
+
 from pylab import *
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B36 Rd.pickle', mode='rb') as fp:
 with open(sys.argv[1]+ '.pickle', mode='rb') as fp:
