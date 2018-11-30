@@ -19,9 +19,11 @@ start = int(starttime/0.00004)
 end = int(endtime/0.00004)
 datatime = []
 
+ylims=512
+
 for i in range(len(df[start:end])):
     datatime.append([(starttime+(i*0.00004))])
-
+    
 
 plt.subplot(3, 2, 1)
 plt.xlim(starttime,endtime)
@@ -32,7 +34,7 @@ specdatab = np.array(df[start:end])
 specdataa = specdatab.flatten()
 fp.close
 #print(specdataa)
-N = 4096
+N = 2048
 hammingWindow = np.hamming(N)
 samplingrate = 25000
 length = (end - start)/samplingrate
@@ -45,7 +47,7 @@ plt.subplot(3, 2, 2)
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow, xextent=(starttime,endtime))
 axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
-plt.ylim(0,4096)
+plt.ylim(0,ylims)
 ylabel("frequency [Hz]")
 plt.colorbar()
 
@@ -82,7 +84,7 @@ plt.subplot(3, 2, 4)
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow, xextent=(starttime,endtime))
 axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
-plt.ylim(0,4096)
+plt.ylim(0,ylims)
 ylabel("frequency [Hz]")
 plt.colorbar()
 
@@ -118,7 +120,7 @@ plt.subplot(3, 2, 6)
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow, xextent=(starttime,endtime))
 axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
-plt.ylim(0,4096)
+plt.ylim(0,ylims)
 ylabel("frequency [Hz]")
 plt.colorbar()
 
