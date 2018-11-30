@@ -42,7 +42,7 @@ specdataa = specdatab.flatten()
 fp.close
 del specdatab
 #widths = np.arange(1, 31)
-P = 1028
+P = 4096
 widths = np.arange(1, P)
 
 plt.subplot(2, 1, 2)
