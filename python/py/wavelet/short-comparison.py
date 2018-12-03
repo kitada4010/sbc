@@ -32,7 +32,7 @@ plt.figure(figsize=(6, 4))
 
 plt.subplot(2, 1, 1)
 xlim(starttime,endtime)
-ylabel("電圧")
+ylabel("voltage")
 plt.plot(datatime,df[start:end])
 del datatime
 
@@ -53,6 +53,7 @@ xlim(starttime, endtime)
 xlabel("time [second]")
 ylabel("frequency [Hz]")
 plt.colorbar(orientation='horizontal')
+plt.clim(-15,15)
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.png',dpi=300)
 
 #p.show()
