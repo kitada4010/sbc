@@ -59,6 +59,7 @@ pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap
 axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
 plt.ylim(0,4096)
+plt.yscale("log")
 ylabel("frequency [Hz]")
 plt.colorbar(orientation='horizontal')
 
