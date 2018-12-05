@@ -7,14 +7,14 @@ import sys
 
 
 #vine linux
-f = pd.read_csv(sys.argv[1] +'.csv',header=None)
-f.to_pickle(sys.argv[1] +'.pickle')
+#f = pd.read_csv(sys.argv[1] +'.csv',header=None)
+#f.to_pickle(sys.argv[1] +'.pickle')
 
 #mac
 #f = pd.read_csv('/Volumes/NO NAME/25kHz-data/B36 Rd.csv',header=None)
 #f.to_pickle('/Volumes/NO NAME/25kHz-data/B36 Rd.pickle')
 
 #ubuntu
-#f = pd.read_csv(sys.argv[1]+ '.csv',header=None)
-#f.to_pickle(sys.argv[1]+ '.pickle')
+f = pd.read_csv(sys.argv[1]+ '.csv',header=None)
+f.to_pickle(sys.argv[1]+ '.pickle')
 #f.close
