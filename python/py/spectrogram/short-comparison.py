@@ -24,9 +24,9 @@ for i in range(len(df[start:end])):
     datatime.append([(starttime+(i*0.00004))])
 #print(datatime)
 
-plt.figure(figsize=(6, 4))
+plt.figure(figsize=(10, 4))
 
-plt.subplot(2, 1, 1)
+plt.subplot(4, 1, 1)
 plt.xlim(starttime,endtime)
 plt.ylim(-2.2,2.2)
 plt.plot(datatime,df[start:end])
@@ -42,8 +42,8 @@ del specdatab
 fp.close
 #print(specdataa)
 #N = 2048
-#N = 512
-N = 128
+N = 512
+#N = 128
 hammingWindow = np.hamming(N)
 samplingrate = 25000
 length = (end - start)/samplingrate
@@ -58,10 +58,14 @@ plt.subplot(2, 1, 2)
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow, xextent=(starttime,endtime))
 axis([starttime, starttime+length, 0, samplingrate / 2])
 xlabel("time [second]")
-plt.ylim(0,10000)
+#plt.ylim(0,10000)
+plt.yticks([100,1000,10000])
+plt.ylim(100,10000)
 plt.yscale("log")
 ylabel("frequency [Hz]")
-plt.colorbar(orientation='horizontal')
+axColor = plt.axes([0.95, 0.15, 0.03, 0.30])
+plt.colorbar(im, cax=axColor, orientation="vertical")
+#plt.colorbar(orientation='horizontal')
 
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.png',dpi=300)
 #plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] + '.png',dpi=300)
