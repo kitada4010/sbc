@@ -27,6 +27,9 @@ for i in range(len(df[start:end])):
 plt.figure(figsize=(10, 4))
 
 plt.subplot(4, 1, 1)
+ylabel("voltage [mV]")
+plt.xticks(color="None")
+plt.tick_params('x',direction='in' ,  top=True)
 plt.xlim(starttime,endtime)
 plt.ylim(-2.2,2.2)
 plt.plot(datatime,df[start:end])
@@ -63,7 +66,7 @@ plt.yticks([100,1000,10000])
 plt.ylim(100,10000)
 plt.yscale("log")
 ylabel("frequency [Hz]")
-axColor = plt.axes([0.95, 0.15, 0.03, 0.30])
+axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")
 #plt.colorbar(orientation='horizontal')
 
