@@ -31,7 +31,7 @@ ylabel("voltage [mV]")
 plt.xticks(color="None")
 plt.tick_params('x',direction='in' ,  top=True)
 plt.xlim(starttime,endtime)
-plt.ylim(-2.2,2.2)
+plt.ylim(-4,2)
 plt.plot(datatime,df[start:end])
 del datatime
 

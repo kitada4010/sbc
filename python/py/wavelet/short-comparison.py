@@ -28,11 +28,14 @@ for i in range(len(df[start:end])):
     datatime.append([(starttime+(i*0.00004))])
     #print(datatime)
 
-plt.figure(figsize=(6, 4))
-
-plt.subplot(2, 1, 1)
+plt.figure(figsize=(10, 4))
+plt.subplots_adjust(wspace=0.0, hspace=-0.4)
+plt.subplot(4, 1, 1)
 xlim(starttime,endtime)
-ylabel("voltage")
+plt.yticks([-3,-2,-1,0,1,2])
+plt.ylim(-4,2)
+ylabel("voltage [mV]")
+plt.xticks(color="None")
 plt.plot(datatime,df[start:end])
 del datatime
 
@@ -47,14 +50,18 @@ widths = np.arange(1, P)
 
 plt.subplot(2, 1, 2)
 cwtmatr = scipy.signal.cwt(specdataa, signal.ricker, widths)
-plt.imshow(cwtmatr, extent=[starttime, endtime, P, 1], cmap='PRGn', aspect='auto',vmax=abs(cwtmatr).max(), vmin=-abs(cwtmatr).max())
+im = plt.imshow(cwtmatr, extent=[starttime, endtime, P, 1], cmap='PRGn', aspect='auto',vmax=abs(cwtmatr).max(), vmin=-abs(cwtmatr).max())
 xlim(starttime, endtime)
 #ylim(0, 4096)
 xlabel("time [second]")
 ylabel("frequency [Hz]")
-plt.colorbar(orientation='horizontal')
+plt.yticks([100,1000,10000])
+plt.ylim(100,10000)
 plt.yscale("log")
+axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
+plt.colorbar(im, cax=axColor, orientation="vertical")
 #plt.clim(-15,15)
+
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.png',dpi=300)
 
 #p.show()
