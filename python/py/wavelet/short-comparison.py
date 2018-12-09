@@ -65,4 +65,4 @@ plt.colorbar(im, cax=axColor, orientation="vertical")
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.png',dpi=300)
 
 #p.show()
-del widths, specdataa
+del widths, specdataa, specdataa, cwtmatr, signal.ricker, im, axColor
