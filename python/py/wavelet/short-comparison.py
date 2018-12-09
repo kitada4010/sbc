@@ -34,7 +34,7 @@ plt.subplot(4, 1, 1)
 xlim(starttime,endtime)
 plt.yticks([-3,-2,-1,0,1,2])
 plt.ylim(-4,2)
-ylabel("voltage [mV]")
+ylabel("voltage [V]")
 plt.xticks(color="None")
 plt.plot(datatime,df[start:end])
 del datatime
@@ -45,7 +45,7 @@ specdataa = specdatab.flatten()
 fp.close
 del specdatab
 #widths = np.arange(1, 31)
-P = 4096
+P = 131072
 widths = np.arange(1, P)
 
 plt.subplot(2, 1, 2)
@@ -55,8 +55,8 @@ xlim(starttime, endtime)
 #ylim(0, 4096)
 xlabel("time [second]")
 ylabel("frequency [Hz]")
-plt.yticks([100,1000,10000])
-plt.ylim(100,10000)
+plt.yticks([1,10,100,1000,10000,100000])
+plt.ylim(1,100000)
 plt.yscale("log")
 axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")
