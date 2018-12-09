@@ -25,7 +25,7 @@ for i in range(len(df[start:end])):
 #print(datatime)
 
 plt.figure(figsize=(10, 4))
-
+plt.subplots_adjust(wspace=0.0, hspace=-0.4)
 plt.subplot(4, 1, 1)
 ylabel("voltage [mV]")
 plt.xticks(color="None")
