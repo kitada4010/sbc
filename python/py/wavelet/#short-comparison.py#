@@ -1,5 +1,5 @@
-#import pylab as p
-#import iwavelets.pycwt as w
+import pylab as p
+import iwavelets.pycwt as w
 import math,numpy,matplotlib
 import pickle
 import numpy as np
@@ -36,7 +36,6 @@ plt.yticks([-3,-2,-1,0,1,2])
 plt.ylim(-4,2)
 ylabel("voltage [V]")
 plt.xticks(color="None")
-plt.tick_params('x',direction='in' ,  top=True)
 plt.plot(datatime,df[start:end])
 del datatime
 
@@ -72,4 +71,4 @@ plt.colorbar(im, cax=axColor, orientation="vertical")
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.png',dpi=300)
 
 #p.show()
-del widths, specdataa, cwtmatr, signal.ricker, im, axColor
+del widths, specdataa, specdataa, cwtmatr, signal.ricker, im, axColor
