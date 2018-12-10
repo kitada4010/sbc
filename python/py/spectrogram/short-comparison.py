@@ -27,6 +27,7 @@ for i in range(len(df[start:end])):
 plt.figure(figsize=(10, 4))
 plt.subplots_adjust(wspace=0.0, hspace=-0.4)
 plt.subplot(4, 1, 1)
+plt.yticks([-3,-2,-1,0,1,2])
 ylabel("voltage [V]")
 plt.xticks(color="None")
 plt.tick_params('x',direction='in' ,  top=True)
@@ -73,4 +74,4 @@ plt.colorbar(im, cax=axColor, orientation="vertical")
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.png',dpi=300)
 #plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] + '.png',dpi=300)
 
-del specdatab, pxx, freqs, bins, im
+del specdataa, pxx, freqs, bins, im
