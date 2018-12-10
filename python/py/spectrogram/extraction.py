@@ -58,7 +58,7 @@ plt.show()
 timescale = N/50000
 
 
-with open('/home/nodoka/sbc/shell/extraction/otamesitime.txt', mode='w') as f:
+with open('/home/nodoka/sbc/shell/extraction/ota.txt', mode='w') as f:
     for i in range(len(freq)) :
         if freq[i] :
             writetime = starttime + (i+1) * timescale
