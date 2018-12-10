@@ -46,24 +46,23 @@ specdataa = specdatab.flatten()
 fp.close
 del specdatab
 #widths = np.arange(1, 31)
-P = 1024
-#P = 16384
-#P = 131072
+#P = 1024
+P = 16384
+
 widths = np.arange(1, P)
 
 plt.subplot(2, 1, 2)
 cwtmatr = scipy.signal.cwt(specdataa, signal.ricker, widths)
+del widths
 im = plt.imshow(cwtmatr, extent=[starttime, endtime, P, 1], cmap='PRGn', aspect='auto',vmax=abs(cwtmatr).max(), vmin=-abs(cwtmatr).max())
 xlim(starttime, endtime)
 #ylim(0, 4096)
 xlabel("time [second]")
 ylabel("frequency [Hz]")
-plt.yticks([1,10,100,1000])
-plt.ylim(1,1000)
-#plt.yticks([1,10,100,1000,10000])
-#plt.ylim(1,10000)
-#plt.yticks([1,10,100,1000,10000,100000])
-#plt.ylim(1,100000)
+#plt.yticks([1,10,100,1000])
+#plt.ylim(1,1000)
+plt.yticks([1,10,100,1000,10000])
+plt.ylim(1,10000)
 plt.yscale("log")
 axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")
@@ -72,4 +71,5 @@ plt.colorbar(im, cax=axColor, orientation="vertical")
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.png',dpi=300)
 
 #p.show()
-del widths, specdataa, cwtmatr, signal.ricker, im, axColor
+#del  widths, specdataa, cwtmatr, signal.ricker, im, axColor
+del specdataa, cwtmatr, signal.ricker, im, axColor
