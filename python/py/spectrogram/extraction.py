@@ -20,9 +20,6 @@ endtime = 450
 N = 2048 #区切りデータ数
 
 timerangepm = 0.15 #切り出し時間データプラスマイナス何秒か
-freq1 = spec.ix[600] #注目する周波数
-freq2 = spec.ix[800]
-freq3 = spec.ix[1000]
 
 
 start = int(starttime/0.00004)
@@ -48,7 +45,10 @@ hammingWindow = np.hamming(N)
 
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N/2, window=hammingWindow,  xextent=(starttime,endtime))
 axis([starttime, starttime + length, 0, samplingrate / 2])
-
+spec = pd.DataFrame(pxx)
+freq1 = spec.ix[600] #注目する周波数
+freq2 = spec.ix[800]
+freq3 = spec.ix[1000]
 
 freq = (freq1 > 3*np.mean(freq1))|(freq2 > 3*np.mean(freq2)) |(freq3 > 3*np.mean(freq3))
 plt.plot(freq)
@@ -58,7 +58,7 @@ plt.show()
 timescale = N/50000
 
 
-with open('../../../../shell/extraction/otamesitime.txt', mode='w') as f:
+with open('/home/nodoka/sbc/shell/extraction/otamesitime.txt', mode='w') as f:
     for i in range(len(freq)) :
         if freq[i] :
             writetime = starttime + (i+1) * timescale
