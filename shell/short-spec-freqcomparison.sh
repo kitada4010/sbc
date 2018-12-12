@@ -3,5 +3,5 @@
 POINT="/home/nodoka"
 while read line
 do
-    python ${POINT}/sbc/python/py/freq-wavelet/short-comparison.py  $line spec-ripple
+    python ${POINT}/sbc/python/py/freq-wavelet/short-comparison.py  $line freq-spec-ripple
 done < $1

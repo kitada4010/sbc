@@ -5,11 +5,11 @@ import pickle
 import numpy as np
 import scipy
 import matplotlib as mpl
-from swan import pycwt
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 from scipy import signal
 from pylab import *
+from swan import pycwt
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
