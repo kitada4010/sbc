@@ -5,6 +5,7 @@ import pickle
 import numpy as np
 import scipy
 import matplotlib as mpl
+from swan import pycwt
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 from scipy import signal
