@@ -11,8 +11,8 @@ from scipy import signal
 from pylab import *
 from swan import pycwt
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
-with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
-#with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
+#with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
+with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
 
 
@@ -45,8 +45,8 @@ specdataa = specdatab.flatten()
 fp.close
 del specdatab
 #widths = np.arange(1, 31)
-#P = 1024
-P = 16384
+P = 1024
+#P = 16384
 
 widths = np.arange(1, P)
 
@@ -55,7 +55,7 @@ cwtmatr = pycwt.cwt_f(specdataa, widths, 25000, pycwt.Mexican_hat())
 rr=np.abs(cwtmatr)
 
 del widths
-im = plt.imshow(np.fliqud(rr), extent=[starttime, endtime, P, 1], aspect='auto',interpolation='nearest')
+im = plt.imshow(np.flipud(rr), extent=[starttime, endtime, P, 1], aspect='auto',interpolation='nearest')
 xlim(starttime, endtime)
 #ylim(0, 4096)
 xlabel("time [s]")
