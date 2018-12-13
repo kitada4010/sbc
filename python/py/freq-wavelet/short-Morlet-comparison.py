@@ -51,7 +51,7 @@ P = 1024
 widths = np.arange(1, P)
 
 plt.subplot(2, 1, 2)
-cwtmatr = pycwt.cwt_f(specdataa, widths, 25000, pycwt.Mexican_hat())
+cwtmatr = pycwt.cwt_f(specdataa, widths, 25000, pycwt.Morlet())
 rr=np.abs(cwtmatr)
 
 del widths
