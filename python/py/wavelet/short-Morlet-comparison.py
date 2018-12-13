@@ -46,8 +46,8 @@ specdataa = specdatab.flatten()
 fp.close
 del specdatab
 #widths = np.arange(1, 31)
-#P = 1024
-P = 16384
+P = 1024
+#P = 16384
 
 widths = np.arange(1, P)
 
@@ -59,10 +59,10 @@ xlim(starttime, endtime)
 #ylim(0, 4096)
 xlabel("time [second]")
 ylabel("frequency [Hz]")
-#plt.yticks([1,10,100,1000])
-#plt.ylim(1,1000)
-plt.yticks([1,10,100,1000,10000])
-plt.ylim(1,10000)
+plt.yticks([1,10,100,1000])
+plt.ylim(1,1000)
+#plt.yticks([1,10,100,1000,10000])
+#plt.ylim(1,10000)
 plt.yscale("log")
 axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")

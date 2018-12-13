@@ -3,5 +3,5 @@
 POINT="/home/nodoka"
 while read line
 do
-    python ${POINT}/sbc/python/py/wavelet/short-morlet-comparison.py ${line} noise
+    python ${POINT}/sbc/python/py/wavelet/short-Morlet-comparison.py ${line} noise
 done < $1
