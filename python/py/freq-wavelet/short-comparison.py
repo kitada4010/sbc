@@ -51,7 +51,8 @@ P = 1024
 widths = np.arange(1, P)
 
 plt.subplot(2, 1, 2)
-cwtmatr = pycwt.cwt_f(specdataa, widths, 25000, pycwt.Mexican_hat(1.0))
+sigma = 1.0
+cwtmatr = pycwt.cwt_f(specdataa, widths, 25000, pycwt.Mexican_hat(sigma))
 rr=np.abs(cwtmatr)
 
 del widths

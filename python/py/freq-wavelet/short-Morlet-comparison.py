@@ -51,7 +51,8 @@ P = 1024
 widths = np.arange(1, P)
 
 plt.subplot(2, 1, 2)
-cwtmatr = pycwt.cwt_f(specdataa, widths, 25000, pycwt.Morlet(1.5))
+fc = 1.5
+cwtmatr = pycwt.cwt_f(specdataa, widths, 25000, pycwt.Morlet(fc))
 rr=np.abs(cwtmatr)
 
 del widths
