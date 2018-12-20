@@ -19,6 +19,8 @@ with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 
 
 starttime = float(sys.argv[1])
+print(argv[1])
+print(argv[2])
 endtime = float(sys.argv[2])
 start = int(starttime/0.00004)
 end = int(endtime/0.00004)
