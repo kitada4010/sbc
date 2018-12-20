@@ -2,7 +2,7 @@
 #import iwavelets.pycwt as w
 import math,numpy,matplotlib
 import pickle
-import numpy as np
+#import numpy as np
 import scipy
 import sys
 import matplotlib as mpl
