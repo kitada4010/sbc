@@ -39,7 +39,7 @@ spec = pd.DataFrame(rr)
 del specdataa
 
 del rr
-s=1000
+s=100
 spec_new = pd.DataFrame(index=spec.index, columns=[])
 for i in range(0,len(df[start:end])-1,s) :
     spec1 = spec[i]
