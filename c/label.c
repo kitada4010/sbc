@@ -47,9 +47,9 @@ int main(int argc, char *argv[]){
   
 
   for(i=0; i<leng; i++){
-    printf("%d\n",(int)((startleng-grayarea)*fs));
-    printf("%d\n",(int)((startleng+grayarea)*fs));
-    printf("%d\n",(int)((endleng-grayarea)*fs));
+    //    printf("%d\n",(int)((startleng-grayarea)*fs));
+    //printf("%d\n",(int)((startleng+grayarea)*fs));
+    //printf("%d\n",(int)((endleng-grayarea)*fs));
     
     if( ( (int)((startleng-grayarea)*fs) <= i && (int)((startleng+grayarea)*fs) >= i ) || ( (int)((endleng-grayarea)*fs) <= i && (int)((endleng+grayarea)*fs) >= i )){
       output = label + 2;
