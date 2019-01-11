@@ -1,0 +1,6 @@
+#!/bin/bash
+#POINT="/home2/nodoka"
+POINT="/home/nodoka"
+#PYENVPY="/home/nodoka/.pyenv/shims/python"
+   fi
+done < $1

@@ -40,8 +40,9 @@ del specdataa
 
 del rr
 s=100
+print(len(df[start:end]))
 spec_new = pd.DataFrame(index=spec.index, columns=[])
-for i in range(0,len(df[start:end])-1,s) :
+for i in range(0,len(df[start:end]),s) :
     spec1 = spec[i]
     spec_new[i/s]=spec1
 spec_new.T.to_csv('B39-'+ sys.argv[1] + '-' + sys.argv[2] +'-cut.csv',header=False, index=False)

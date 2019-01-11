@@ -6,8 +6,8 @@ int main(int argc, char *argv[]){
     return 0;
   }
   
-  int fs = 25; //データを取る間隔の周波数
-  double grayarea = 0.05; //グレーゾーンの絶対値範囲(合計範囲/2)
+  int fs = 250; //データを取る間隔の周波数
+  double grayarea = 0.005; //グレーゾーンの絶対値範囲(合計範囲/2)
   
   int i, label, output;
   double starttime, endtime, startevent, endevent;
@@ -34,8 +34,16 @@ int main(int argc, char *argv[]){
   
   double leng;
   leng = endtime - starttime;
+  //  printf("%lf\n",leng);
+  
+  //printf("%lf\n",leng);
+  
+  if( ((int)leng*4*fs)%4 == 0  ){
+    leng=leng+1.0;
+    printf("%s\n",filename);
+  }
   leng *= fs;
-
+  
   double startleng;
   startleng = startevent - starttime;
     
@@ -46,7 +54,7 @@ int main(int argc, char *argv[]){
   
   
 
-  for(i=0; i<leng; i++){
+  for(i=0; i<(int)leng; i++){
     //    printf("%d\n",(int)((startleng-grayarea)*fs));
     //printf("%d\n",(int)((startleng+grayarea)*fs));
     //printf("%d\n",(int)((endleng-grayarea)*fs));
