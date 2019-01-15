@@ -19,7 +19,7 @@ fs = 25000 #サンプリング周波数
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
 start = int((starttime*fs) - (N/2))
-end = int((endtime*fs) + (N/2) -s + 1)
+end = int((endtime*fs) + (N/2) -1)
 
 
 
