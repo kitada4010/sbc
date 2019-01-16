@@ -1,26 +1,30 @@
 import pylab as p
 #import iwavelets.pycwt as w
-import math,numpy,matplotlib
+import math,numpy
+import matplotlib
+import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 import pickle
 import numpy as np
 import pandas as pd
 import sys
 import scipy
-#from swan import pycwt
+from swan import pycwt
 from scipy import signal
 from pylab import *
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
+
 N = 2048
 s=100
 fs = 25000 #サンプリング周波数
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
-start = int((starttime*fs) - (N/2))
+start = int((starttime*fs) - (N/2)+1)
+#end = int((endtime*fs) + (N/2) -s + 1)
 end = int((endtime*fs) + (N/2) -1)
-
 
 
 specdatab = np.array(df[start:end])
@@ -36,7 +40,7 @@ length = (end - start)/fs
 
 
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=fs, noverlap=N-s, window=hammingWindow, xextent=(starttime,endtime))
-del starttime, endtime
+del starttime, endtime, freqs, bins, im
 spec = pd.DataFrame(pxx)
 del specdataa, pxx
 
