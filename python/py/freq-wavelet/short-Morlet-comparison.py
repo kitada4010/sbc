@@ -14,18 +14,18 @@ from swan import pycwt
 with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
-
-
+fs = 25000
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
-start = int(starttime/0.00004)
-end = int(endtime/0.00004)
+start = int(starttime*fs)
+end = int(endtime*fs)
+
 
 datatime = []
 #print(df[start:end])
 #specdatab = np.array(df[start:end])
 for i in range(len(df[start:end])):
-    datatime.append([(starttime+(i*0.00004))])
+    datatime.append([(starttime+(i/fs))])
 
 plt.figure(figsize=(10, 4))
 plt.subplots_adjust(wspace=0.0, hspace=-0.4)
@@ -63,8 +63,8 @@ xlabel("time [s]")
 ylabel("frequency [Hz]")
 
 #plt.yscale("log")
-plt.yticks([0,100,500,600,700,800,900,1000])
-plt.ylim(0,1000)
+plt.yticks([150,500,800,1000])
+plt.ylim(150,1000)
 #plt.yticks([1,10,100,1000])
 #plt.ylim(1,1000)
 #plt.yticks([1,10,100,1000,10000])
@@ -74,7 +74,7 @@ axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")
 #plt.clim(-15,15)
 
-plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.png',dpi=300)
+plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.eps',dpi=300)
 
 #p.show()
 #del  widths, specdataa, cwtmatr, signal.ricker, im, axColor

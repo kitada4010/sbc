@@ -12,16 +12,19 @@ with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
     df = pickle.load(fp)
     
 ####base---------------------------------------------------------------------------------------------
+N = 2048
+fs = 25000
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
-start = int(starttime/0.00004)
-end = int(endtime/0.00004)
+start = int((starttime*fs) - (N/2)+1)
+end = int((endtime*fs) + (N/2) -1)
+
 datatime = []
 #print(df[start:end])
 #specdatab = np.array(df[start:end])
 for i in range(len(df[start:end])):
 #    print(i)
-    datatime.append([(starttime+(i*0.00004))])
+    datatime.append([(starttime+(i/fs))])
 #print(datatime)
 
 plt.figure(figsize=(10, 4))
@@ -45,12 +48,11 @@ specdataa = specdatab.flatten()
 del specdatab
 fp.close
 #print(specdataa)
-#N = 2048
-N = 512
+
+#N = 512
 #N = 128
 hammingWindow = np.hamming(N)
-samplingrate = 25000
-length = (end - start)/samplingrate
+length = (end - start)/fs
 
 # FFTで用いるハミング窓
 hammingWindow = np.hamming(N)
@@ -59,21 +61,21 @@ hammingWindow = np.hamming(N)
 
 # スペクトログラムを描画
 plt.subplot(2, 1, 2)
-pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=samplingrate, noverlap=N-1, window=hammingWindow, xextent=(starttime,endtime))
-axis([starttime, starttime+length, 0, samplingrate / 2])
+pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=fs, noverlap=N-1, window=hammingWindow, xextent=(starttime,endtime))
+axis([starttime, starttime+length, 0, fs / 2])
 xlabel("time [second]")
 #plt.ylim(0,10000)
 #plt.yticks([100,1000,10000])
 #plt.ylim(100,10000)
 #plt.yscale("log")
-plt.yticks([0,100,500,600,700,800,900,1000])
-plt.ylim(0,1000)
+plt.yticks([150, 500,800,1000])
+plt.ylim(150,1000)
 ylabel("frequency [Hz]")
 axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")
 #plt.colorbar(orientation='horizontal')
 
-plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.png',dpi=300)
+plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.eps',dpi=300)
 #plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] + '.png',dpi=300)
 
 del specdataa, pxx, freqs, bins, im
