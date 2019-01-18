@@ -16,8 +16,10 @@ N = 2048
 fs = 25000
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
-start = int((starttime*fs) - (N/2)+1)
-end = int((endtime*fs) + (N/2) -1)
+start = int(starttime*fs)
+end = int(endtime*fs)
+startdata = int((starttime*fs) - (N/2)+1)
+enddata= int((endtime*fs) + (N/2) -1)
 
 datatime = []
 #print(df[start:end])
@@ -42,7 +44,7 @@ del datatime
 #data = df.dataframe([0], dtype='float')
 #data = (pd.Series(df[start:end], dtype=np.float64))
 #data = df.as_matrix(0,)#[start:end]
-specdatab = np.array(df[start:end])
+specdatab = np.array(df[startdata:enddata])
 del df
 specdataa = specdatab.flatten()
 del specdatab
