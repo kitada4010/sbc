@@ -3,6 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import sys
 from sklearn.model_selection import train_test_split
+from sklearn.svm import LinearSVC
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
 #spec = pd.read_csv('150Hzhpassdata.csv', header=None)
 
 #ubuntu
@@ -29,9 +32,7 @@ Y = np.loadtxt(sys.argv[2],delimiter=",")
 #print(Y)
 
 
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import confusion_matrix
-k=3
+
 roop = 100
 #result = np.empty((6,6),int)
 result = []
@@ -40,15 +41,14 @@ for i in range(roop):
     # トレーニング・テストデータ分割
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=i)
 
-    # KNeighborsClassifier
-    knc = KNeighborsClassifier(n_neighbors=k)
-    knc.fit(X_train, Y_train)
+    model = LinearSVC(C=1.0)
+    model.fit(X_train, Y_train)
     
-    # 予測　
-    Y_pred = knc.predict(X_test)
-    
+    # テストデータに対する精度   
     # 評価 R^2
-    score = knc.score(X_test, Y_test)
+    Y_pred = model.predict(X_test)
+    # 予測　
+    score = accuracy_score(Y_test, Y_pred)
     #print("[%d] score: {:.2f}".format(score) % k)
     accuracy.append(score.tolist())
     #print("{:.2f}".format(score))
