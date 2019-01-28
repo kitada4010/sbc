@@ -75,17 +75,17 @@ f.write('    \\begin{tabular}{| l | l | l | l | l | l | l | l |}\hline \n')
 f.write('      \multicolumn{2}{|c|}{}& \multicolumn{6}{c|}{予測結果}\\\\ \hline \n')
 f.write('      && ベース波形 & リップル波形 & ノイズ & リップル & ノイズ & リップル \\\\ \n')
 f.write('      &&  &  &  & ・ベース & ・ベース & ・ノイズ \\\\ \cline{{2-8}} \n')
-f.write('      実&ベース波形 & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f}  \\\\ \cline{{2-8}} \n' 
+f.write('      実&ベース波形 & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f}  \\\\ \cline{{2-8}} \n' 
 .format(result_mean[0][0], result_std[0][0], result_mean[0][1], result_std[0][1], result_mean[0][2], result_std[0][2], result_mean[0][3], result_std[0][3], result_mean[0][4], result_std[0][4], result_mean[0][5], result_std[0][5]))
-f.write('      際& リップル波形 & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f}  \\\\ \cline{{2-8}} \n' 
+f.write('      際& リップル波形 & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f}  \\\\ \cline{{2-8}} \n' 
 .format(result_mean[1][0], result_std[1][0], result_mean[1][1], result_std[1][1], result_mean[1][2], result_std[1][2], result_mean[1][3], result_std[1][3], result_mean[1][4], result_std[1][4], result_mean[1][5], result_std[1][5]))
-f.write('      の& ノイズ & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f}  \\\\ \cline{{2-8}} \n' 
+f.write('      の& ノイズ & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f}  \\\\ \cline{{2-8}} \n' 
       .format(result_mean[2][0], result_std[2][0], result_mean[2][1], result_std[2][1], result_mean[2][2], result_std[2][2], result_mean[2][3], result_std[2][3], result_mean[2][4], result_std[2][4], result_mean[2][5], result_std[2][5]))
-f.write('      分& リップル・ベース & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f}  \\\\ \cline{{2-8}} \n' 
+f.write('      分& リップル・ベース & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f}  \\\\ \cline{{2-8}} \n' 
 .format(result_mean[3][0], result_std[3][0], result_mean[3][1], result_std[3][1], result_mean[3][2], result_std[3][2], result_mean[3][3], result_std[3][3], result_mean[3][4], result_std[3][4], result_mean[3][5], result_std[3][5]))
-f.write('      類& ノイズ・ベース & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f}  \\\\ \cline{{2-8}} \n' 
+f.write('      類& ノイズ・ベース & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f}  \\\\ \cline{{2-8}} \n' 
 .format(result_mean[4][0], result_std[4][0], result_mean[4][1], result_std[4][1], result_mean[4][2], result_std[4][2], result_mean[4][3], result_std[4][3], result_mean[4][4], result_std[4][4], result_mean[4][5], result_std[4][5]))
-f.write('      & リップル・ノイズ & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f}  \\\\ \hline \n' 
+f.write('      & リップル・ノイズ & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f} & {:.3f} $\\pm$ {:.3f}  \\\\ \hline \n' 
 .format(result_mean[5][0], result_std[5][0], result_mean[5][1], result_std[5][1], result_mean[5][2], result_std[5][2], result_mean[5][3], result_std[5][3], result_mean[5][4], result_std[5][4], result_mean[5][5], result_std[5][5]))
 f.write('    \end{tabular} \n')
 f.write('  \end{center} \n')
