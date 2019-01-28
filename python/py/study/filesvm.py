@@ -33,11 +33,12 @@ Y = np.loadtxt(sys.argv[2],delimiter=",")
 
 
 
-roop = 2
+roop = 100
 #result = np.empty((6,6),int)
 result_train = []
 result = []
 accuracy = []
+accuracy_train = []
 for i in range(roop): 
     # トレーニング・テストデータ分割
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state=i)
@@ -50,13 +51,13 @@ for i in range(roop):
     Y_pred_train = model.predict(X_train)
     Y_pred = model.predict(X_test)
     # 予測　
-    score_train = accuracy_score(Y_test, Y_pred_train)
+    score_train = accuracy_score(Y_train, Y_pred_train)
     score = accuracy_score(Y_test, Y_pred)
     #print("[%d] score: {:.2f}".format(score) % k)
-    accuracy_train.append(score.tolist())
+    accuracy_train.append(score_train.tolist())
     accuracy.append(score.tolist())
     #print("{:.2f}".format(score))
-    result1_train = np.array(confusion_matrix(Y_test,Y_pred_train), dtype = 'float')
+    result1_train = np.array(confusion_matrix(Y_train,Y_pred_train), dtype = 'float')
     result1 = np.array(confusion_matrix(Y_test,Y_pred), dtype = 'float')
     result_train_sum = result1_train.sum(axis=1)
     result_sum = result1.sum(axis=1)
@@ -72,7 +73,7 @@ result_train = np.array(result_train)
 accuracy_train = np.array(accuracy_train)
 result_train_mean = result_train.mean(axis=0)
 result_train_std = result_train.std(axis=0)
-f = open(sys.argv[3]+"-train",'w')
+f = open(sys.argv[3]+"-train.tex",'w')
 f.write("accuracy:{:.4f} $\\pm$ {:.4f}\n".format(accuracy_train.mean(axis=0), accuracy_train.std(axis=0)))
 f.write("\\begin{table}[tbp]\n")  
 f.write('  \\begin{center}\n')
@@ -105,7 +106,7 @@ result = np.array(result)
 accuracy = np.array(accuracy)
 result_mean = result.mean(axis=0)
 result_std = result.std(axis=0)
-f = open(sys.argv[3],'w')
+f = open(sys.argv[3]+".tex",'w')
 f.write("accuracy:{:.4f} $\\pm$ {:.4f}\n".format(accuracy.mean(axis=0), accuracy.std(axis=0)))
 f.write("\\begin{table}[tbp]\n")  
 f.write('  \\begin{center}\n')
