@@ -5,8 +5,8 @@ PYENVPY="/home/nodoka/.pyenv/shims/python"
 KNN="/sbc/python/py/knn/"
 #rm $2
 #引数1 : エピソード
-for line in *$1*; do
+for line in *label*; do
     if [ ! -e "${line%%label.csv}cut.csv" ]; then
-	echo rm ${line%%label.csv}*
+	rm ${line%%label.csv}*
     fi
 done
