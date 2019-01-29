@@ -7,6 +7,6 @@ for line in *$1*; do
 file=$line
     while read filename
     do
-	${POINT}/sbc/c/label $filename $2 ${file:0:4}
+	echo ${POINT}/sbc/c/label $filename $2 ${file:0:4}
     done < ${file}
 done
