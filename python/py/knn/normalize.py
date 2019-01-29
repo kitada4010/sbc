@@ -20,4 +20,4 @@ for i in range(0,len(spec)) :
     #plot(spec1)
     spec_new[i]=spec1
 
-spec_new.T.to_csv('B39-'+ sys.argv[1]+'-'+ sys.argv[2] +'-'+ sys.argv[3] +'-nomalize.csv',header=False, index=False)
+spec_new.T.to_csv(sys.argv[1]+ '-' + sys.argv[2] +'-'+ sys.argv[3] + '-' + sys.argv[5]+'-nomalize.csv',header=False, index=False)
