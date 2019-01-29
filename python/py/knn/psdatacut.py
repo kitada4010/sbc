@@ -12,8 +12,13 @@ import scipy
 from swan import pycwt
 from scipy import signal
 from pylab import *
+#sys.argv[1] : 開始時間データ
+#sys.argv[2] : 終了時間データ
+#sys.argv[3] : エピソード
+#sys.argv[4] : 個体番号-(HR or HL)
+
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
-with open('/home/nodoka/win/ubuntu/txt-data' + sys.argv[3] + '/' + sys.argv[4] + '.pickle', mode='rb') as fp:
+with open('/home/nodoka/win/ubuntu/txt-data/' + sys.argv[3] + '/' + sys.argv[4] + '.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
 
