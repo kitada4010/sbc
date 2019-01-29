@@ -20,7 +20,7 @@ filename=$line
 	cut -f 150- -d "," $1-${line:0:3}-H${line:3:1}-${timedata/   /-}-cut.csv >  $1-${line:0:3}-H${line:3:1}-${timedata/   /-}-150-highpass.csv
 	cut -f 150- -d "," $1-${line:0:3}-H${line:3:1}-${timedata/   /-}-pscut.csv >  $1-${line:0:3}-H${line:3:1}-${timedata/   /-}-150-pshighpass.csv
 	${PYENVPY} $HOME${KNN}normalize.py $timedata 150 $1-${line:0:3}-H${line:3:1}-${timedata/   /-}-150-highpass.csv $1 ${line:0:3}-H${line:3:1} 
-	${PYENVPY} $HOME${KNN}normalize.py $timedata 150 $1-${line:0:3}-H${line:3:1}-${timedata/   /-}-150-pshighpass.csv $1 ${line:0:3}-H${line:3:1}ps 
+	${PYENVPY} $HOME${KNN}normalize.py $timedata 150ps $1-${line:0:3}-H${line:3:1}-${timedata/   /-}-150-pshighpass.csv $1 ${line:0:3}-H${line:3:1} 
 	#echo cut -f 150- -d "," $1-${line:0:3}-H${line:3:1}-${timedata/[ 	][	  ]*/-}-cut.csv | tee  $1-${line:0:3}-H${line3:1}-${timedata/[ 	][	 ]/-}-150-highpass.csv
 	#echo cut -f 150- -d "," $1-${line:0:3}-H${line:3:1}-${timedata/[ 	][	 ]*/-}-pscut.csv | tee  $1-${line:0:3}-H${line:3:1}-${timedata/[ 	][	 ]*/-}-150-pshighpass.csv
 	#echo ${PYENVPY} $HOME${KNN}normalize.py $timedata 150 $1-${line:0:3}-H${line:3:1}-${timedata/[ 	][	 ]*/-}-150-highpass.csv $1 ${line:0:3}-H${line:3:1} 
