@@ -12,7 +12,7 @@ for line in *time*; do
 filename=$line
     while read timedata
     do
-	$timedata
+	#$timedata
 	${PYENVPY} $HOME${KNN}datacut.py $timedata $1 ${line:0:3}-H${line:3:1} 
 	${PYENVPY} $HOME${KNN}psdatacut.py $timedata $1 ${line:0:3}-H${line:3:1}
 	#cut -f 150- -d "," $1-${line:0:3}-H${line:3:1}-${timedata/   /-}-cut.csv | tee  $1-${line:0:3}-H${line3:1}-${timedata/   /-}-150-highpass.csv
