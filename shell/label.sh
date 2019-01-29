@@ -5,7 +5,7 @@ POINT="/home/nodoka"
 
 while read line
 do
-    ${POINT}/sbc/c/label $line $2
+    ${POINT}/sbc/c/label $line $2 
 #    if [ $3 = "3" ]; then
 #	sed -i "s/1/5/g" B39-${line/[    ]/-}-label.csv
 #	sed -i "s/3/5/g" B39-${line/[    ]/-}-label.csv
