@@ -8,5 +8,5 @@ file=$line
     while read filename
     do
 	${POINT}/sbc/c/label $filename $2 ${file:0:4}
-    done < $file
+    done < ${file}
 done
