@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
   
   double grayleng;
   
-  printf("%d", (int)leng);
+  printf("%d\n", (int)leng);
   
   for(i=0; i<(int)leng; i++){
     //    printf("%d\n",(int)((startleng-grayarea)*fs));
