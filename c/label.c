@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
   //printf("%lf\n",leng);
   
   if( ((int)(leng*4*fs))%4 == 0  ){
-    leng=leng+(1.0/fs);
+    leng+=(1.1/fs);
     printf("%s\n",filename);
   }
   leng *= fs;
