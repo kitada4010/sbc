@@ -6,6 +6,5 @@ PYENVPY="/home/nodoka/.pyenv/shims/python"
 #while read line
 for line in *$1*; do
     echo $line 
-    echo ${line:0:3}
-    echo ${line:3:1}
+    echo ${line:0:3}-H${line:3:1}
 done
