@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
   
   FILE *labelfile;
   char filename[256];
-  sprintf(filename, "B39-%s-%s-label.csv", argv[1], argv[2]);
+  sprintf(filename, "%s-%s-%s-label.csv", argv[6], argv[1], argv[2]);
   //printf("%s",filename);
   
   if((labelfile = fopen(filename, "w")) == NULL){

@@ -1,8 +1,11 @@
 #!/bin/bash
 #POINT="/home2/nodoka"
-POINT="/home/nodoka/sbc/shell/"
+POINT="/home/nodoka"
 PYENVPY="/home/nodoka/.pyenv/shims/python"
 #while read line
 for line in *$1*; do
-    ${POINT}label.sh $line $2
+    while read filename
+    do
+	${POINT}label.sh $filename $2 ${line:0:4}
+    done < $line
 done
