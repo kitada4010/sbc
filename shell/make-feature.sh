@@ -9,5 +9,5 @@ PYENVPY="/home/nodoka/.pyenv/shims/python"
 for line in *$1*; do
     echo $line 
     echo ${line:0:3}-H${line:3:1}
-    echo $line | cut -f 2 -d "-"
+    echo $line | cut -f 2 -d "-" | cut -f 1 -d "[0-9]"
 done
