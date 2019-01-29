@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 int main(int argc, char *argv[]){
-  if(argc != 6){
+  if(argc != 7){
     printf("%s start_time endtime start_event end_event label_number\n", argv[0]);
     return 0;
   }
