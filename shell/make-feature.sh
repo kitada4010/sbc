@@ -1,13 +1,23 @@
 #!/bin/bash
 #POINT="/home2/nodoka"
-POINT="/home/nodoka"
+POINT=""
 PYENVPY="/home/nodoka/.pyenv/shims/python"
+KNN="/sbc/python/py/knn/"
 #rm $2
-#引数1 : ファイル名に共通するtime
+#引数1 : エピソード
+
 
 #while read line
-for line in *$1*; do
-    echo $line 
-    echo ${line:0:3}-H${line:3:1}
-    echo $line | cut -f 2 -d "-" | cut -f 1 -d "1"
+for line in *time*; do
+
+    while read timedata
+    do
+	${PYENVPY} $HOME${POINT}${KNN}datacut.py $timedata $1 ${line:0:3}-H${line:3:1} 
+	${PYENVPY} $HOME${POINT}${KNN}psdatacut.py $timedata $1 ${line:0:3}-H${line:3:1}
+	cut -f 150- -d "," $1-${line:0:3}-${timedata/[     ]/-}-cut.csv >  $1-${line:0:3}-H${line:3:1}-${timedata/[    ]/-}-150-highpass.csv
+	cut -f 150- -d "," $1-${line:0:3}-${timedata/[     ]/-}-pscut.csv >  $1-${line:0:3}-H${line:3:1}-${timedata/[    ]/-}-150-pshighpass.csv
+	${PYENVPY} $HOME{POINT}${KNN}normalize.py $timedata 150 $1-${line:0:3}-H${line:3:1}-${timedata/[    ]/-}-150-highpass.csv $1 ${line:0:3}-H${line:3:1} 
+	${PYENVPY} $HOME{POINT}${KNN}normalize.py $timedata 150 $1-${line:0:3}-H${line:3:1}-${timedata/[    ]/-}-ps150-highpass.csv $1 ${line:0:3}-H${line:3:1}ps 
+    done < ${line}
+
 done

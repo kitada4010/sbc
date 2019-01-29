@@ -13,7 +13,7 @@ from swan import pycwt
 from scipy import signal
 from pylab import *
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
-with open('/home/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
+with open('/home/nodoka/win/ubuntu/txt-data' + sys.argv[3] + '/' + sys.argv[4] + '.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
 
@@ -49,5 +49,5 @@ spec_new = pd.DataFrame(index=spec.index, columns=[])
 for i in range(0,len(spec.columns)) :
     spec1 = spec[i]
     spec_new[i]=spec1
-spec_new.T.to_csv('B39-'+ sys.argv[1] + '-' + sys.argv[2] +'-pscut.csv',header=False, index=False)
+spec_new.T.to_csv(sys.argv[3] + '-' + sys.argv[4] + '-' + sys.argv[1] + '-' + sys.argv[2] +'-pscut.csv',header=False, index=False)
 del spec, spec1
