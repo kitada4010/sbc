@@ -6,9 +6,22 @@ KNN="/sbc/python/py/knn/"
 #rm $2
 #引数1 : エピソード
 
+if [ "$1" != "restraint" ] && [ "$1" != "male" ] && [ "$1" != "remale" ] && [ "$1" != "object" ]; then
+    echo HOWTO
+    echo $0 episode \(string\)
+    echo episode is restraint, male, female or object.
+    echo \(string\) is pattern. \(if necessary\)
+    exit 0
+fi
+
+if [ "$2" = "" ]; then
+    filetype=time
+else
+    filetype=$2
+fi
 
 #while read line
-for line in *time*; do
+for line in *$filetype*; do
 filename=$line
     while read timedata
     do
