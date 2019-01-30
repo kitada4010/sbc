@@ -6,7 +6,7 @@ KNN="/sbc/python/py/knn/"
 #rm $2
 #引数1 : エピソード
 
-if [ "$1" != "restraint" ] && [ "$1" != "male" ] && [ "$1" != "remale" ] && [ "$1" != "object" ]; then
+if [ "$1" != "restraint" ] && [ "$1" != "male" ] && [ "$1" != "female" ] && [ "$1" != "object" ]; then
     echo HOWTO
     echo $0 episode \(string\)
     echo episode is restraint, male, female or object.
