@@ -32,7 +32,7 @@ Y = np.loadtxt(sys.argv[2],delimiter=",")
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 k=3
-roop = 2
+roop = 100
 #result = np.empty((6,6),int)
 result = []
 accuracy = []

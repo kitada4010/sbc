@@ -33,7 +33,7 @@ Y = np.loadtxt(sys.argv[2],delimiter=",")
 
 
 
-roop = 2
+roop = 100
 #result = np.empty((6,6),int)
 result = []
 accuracy = []
