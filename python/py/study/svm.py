@@ -58,7 +58,7 @@ for i in range(roop):
     for x in range(6):        
         result1[x,:] = 100*result1[x,:]/result_sum[x]
     result.append(result1.tolist())
-
+    print('{:.1f}' .format((100*i)/roop))
     
 
 result = np.array(result)
