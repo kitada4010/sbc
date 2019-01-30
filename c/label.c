@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
   //leng+=(1.0/fs);
   
   leng *= fs;
-  leng++;
+  leng += 1.0;
   
   double startleng;
   startleng = startevent - starttime;
