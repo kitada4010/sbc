@@ -26,11 +26,11 @@ Y = np.loadtxt(sys.argv[2],delimiter=",")
 
 
 # データ表示（特徴量）
-print("データ数 = %d  特徴量 = %d" % (X.shape[0], X.shape[1]))
+#print("データ数 = %d  特徴量 = %d" % (X.shape[0], X.shape[1]))
 
 
 # データ表示（目的変数）
-print("データ数 = %d" % (Y.shape[0]))
+#print("データ数 = %d" % (Y.shape[0]))
 #print(Y)
 
 
@@ -62,42 +62,42 @@ plt.plot(time, model.coef_[0])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient of determination")
 plt.xlim(150,1024)
-plt.savefig('base.eps',dpi=300)
+plt.savefig(sys.argv[3]+'base.eps',dpi=300)
 plt.figure()
 
 plt.plot(time, model.coef_[1])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient of determination")
 plt.xlim(150,1024)
-plt.savefig('ripple.eps',dpi=300)
+plt.savefig(sys.argv[3]+'ripple.eps',dpi=300)
 plt.figure()
 
 plt.plot(time, model.coef_[2])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient of determination")
 plt.xlim(150,1024)
-plt.savefig('noise.eps',dpi=300)
+plt.savefig(sys.argv[3]+'noise.eps',dpi=300)
 plt.figure()
 
 plt.plot(time, model.coef_[3])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient of determination")
 plt.xlim(150,1024)
-plt.savefig('base-ripple.eps',dpi=300)
+plt.savefig(sys.argv[3]+'base-ripple.eps',dpi=300)
 plt.figure()
 
 plt.plot(time, model.coef_[4])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient of determination")
 plt.xlim(150,1024)
-plt.savefig('base-noise.eps',dpi=300)
+plt.savefig(sys.argv[3]+'base-noise.eps',dpi=300)
 plt.figure()
 
 plt.plot(time, model.coef_[5])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient of determination")
 plt.xlim(150,1024)
-plt.savefig('noise-ripple.eps',dpi=300)
+plt.savefig(sys.argv[3]+'noise-ripple.eps',dpi=300)
 plt.figure()
 print(len(model.coef_))
 print(len(model.coef_[0]))
