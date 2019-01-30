@@ -38,11 +38,15 @@ int main(int argc, char *argv[]){
   
   //printf("%lf\n",leng);
   
-  if( ((int)(leng*4*fs))%4 == 0  ){
-    leng+=(1.1/fs);
-    printf("%s\n",filename);
-  }
+  /* if( ((int)(leng*4*fs))%4 == 0  ){ */
+  /*   leng+=(1.0/fs); */
+  /*   printf("%s\n",filename); */
+  /* } */
+  
+  //leng+=(1.0/fs);
+  
   leng *= fs;
+  leng++;
   
   double startleng;
   startleng = startevent - starttime;
