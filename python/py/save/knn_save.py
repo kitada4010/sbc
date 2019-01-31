@@ -21,5 +21,5 @@ k=3
 knc = KNeighborsClassifier(n_neighbors=k)
 knc.fit(X, Y)
 import pickle
-with open(sys.arg[3] + '.pickle', mode='wb') as fp:
+with open(sys.argv[3] + '.pickle', mode='wb') as fp:
      pickle.dump(knc, fp)
