@@ -9,16 +9,27 @@ import scipy
 from swan import pycwt
 from scipy import signal
 from pylab import *
+
+#引数1 : 学習したデータ
+#引数2 : エピソード
+#引数3 : 個体番号
+#引数4 : 判定データ
+#引数5 : 判定データの開始時間
+#引数6 : 判定データの終了時間
+
+
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
-with open('/home/nodoka/18-kitada-bachelor-data', mode='rb') as st:
+with open('/home/nodoka/18-kitada-bachelor-data/testdata' + sys.argv[1], mode='rb') as st:
     model = pickle.load(st)
-with open('/home/nodoka/win/ubuntu/txtdata/'+ sys.argv[] +'/'+ sys.argv[], mode='rb') as fp:
+with open('/home/nodoka/win/ubuntu/txtdata/'+ sys.argv[2] +'/'+ sys.argv[3], mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
+# 特徴量
+X = np.loadtxt(sys.argv[4],delimiter=",")
 fs = 25000 #サンプリング周波数
 
-starttime = sys.argv[]
-endtime = sys.argv[]
+starttime = sys.argv[5]
+endtime = sys.argv[6]
 start = int(starttime*fs)
 end = int(endtime*fs)
 datatime = []
@@ -46,8 +57,7 @@ plt.xticks(leng,color="None")
 #gca().xaxis.set_minor_locator(True,0.04)
 s = 100
 
-test_data = np.loadtxt(sys.argv[], delimiter=",")
-Y_graph = knc.predict(test_data)
+Y_graph = knc.predict(X)
 
 plt.axvspan(100,200,color="red")
 for i in range(len(Y_graph)):
@@ -63,6 +73,6 @@ for i in range(len(Y_graph)):
     if(Y_graph[i] == 5.0):
         plt.axvspan(((i*s-(s/2))/fs)+starttime ,((i*s+(s/2))/fs)+starttime ,color="mediumorchid")   
       
-plt.savefig(sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.eps',dpi=300)
+plt.savefig(sys.argv[3] +'-'+ sys.argv[5] +'-'+ sys.argv[6] +'.eps',dpi=300)
 
 del datatime
