@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 #from sklearn.svm import LinearSVC
 from sklearn import datasets
 from sklearn.preprocessing import StandardScaler
+import sys
 import numpy as np
 from matplotlib import pyplot as plt
 #spec = pd.read_csv('150Hzhpassdata.csv', header=None)
