@@ -8,6 +8,9 @@ from sklearn.preprocessing import StandardScaler
 import sys
 import numpy as np
 from matplotlib import pyplot as plt
+import matplotlib as mpl
+mpl.use('Agg')
+import matplotlib.pyplot as plt
 #spec = pd.read_csv('150Hzhpassdata.csv', header=None)
 
 #ubuntu
