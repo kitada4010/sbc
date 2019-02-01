@@ -19,17 +19,17 @@ if [ "$1" != "restraint" ] && [ "$1" != "male" ] && [ "$1" != "female" ] && [ "$
     exit 0
 fi
 
-if [ "$2" == "knn-150"]; then
-    PICKLE="/home/nodoka/18-kitada-bachelor-data/testdata"
+if [ "$2" == "knn-150" ]; then
+    PICKLE="/all-spec-150.pickle"
 
-elif [ "$2" != "knn-150non"]; then
-    PICKLE="/home/nodoka/18-kitada-bachelor-data/testdata"
+elif [ "$2" == "knn-150non" ]; then
+    PICKLE="/all-spec-150non.pickle"
 
-elif [ "$2" != "svm-150"]; then
-    PICKLE="/home/nodoka/18-kitada-bachelor-data/testdata"
+elif [ "$2" == "svm-150" ]; then
+    PICKLE="/all-svm-150.pickle"
 
-elif [ "$2" != "svm-150non"]; then
-    PICKLE="/home/nodoka/18-kitada-bachelor-data/testdata"
+elif [ "$2" == "svm-150non" ]; then
+    PICKLE="/all-svm-150non.pickle"
 
 else
     echo HOWTO
@@ -69,5 +69,6 @@ fi
 #mv *cut* ./wave/
 while read timedata
 do
-    ${PYENVPY} ${HOME}${SBC}/python/py/save/knn_check.py ${PICKLE} $1$ ${4:0:3}-H${4:3:1}.pickle $1-${4:0:3}-H${4:3:1}-${timedata/[       ][        ]*/-}-${PS}nomalize.csv  $timedata
+    ${PYENVPY} ${HOME}${SBC}/python/py/save/knn_check.py ${PICKLE} $1 ${4:0:3}-H${4:3:1}.pickle $1-${4:0:3}-H${4:3:1}-${timedata/   /-}-${PS}nomalize.csv  $timedata
+    echo $timedata
 done < $4

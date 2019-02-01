@@ -1,6 +1,7 @@
 import pylab as p
 #import iwavelets.pycwt as w
 import math,numpy,matplotlib
+import matplotlib.ticker as ticker
 import pickle
 import numpy as np
 import pandas as pd
@@ -9,7 +10,8 @@ import scipy
 from swan import pycwt
 from scipy import signal
 from pylab import *
-
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 #引数1 : 学習したデータ
 #引数2 : エピソード
 #引数3 : 個体番号
@@ -21,15 +23,15 @@ from pylab import *
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 with open('/home/nodoka/18-kitada-bachelor-data/testdata' + sys.argv[1], mode='rb') as st:
         model = pickle.load(st)
-with open('/home/nodoka/win/ubuntu/txtdata/'+ sys.argv[2] +'/'+ sys.argv[3], mode='rb') as fp:
+with open('/home/nodoka/win/ubuntu/txt-data/'+ sys.argv[2] +'/'+ sys.argv[3], mode='rb') as fp:
  #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
-    df = pickle.load(fp)
+        df = pickle.load(fp)
 # 特徴量
 X = np.loadtxt(sys.argv[4],delimiter=",")
 fs = 25000 #サンプリング周波数
 
-starttime = sys.argv[5]
-endtime = sys.argv[6]
+starttime = float(sys.argv[5])
+endtime = float(sys.argv[6])
 start = int(starttime*fs)
 end = int(endtime*fs)
 datatime = []
@@ -41,11 +43,14 @@ for i in range(len(df[start:end])):
     #print(datatime)
     
 plt.figure(figsize=(10, 4))
-plt.subplots_adjust(wspace=0.0, hspace=-0.4)
-plt.subplot(4, 1, 1)
+#plt.subplots_adjust(wspace=0.0, hspace=-0.4)
+#plt.subplot(4, 1, 1)
 xlim(starttime,endtime)
 plt.yticks([-3,-2,-1,0,1,2])
 plt.ylim(-4,2)
+plt.gca().get_xaxis().set_major_locator(ticker.MaxNLocator(integer=True))
+#plt.xticks(int(starttime), int(endtime))
+#ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%0.1f'))
 ylabel("voltage [mV]")
 #plt.xticks(color="None")
 plt.plot(datatime,df[start:end])
@@ -57,7 +62,7 @@ plt.xticks(leng,color="None")
 #gca().xaxis.set_minor_locator(True,0.04)
 s = 100
 
-Y_graph = knc.predict(X)
+Y_graph = model.predict(X)
 
 plt.axvspan(100,200,color="red")
 for i in range(len(Y_graph)):
