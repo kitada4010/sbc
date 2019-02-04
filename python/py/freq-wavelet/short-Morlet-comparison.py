@@ -76,7 +76,7 @@ axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")
 #plt.clim(-15,15)
 
-plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.eps',dpi=300)
+plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.pdf',dpi=300)
 
 #p.show()
 #del  widths, specdataa, cwtmatr, signal.ricker, im, axColor
