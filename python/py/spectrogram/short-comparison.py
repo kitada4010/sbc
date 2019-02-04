@@ -79,7 +79,8 @@ axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")
 #plt.colorbar(orientation='horizontal')
 
-plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.pdf',dpi=300)
+plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.pdf')
+#plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.pdf',dpi=300)
 #plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] + '.png',dpi=300)
 
 del specdataa, pxx, freqs, bins, im
