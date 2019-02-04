@@ -60,8 +60,9 @@ cwtmatr = pycwt.cwt_f(specdataa, widths, 25000, pycwt.Mexican_hat(sigma))
 rr=np.abs(cwtmatr)
 
 del widths
-im = plt.imshow(np.flipud(rr), extent=[starttime, endtime, P, 1], aspect='auto',interpolation='nearest')
-xlim(starttime, endtime)
+#im = plt.imshow(np.flipud(rr), extent=[starttime, endtime, P, 1], aspect='auto',interpolation='nearest')
+im = plt.imshow(np.flipud(rr), extent=[0, endtime-starttime, P, 1], aspect='auto',interpolation='nearest')
+#xlim(starttime, endtime)
 #ylim(0, 4096)
 xlabel("time [s]")
 ylabel("frequency [Hz]")

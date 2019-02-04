@@ -56,10 +56,12 @@ cwtmatr = pycwt.cwt_f(specdataa, widths, 25000, pycwt.Morlet(fc))
 rr=np.abs(cwtmatr)
 
 del widths
-im = plt.imshow(np.flipud(rr), extent=[starttime, endtime, P, 1], aspect='auto',interpolation='nearest')
-xlim(starttime, endtime)
+#im = plt.imshow(np.flipud(rr), extent=[starttime, endtime, P, 1], aspect='auto',interpolation='nearest')
+im = plt.imshow(np.flipud(rr), extent=[0, (endtime-starttime)*1000, P, 1], aspect='auto',interpolation='nearest')
+#xlim(starttime, endtime)
+#xlim(0, (endtime-starttime)*1000)
 #ylim(0, 4096)
-xlabel("time [s]")
+xlabel("time [ms]")
 ylabel("frequency [Hz]")
 
 #plt.yscale("log")
