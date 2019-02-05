@@ -89,11 +89,11 @@ f.write('      際& リップル波形 & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:
 .format(result_train_mean[1][0], result_train_std[1][0], result_train_mean[1][1], result_train_std[1][1], result_train_mean[1][2], result_train_std[1][2], result_train_mean[1][3], result_train_std[1][3], result_train_mean[1][4], result_train_std[1][4], result_train_mean[1][5], result_train_std[1][5]))
 f.write('      の& ノイズ & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f}  \\\\ \cline{{2-8}} \n' 
       .format(result_train_mean[2][0], result_train_std[2][0], result_train_mean[2][1], result_train_std[2][1], result_train_mean[2][2], result_train_std[2][2], result_train_mean[2][3], result_train_std[2][3], result_train_mean[2][4], result_train_std[2][4], result_train_mean[2][5], result_train_std[2][5]))
-f.write('      分& リップル・ベース & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f}  \\\\ \cline{{2-8}} \n' 
+f.write('      ラ& リップル・ベース & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f}  \\\\ \cline{{2-8}} \n' 
 .format(result_train_mean[3][0], result_train_std[3][0], result_train_mean[3][1], result_train_std[3][1], result_train_mean[3][2], result_train_std[3][2], result_train_mean[3][3], result_train_std[3][3], result_train_mean[3][4], result_train_std[3][4], result_train_mean[3][5], result_train_std[3][5]))
-f.write('      類& ノイズ・ベース & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f}  \\\\ \cline{{2-8}} \n' 
+f.write('      ベ& ノイズ・ベース & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f}  \\\\ \cline{{2-8}} \n' 
 .format(result_train_mean[4][0], result_train_std[4][0], result_train_mean[4][1], result_train_std[4][1], result_train_mean[4][2], result_train_std[4][2], result_train_mean[4][3], result_train_std[4][3], result_train_mean[4][4], result_train_std[4][4], result_train_mean[4][5], result_train_std[4][5]))
-f.write('      & リップル・ノイズ & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f}  \\\\ \hline \n' 
+f.write('      ル& リップル・ノイズ & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f} & {:.1f} $\\pm$ {:.1f}  \\\\ \hline \n' 
 .format(result_train_mean[5][0], result_train_std[5][0], result_train_mean[5][1], result_train_std[5][1], result_train_mean[5][2], result_train_std[5][2], result_train_mean[5][3], result_train_std[5][3], result_train_mean[5][4], result_train_std[5][4], result_train_mean[5][5], result_train_std[5][5]))
 f.write('    \end{tabular} \n')
 f.write('  \end{center} \n')
