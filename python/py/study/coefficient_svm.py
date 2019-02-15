@@ -62,47 +62,60 @@ time = range(149, 1025)
 
 
 #print(model.coef_[0])
+plt.figure(figsize=(10,3))
 plt.plot(time, model.coef_[0])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient")
 plt.xlim(150,1024)
+plt.ylim(-3.5,3.5)
 plt.savefig(sys.argv[3]+'base.eps',dpi=300)
-plt.figure()
 
+
+plt.figure(figsize=(10,3))
 plt.plot(time, model.coef_[1])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient")
 plt.xlim(150,1024)
+plt.ylim(-3.5,3.5)
 plt.savefig(sys.argv[3]+'ripple.eps',dpi=300)
-plt.figure()
 
+
+plt.figure(figsize=(10,3))
 plt.plot(time, model.coef_[2])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient")
 plt.xlim(150,1024)
+plt.ylim(-3.5,3.5)
 plt.savefig(sys.argv[3]+'noise.eps',dpi=300)
-plt.figure()
+ 
 
+plt.figure(figsize=(10,3))
 plt.plot(time, model.coef_[3])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient")
 plt.xlim(150,1024)
+plt.ylim(-3.5,3.5)
 plt.savefig(sys.argv[3]+'base-ripple.eps',dpi=300)
-plt.figure()
+ 
 
+plt.figure(figsize=(10,3))
 plt.plot(time, model.coef_[4])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient")
 plt.xlim(150,1024)
+plt.ylim(-3.5,3.5)
 plt.savefig(sys.argv[3]+'base-noise.eps',dpi=300)
-plt.figure()
+ 
 
+plt.figure(figsize=(10,3))
 plt.plot(time, model.coef_[5])
 plt.xlabel("frequency [Hz]")
 plt.ylabel("coefficient")
 plt.xlim(150,1024)
+plt.ylim(-3.5,3.5)
 plt.savefig(sys.argv[3]+'noise-ripple.eps',dpi=300)
-plt.figure()
+
+
 print(len(model.coef_))
 print(len(model.coef_[0]))
 # 予測　
