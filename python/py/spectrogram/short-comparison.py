@@ -30,12 +30,12 @@ for i in range(len(df[start:end])):
 #print(datatime)
 
 plt.rcParams["font.size"] = 15
-plt.tick_params(length = 10)
 plt.figure(figsize=(10, 4))
 plt.subplots_adjust(wspace=0.0, hspace=-0.4)
 plt.subplot(4, 1, 1)
 plt.yticks([-2, 0, 2])
 ylabel("voltage [V]")
+plt.tick_params(length = 20)
 plt.xticks(color="None")
 plt.tick_params('x',direction='in' ,  top=True)
 plt.xlim(starttime,endtime)

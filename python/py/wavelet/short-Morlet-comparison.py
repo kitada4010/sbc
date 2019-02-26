@@ -30,12 +30,13 @@ for i in range(len(df[start:end])):
 
 
 plt.rcParams["font.size"] = 15
-plt.tick_params(length = 10)
 plt.figure(figsize=(10, 4))
 plt.subplots_adjust(wspace=0.0, hspace=-0.4)
 plt.subplot(4, 1, 1)
 xlim(starttime,endtime)
-plt.yticks([-3,-2,-1,0,1,2])
+#plt.yticks([-3,-2,-1,0,1,2])
+plt.yticks([-2,0,2])
+plt.tick_params(length = 20)
 plt.ylim(-4,2)
 ylabel("voltage [V]")
 plt.xticks(color="None")
@@ -67,13 +68,13 @@ ylabel("frequency [Hz]")
 plt.ylim(1,1000)
 #plt.yticks([1,10,100,1000,10000])
 #plt.ylim(1,10000)
-plt.yscale("log")
+#plt.yscale("log")
 axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")
 #plt.clim(-15,15)
 
 plt.tick_params(length = 10)
-plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.png',dpi=300)
+plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.pdf',dpi=300)
 
 #p.show()
 #del  widths, specdataa, cwtmatr, signal.ricker, im, axColor
