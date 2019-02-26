@@ -28,6 +28,9 @@ for i in range(len(df[start:end])):
     datatime.append([(starttime+(i*0.00004))])
     #print(datatime)
 
+
+plt.rcParams["font.size"] = 15
+plt.tick_params(length = 10)
 plt.figure(figsize=(10, 4))
 plt.subplots_adjust(wspace=0.0, hspace=-0.4)
 plt.subplot(4, 1, 1)
@@ -58,6 +61,7 @@ im = plt.imshow(cwtmatr, extent=[starttime, endtime, P, 1], cmap='PRGn', aspect=
 xlim(starttime, endtime)
 #ylim(0, 4096)
 xlabel("time [s]")
+plt.tick_params(length = 10)
 ylabel("frequency [Hz]")
 #plt.yticks([1,10,100,1000])
 plt.ylim(1,1000)
@@ -68,6 +72,7 @@ axColor = plt.axes([0.91, 0.13, 0.03, 0.45])
 plt.colorbar(im, cax=axColor, orientation="vertical")
 #plt.clim(-15,15)
 
+plt.tick_params(length = 10)
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.png',dpi=300)
 
 #p.show()
