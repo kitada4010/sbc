@@ -20,16 +20,16 @@ if [ "$1" != "restraint" ] && [ "$1" != "male" ] && [ "$1" != "female" ] && [ "$
 fi
 
 
-if [ "$2" == "knn-150"]; then
+if [ "$2" == "knn-150" ]; then
     PICKLE="/home/nodoka/18-kitada-bachelor-data/testdata/all-spec-150.pickle"
     
-elif [ "$2" != "knn-150non"]; then
+elif [ "$2" != "knn-150non" ]; then
     PICKLE="/home/nodoka/18-kitada-bachelor-data/testdata"
 
-elif [ "$2" != "svm-150"]; then
+elif [ "$2" != "svm-150" ]; then
     PICKLE="/home/nodoka/18-kitada-bachelor-data/testdata"
 
-elif [ "$2" != "svm-150non"]; then
+elif [ "$2" != "svm-150non" ]; then
     PICKLE="/home/nodoka/18-kitada-bachelor-data/testdata"
 
 else
