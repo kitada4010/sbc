@@ -87,7 +87,7 @@ plt.colorbar(im, cax=axColor, orientation="vertical")
 from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 #plt.tick_params(length = 10)
-plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.pdf')
+plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.pdf', bbox_inches="tight", dpi=300)
 #plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.eps')
 #plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] +'.pdf',dpi=300)
 #plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] + sys.argv[3] + '.png',dpi=300)
