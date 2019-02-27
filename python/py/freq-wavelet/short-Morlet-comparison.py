@@ -66,7 +66,7 @@ im = plt.imshow(np.flipud(rr), extent=[0, (endtime-starttime)*1000, P, 1], aspec
 #ylim(0, 4096)
 plt.tick_params(length = 10)
 xlabel("time [ms]")
-ylabel("frequency [Hz]")
+ylabel("frequency [Hz]  ")
 #plt.yscale("log")
 plt.yticks([150,500,800,1000])
 plt.ylim(150,1000)
