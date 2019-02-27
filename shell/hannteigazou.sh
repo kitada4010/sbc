@@ -31,10 +31,6 @@ elif [ "$2" != "svm-150"]; then
 
 elif [ "$2" != "svm-150non"]; then
     PICKLE="/home/nodoka/18-kitada-bachelor-data/testdata"
-<<<<<<< HEAD
-=======
-
->>>>>>> e54cba4fb291a060de4cf4f502825bd32b6d0afb
 
 else
     echo HOWTO
@@ -58,10 +54,6 @@ else
     exit 0
 fi
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e54cba4fb291a060de4cf4f502825bd32b6d0afb
 if [ "$4" = "" ]; then
     filetype=time
 else
