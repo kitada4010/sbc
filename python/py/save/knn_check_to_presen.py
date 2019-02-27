@@ -2,8 +2,9 @@ import pylab as p
 #import iwavelets.pycwt as w
 import math,numpy
 import matplotlib
-matplotlib.use('Agg')
-#import matplotlib.pyplot as plt
+#matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 import matplotlib.ticker as ticker
 import pickle
 import numpy as np
