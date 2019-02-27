@@ -25,7 +25,7 @@ from sklearn.neighbors import KNeighborsClassifier
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 with open('/home/nodoka/18-kitada-bachelor-data/testdata' + sys.argv[1], mode='rb') as st:
     model = pickle.load(st)
-with open('/home/nodoka/win/ubuntu/txtdata/'+ sys.argv[2] +'/'+ sys.argv[3], mode='rb') as fp:
+with open('/home/nodoka/win/ubuntu/txt-data/'+ sys.argv[2] +'/'+ sys.argv[3], mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
 # 特徴量
