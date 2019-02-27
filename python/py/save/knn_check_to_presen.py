@@ -1,6 +1,6 @@
 import pylab as p
 #import iwavelets.pycwt as w
-import math,numpy,matplotlib
+import math,numpy
 import matplotlib.ticker as ticker
 import pickle
 import numpy as np
