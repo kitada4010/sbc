@@ -32,7 +32,8 @@ with open('/home/nodoka/win/ubuntu/txt-data/'+ sys.argv[2] +'/'+ sys.argv[3], mo
 X = np.loadtxt(sys.argv[4],delimiter=",")
 fs = 25000 #サンプリング周波数
 
-
+starttime = float(sys.argv[1])
+endtime = float(sys.argv[2])
 start = int(starttime*fs)
 end = int(endtime*fs)
 datatime = []
