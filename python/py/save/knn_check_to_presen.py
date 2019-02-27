@@ -2,7 +2,7 @@ import pylab as p
 #import iwavelets.pycwt as w
 import math,numpy
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('PS')
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import pickle
