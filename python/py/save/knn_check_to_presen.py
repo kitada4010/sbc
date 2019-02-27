@@ -1,14 +1,14 @@
 import pylab as p
 #import iwavelets.pycwt as w
 import math,numpy
+import matplotlib as mpl
+mpl.use('Agg')
+import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import pickle
 import numpy as np
 import pandas as pd
 import sys
-import matplotlib as mpl
-mpl.use('Agg')
-import matplotlib.pyplot as plt
 import scipy
 from swan import pycwt
 from scipy import signal
