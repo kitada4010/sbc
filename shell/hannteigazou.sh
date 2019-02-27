@@ -19,6 +19,7 @@ if [ "$1" != "restraint" ] && [ "$1" != "male" ] && [ "$1" != "female" ] && [ "$
     exit 0
 fi
 
+
 if [ "$2" == "knn-150" ]; then
     PICKLE="/all-spec-150.pickle"
 
