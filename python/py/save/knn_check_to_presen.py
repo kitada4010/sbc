@@ -40,14 +40,14 @@ datatime = []
 #specdatab = np.array(df[start:end])
 for i in range(len(df[start:end])):
     #    print(i)
-    datatime.append([starttime + (i/fs)])
+    datatime.append([(i/fs)*1000])
     #print(datatime)
 
 plt.figure(figsize=(10, 3))
 #plt.subplots_adjust(wspace=0.0, hspace=-0.4)
 #plt.subplot(4, 1, 1)
 plt.rcParams["font.size"] = 15
-xlim(starttime,endtime)
+xlim(0, (endtime-starttime)*1000)
 plt.tick_params(length = 10)
 plt.yticks([-3,-2,-1,0,1,2])
 plt.ylim(-4,2)
@@ -60,8 +60,8 @@ xlabel("time [ms]")
 plt.plot(datatime,df[start:end])
 plt.grid(which='major')
 #gca().xaxis.set_minor_locator(MultipleLocator(0.04))
-leng = np.arange(starttime, endtime, 0.04)
-plt.xticks(leng,color="None")
+leng = np.arange(0, (endtime-starttime)*1000, 0.04)
+#plt.xticks(leng,color="None")
 #plt.xaxis.set_minor_locator(dates.DayLocator(interval=0.04))
 #gca().xaxis.set_minor_locator(True,0.04)
 s = 100
@@ -74,15 +74,15 @@ plt.axvspan(100,200,color="red")
 for i in range(len(Y_graph)):
     print(Y_graph[i])
     if(Y_graph[i] == 1.0):
-        plt.axvspan(((i*s-(s/2))/fs)+starttime ,((i*s+(s/2))/fs)+starttime ,color="blue")
+        plt.axvspan(((i*s-(s/2))/fs)*1000 ,((i*s+(s/2))/fs)*1000 ,color="blue")
     if(Y_graph[i] == 2.0):
-        plt.axvspan(((i*s-(s/2))/fs)+starttime ,((i*s+(s/2))/fs)+starttime ,color="red")
+        plt.axvspan(((i*s-(s/2))/fs)*1000 ,((i*s+(s/2))/fs)*1000 ,color="red")
     if(Y_graph[i] == 3.0):
-        plt.axvspan(((i*s-(s/2))/fs)+starttime ,((i*s+(s/2))/fs)+starttime ,color="aqua")
+        plt.axvspan(((i*s-(s/2))/fs)*1000 ,((i*s+(s/2))/fs)*1000 ,color="aqua")
     if(Y_graph[i] == 4.0):
-        plt.axvspan(((i*s-(s/2))/fs)+starttime ,((i*s+(s/2))/fs)+starttime ,color="orange")
+        plt.axvspan(((i*s-(s/2))/fs)*1000 ,((i*s+(s/2))/fs)*1000 ,color="orange")
     if(Y_graph[i] == 5.0):
-        plt.axvspan(((i*s-(s/2))/fs)+starttime ,((i*s+(s/2))/fs)+starttime ,color="mediumorchid")
+        plt.axvspan(((i*s-(s/2))/fs)*1000 ,((i*s+(s/2))/fs)*1000 ,color="mediumorchid")
 
 
 
