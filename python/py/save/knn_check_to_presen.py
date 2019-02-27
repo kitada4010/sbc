@@ -91,7 +91,7 @@ for i in range(len(Y_graph)):
 
 
 
-plt.savefig(sys.argv[3] +'-'+ sys.argv[5] +'-'+ sys.argv[6] +'.eps', bbox_inches="tight", dpi=300)
+plt.savefig(sys.argv[3] +'-'+ sys.argv[5] +'-'+ sys.argv[6] +'.pdf', bbox_inches="tight", dpi=300)
 
 del datatime
                                                                                                                 
