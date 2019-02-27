@@ -28,7 +28,7 @@ for i in range(len(df[start:end])):
     datatime.append([(starttime+(i/fs))])
 
 plt.rcParams["font.size"] = 15
-plt.figure(figsize=(10, 5))
+plt.figure(figsize=(10, 4))
 plt.subplots_adjust(wspace=0.0, hspace=-0.4)
 plt.subplot(4, 1, 1)
 xlim(starttime,endtime)
@@ -80,6 +80,8 @@ plt.colorbar(im, cax=axColor, orientation="vertical")
 #plt.clim(-15,15)
 #plt.tick_params(length = 10)
 #plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.pdf',dpi=300)
+from matplotlib import rcParams
+rcParams.update({'figure.autolayout': True})
 plt.savefig('B39'+ sys.argv[1] +'-'+ sys.argv[2] +'-'+ sys.argv[3] +'.pdf',dpi=300)
 
 #p.show()
