@@ -1,8 +1,8 @@
 import pylab as p
 #import iwavelets.pycwt as w
 import math,numpy
-import matplotlib as mpl
-mpl.use('Agg')
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import pickle
