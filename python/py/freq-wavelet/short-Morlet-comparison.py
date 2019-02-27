@@ -28,7 +28,7 @@ for i in range(len(df[start:end])):
     datatime.append([(starttime+(i/fs))])
 
 plt.rcParams["font.size"] = 15
-plt.figure(figsize=(10, 4))
+plt.figure(figsize=(10, 5))
 plt.subplots_adjust(wspace=0.0, hspace=-0.4)
 plt.subplot(4, 1, 1)
 xlim(starttime,endtime)
