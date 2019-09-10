@@ -1,8 +1,10 @@
+# coding:utf-8
 #エクセルファイルの変換を目指して
 import pandas as pd
 import numpy as np
 import sys
 import os.path
+
 
 name, ext = os.path.splitext(sys.argv[1])
 file = pd.ExcelFile(sys.argv[1])
