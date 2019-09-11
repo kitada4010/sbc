@@ -3,7 +3,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import sys
 from sklearn.model_selection import train_test_split
-#spec = pd.read_csv('150Hzhpassdata.csv', header=None)
+
+#argv[1] 特徴量
+#argv[2] 目的変数
+#argv[3] 
+
 
 #ubuntu
 # 特徴量
