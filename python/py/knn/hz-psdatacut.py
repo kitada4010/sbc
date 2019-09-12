@@ -16,16 +16,16 @@ from pylab import *
 #sys.argv[2] : 終了時間データ
 #sys.argv[3] : エピソード
 #sys.argv[4] : 個体番号-(HR or HL)
-#sys.argv[5] : 区切るデータ数(N) range
-#sys.argv[6] : 飛ばすデータ数(s) 例) N=2048 → s=100
+
+
 
 #with open('/home/hera/nodoka/home2/nodoka/spike-data/25kHz-data/B39 Rd.pickle', mode='rb') as fp:
 with open('/home/nodoka/win/ubuntu/txt-data/' + sys.argv[3] + '/' + sys.argv[4] + '.pickle', mode='rb') as fp:
 #with open('/Volumes/NO NAME/25kHz-data/B39 Rd.pickle',mode='rb') as fp:
     df = pickle.load(fp)
 
-N = int(sys.argv[5])
-s = int(sys.argv[6])
+N = 2048
+s=100
 fs = 25000 #サンプリング周波数
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
@@ -56,5 +56,5 @@ spec_new = pd.DataFrame(index=spec.index, columns=[])
 for i in range(0,len(spec.columns)) :
     spec1 = spec[i]
     spec_new[i]=spec1
-spec_new.T.to_csv(sys.argv[3] + '-' + sys.argv[4] + '-' + sys.argv[1] + '-' + sys.argv[2] +'-pscut' +sys.argv[5]+ '.csv',header=False, index=False)
+spec_new.T.to_csv(sys.argv[3] + '-' + sys.argv[4] + '-' + sys.argv[1] + '-' + sys.argv[2] +'-pscut.csv',header=False, index=False)
 del spec, spec1

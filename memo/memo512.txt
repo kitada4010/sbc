@@ -1,0 +1,129 @@
+restraint 512 
+
+
+python ~/sbc/python/py/knn/psdatacutrange.py 1 500 restraint B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 restraint B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 restraint B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 restraint B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 restraint B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 restraint B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3300 restraint B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1 500 restraint B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 restraint B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 restraint B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 restraint B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 restraint B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 restraint B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 restraint B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1 500 restraint B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 restraint B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 restraint B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 restraint B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 restraint B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 restraint B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 restraint B39-HR 512 100 
+
+
+
+
+
+female 512 
+
+python ~/sbc/python/py/knn/psdatacutrange.py 1 500 female B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 female B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 female B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 female B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 female B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 female B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 female B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1 500 female B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 female B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 female B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 female B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 female B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 female B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 female B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1 500 female B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 female B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 female B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 female B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 female B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 female B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 female B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1 500 female B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 female B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 female B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 female B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 female B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 female B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 female B39-HR 512 100
+
+
+
+
+
+object 512 
+
+python ~/sbc/python/py/knn/psdatacutrange.py 1 500 object B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 object B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 object B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 object B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 object B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 object B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1 500 object B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 object B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 object B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 object B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 object B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 object B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1 500 object B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 object B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 object B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 object B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 object B36-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 object B36-HR 512 100 
+
+
+
+
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 object B32-HL 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 object B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 object B36-HR 512 100
+
+
+
+
+
+
+
+
+
+
+
+male 512 
+
+python ~/sbc/python/py/knn/psdatacutrange.py 1 500 male B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 male B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 male B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 male B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 male B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 male B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1 500 male B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 male B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 male B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 male B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 male B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 male B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1 500 male B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 500 1000 male B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1000 1500 male B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 1500 2000 male B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2000 2500 male B39-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 2500 3000 male B39-HR 512 100 
+
+
+
+
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 male B31-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 male B38-HR 512 100 
+&& python ~/sbc/python/py/knn/psdatacutrange.py 3000 3500 male B39-HR 512 100
