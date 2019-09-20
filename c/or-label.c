@@ -3,7 +3,7 @@
   引数2 データ取り終了時間
   引数3 リップル開始時間
   引数4 リップル終了時間
-  引数5 つけたいラベル境界部分はプラス2  (リップルの時1  ノイズの時2)
+  引数5 つけたいラベル境界部分はプラス1  (リップルの時1  ノイズの時2)
   引数6 出力ファイル名
 */
 
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]){
     //printf("%d\n",(int)((endleng-grayarea)*fs));
     
     if( ( (int)((startleng-grayarea)*fs) <= i && (int)((startleng+grayarea)*fs) >= i ) || ( (int)((endleng-grayarea)*fs) <= i && (int)((endleng+grayarea)*fs) >= i )){
-      output = label + 2;
+      output = label + 1;
     }
     else if( (int)((startleng+grayarea)*fs) <= i && (int)((endleng-grayarea)*fs) >= i ){
       output = label;

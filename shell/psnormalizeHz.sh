@@ -1,5 +1,7 @@
 #!/bin/bash
 #POINT="/home2/nodoka"
+#引数1 ファイル名(.txt)
+#汎用性なし
 POINT="/home/nodoka"
 PYENVPY="/home/nodoka/.pyenv/shims/python"
 
