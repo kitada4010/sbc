@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 
 #argv[1] 特徴量
 #argv[2] 目的変数
-#argv[3] 
+#argv[3] 出力ファイル名
 
 
 #ubuntu

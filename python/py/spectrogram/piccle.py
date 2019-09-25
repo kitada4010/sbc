@@ -5,6 +5,7 @@ import pickle
 import csv
 import sys
 
+#引数1 元ファイル(.csv付けずに)
 
 #vine linux
 #f = pd.read_csv(sys.argv[1] +'.csv',header=None)
