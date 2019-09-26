@@ -63,18 +63,33 @@ ep-psnormalize.sh ~/win/ubuntu/new-time-label/male/B38R/B38-male-R5_time_data.tx
 
 
 
+
+ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B38R/B38-object-R2_time_data.txt object B38-HR 
+&& ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B32L/B32-object-L2_time_data.txt object B32-HL 
+&& ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B36R/B36-object-R2_time_data.txt object B36-HR  
+&& mv object*32* B32-HL/ && mv object*38* B38-HR/ && mv object*36* B36-HR/ 
+
+
+
 object
 R2
-ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B38R/B38-object-R2_time_data.txt object B38-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B39R/B39-object-R2_time_data.txt object B39-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B34R/B34-object-R2_time_data.txt object B34-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B32L/B32-object-L2_time_data.txt object B32-HL&& ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B36R/B36-object-R2_time_data.txt object B36-HR  && mv object*32* B32-HL/ && mv object*34* B34-HR/ && mv object*38* B38-HR/ && mv object*36* B36-HR/ && mv object*39* B39-HR/
+ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B38R/B38-object-R2_time_data.txt object B38-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B32L/B32-object-L2_time_data.txt object B32-HL && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B36R/B36-object-R2_time_data.txt object B36-HR  && mv object*32* B32-HL/ && mv object*38* B38-HR/ && mv object*36* B36-HR/ 
+
+
 
 
 R3
-ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B38R/B38-object-R3_time_data.txt object B38-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B39R/B39-object-R3_time_data.txt object B39-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B34R/B34-object-R3_time_data.txt object B34-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B32L/B32-object-L3_time_data.txt object B32-HL&& ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B36R/B36-object-R3_time_data.txt object B36-HR  && mv object*32* B32-HL/ && mv object*34* B34-HR/ && mv object*38* B38-HR/ && mv object*36* B36-HR/ && mv object*39* B39-HR/
+ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B38R/B38-object-R3_time_data.txt object B38-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B32L/B32-object-L3_time_data.txt object B32-HL && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B36R/B36-object-R3_time_data.txt object B36-HR  && mv object*32* B32-HL/ && mv object*38* B38-HR/ && mv object*36* B36-HR/ 
+
+
 
 
 R4
-ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B38R/B38-object-R4_time_data.txt object B38-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B39R/B39-object-R4_time_data.txt object B39-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B34R/B34-object-R4_time_data.txt object B34-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B32L/B32-object-L4_time_data.txt object B32-HL&& ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B36R/B36-object-R4_time_data.txt object B36-HR  && mv object*32* B32-HL/ && mv object*34* B34-HR/ && mv object*38* B38-HR/ && mv object*36* B36-HR/ && mv object*39* B39-HR/
+ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B38R/B38-object-R4_time_data.txt object B38-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B32L/B32-object-L4_time_data.txt object B32-HL && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B36R/B36-object-R4_time_data.txt object B36-HR  && mv object*32* B32-HL/ && mv object*38* B38-HR/ && mv object*36* B36-HR/ 
+
+
 
 
 R5
-ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B38R/B38-object-R5_time_data.txt object B38-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B39R/B39-object-R5_time_data.txt object B39-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B34R/B34-object-R5_time_data.txt object B34-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B32L/B32-object-L5_time_data.txt object B32-HL&& ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B36R/B36-object-R5_time_data.txt object B36-HR  && mv object*32* B32-HL/ && mv object*34* B34-HR/ && mv object*38* B38-HR/ && mv object*36* B36-HR/ && mv object*39* B39-HR/
+ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B38R/B38-object-R5_time_data.txt object B38-HR && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B32L/B32-object-L5_time_data.txt object B32-HL && ep-psnormalize.sh ~/win/ubuntu/new-time-label/object/B36R/B36-object-R5_time_data.txt object B36-HR  && mv object*32* B32-HL/ && mv object*38* B38-HR/ && mv object*36* B36-HR/ 
+

@@ -27,7 +27,7 @@ with open('/home/nodoka/win/ubuntu/txt-data/' + sys.argv[3] + '/' + sys.argv[4] 
 
 N = int(sys.argv[5])
 s = int(sys.argv[6])
-fs = float(sys.arg[7])
+fs = float(sys.argv[7])
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
 start = int((starttime*fs) - (N/2)+1)
