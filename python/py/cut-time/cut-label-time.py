@@ -24,7 +24,10 @@ sheet_names = file.sheet_names
 for i, sheet_name in enumerate(sheet_names):
     sheet_df[i] = file.parse(sheet_name)
     start_time = sheet_df[i]['Unnamed: 1'][(np.where(sheet_df[i]['INFORMATION']=="START")[0][0])]
-    end_time = (np.where(sheet_df[i]['INFORMATION']=="START")[0][1]/25000)+ start_time
+    if sheet_df[i]['Unnamed: 1'][(np.where(sheet_df[i]['INFORMATION']=="START")[0][0])-1] == 25000 :
+        end_time = (np.where(sheet_df[i]['INFORMATION']=="START")[0][1]*4)/100000 + start_time
+    else :
+        end_time = (np.where(sheet_df[i]['INFORMATION']=="START")[0][1]*6)/100000 + start_time
     print("{:.6f},{:.6f}".format(start_time, end_time), file=time_file)
 
 file.close()
