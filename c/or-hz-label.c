@@ -18,13 +18,13 @@ int main(int argc, char *argv[]){
   }
   
   int fs = 100000; //データの整数か
-  int sr; //サンプリング周波数
+  //  int sr; //サンプリング周波数
   int step; //飛ばすデータ数
   double grayarea = 0.005; //グレーゾーンの絶対値範囲(合計範囲/2)
   
   int i, label, output;
   double starttime, endtime, startevent, endevent;
-  if( (starttime = atof(argv[1]))<=0 || (endtime = atof(argv[2]))<=0 || (startevent = atof(argv[3]))<=0 || (endevent= atof(argv[4]))<=0 || (label = atoi(argv[5])) <=0 || (sr = atoi(argv[7])) <=0 ){
+  if( (starttime = atof(argv[1]))<=0 || (endtime = atof(argv[2]))<=0 || (startevent = atof(argv[3]))<=0 || (endevent= atof(argv[4]))<=0 || (label = atoi(argv[5])) <=0 || (step = atoi(argv[7])) <=0 ){
     printf("input error\n");
     return 0;
   }
@@ -33,6 +33,7 @@ int main(int argc, char *argv[]){
     printf("input size error\n");
   }
 
+  /*
   if(sr == 25000)
     step = 90;
   else if(sr == 16666)
@@ -41,6 +42,7 @@ int main(int argc, char *argv[]){
     printf("not faund sampling rate");
     return 0;      
   }
+  */
   
   FILE *labelfile;
   char filename[256];
