@@ -1,29 +1,29 @@
 25000
 restraint
-B31R
-B32L
-B36R
-B39R
+B31-HR
+B32-HL
+B36-HR
+B39-HR
 
 
 female
-B31R
-B32L
-B38R
-B39R
+B31-HR
+B32-HL
+B38-HR
+B39-HR
 
 
 male
-B30R
-B31R
-B38R
-B39R
+B30-HR
+B31-HR
+B38-HR
+B39-HR
 
 
 object
-B32L
-B36R
-B38R
+B32-HL
+B36-HR
+B38-HR
 
 
 -----------------------------------
@@ -31,26 +31,26 @@ B38R
 
 16666.666016
 restraint
-A30L	
-A30R	
-B34L
-B34R
-B38L
-B38R
+A30-HL	
+A30-HR	
+B34-HL
+B34-HR
+B38-HL
+B38-HR
 
 
 female
-B34L
-B34R
+B34-HL
+B34-HR
 
 
 male
-B32L
-B32R
-B34L
-B34R
+B32-HL
+B32-HR
+B34-HL
+B34-HR
 
 
 object
-B34R
-B39R
+B34-HR
+B39-HR
