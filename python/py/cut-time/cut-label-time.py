@@ -39,6 +39,12 @@ label_file = open(name+'_label_data.csv', 'w')
 x = np.sort(data)[::-1]
 
 
+
+#for i in range(0, len(x)-1) : 
+#    if( x[i][1] < x[i+1][1] ) : 
+        
+
+
 start_cut = x[0][0] - ds
 
 for i in range(0, len(x)-1) :
