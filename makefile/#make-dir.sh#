@@ -57,7 +57,8 @@ do
 	     
 	     	     	     	     
 	 done < $dir
-	 echo ~/sbc/shell/group.sh  $MODE.csv ${file%-*}-$line-$MODE.csv > jikkou.txt     
+	 echo ~/sbc/shell/group.sh  $MODE.csv ${file%-*}-$line-$MODE.csv
+	 > jikkou.txt     
 	 cat shell-head.txt jikkou.txt > $episodehz/$line/$indivi/conduct.sh
 	 rsync ./okiba/Makefile  $episodehz/$line/
 	 make -C $episodehz/$line/

@@ -1,5 +1,3 @@
-pwd : 
+conduct : conduct.sh
 	pwd
-
-conduct:
-	conduct.sh
+	./conduct.sh
