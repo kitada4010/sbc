@@ -40,10 +40,15 @@ x = np.sort(data)[::-1]
 
 
 
-#for i in range(0, len(x)-1) : 
-#    if( x[i][1] < x[i+1][1] ) : 
-        
+k=0
 
+for i in range(0, len(x)-1) :
+
+    if( x[i-k][1] >= x[i+1-k][0] ) :
+        x[i-k][1] = x[i+1-k][1]
+        x = np.delete(x, i+1-k, 0)
+        k = k+1
+        
 
 start_cut = x[0][0] - ds
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 dirs=`find ./individual/*.txt`
-TIMEDATAPATH="/home/nodoka/win/ubuntu/new-time-label"
+TIMEDATAPATH="/home/nodoka/win/ubuntu/kuttuketime-label"
 #HZCUTS="3072"
 #HZCUTL="2048"
 HZCUT="1024"

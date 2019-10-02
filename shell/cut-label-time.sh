@@ -1,5 +1,7 @@
 #!/bin/bash
-find . -name "* *" | rename 's/ /-/g' 
+find . -name "* *" | rename 's/ /-/g'
+rm *.csv
+rm *.txt
 dirs=`find *.xls`
 
 for dir in $dirs;
