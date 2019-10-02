@@ -36,9 +36,7 @@ time_file.close()
 data = np.loadtxt(name+'_ripple_data.csv', delimiter=",")
 time_file = open(name+'_time_data.csv', 'w')
 label_file = open(name+'_label_data.csv', 'w')
-x = np.sort(data)[::-1]
-
-
+x = np.sort(data, axis=0)
 
 k=0
 
