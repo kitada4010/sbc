@@ -13,7 +13,8 @@ PYENVPY="/home/nodoka/.pyenv/shims/python"
 while read line
 do
     ${PYENVPY} ${POINT}/sbc/python/py/knn/diffsmpdatacut.py  $line  $2  $3 $4 $5 $6
-    cut -f 150- -d "," $2-$3-${line/[	]/-}-pscut.csv >  $2-$3-${line/[	]/-}-150-highpass.csv
-    ${PYENVPY} ${POINT}/sbc/python/py/knn/normalize.py $line all $2-$3-${line/[	]/-}-pscut.csv  $2 $3
-    ${PYENVPY} ${POINT}/sbc/python/py/knn/normalize.py $line 150 $2-$3-${line/[	]/-}-150-highpass.csv $2 $3 
+    cut -f 150- -d "," $2-$3-${line/[	]/-}-pscut$4.csv >  $2-$3-${line/[	]/-}-150-highpass$4.csv
+    ${PYENVPY} ${POINT}/sbc/python/py/knn/normalize.py $line all $2-$3-${line/[	]/-}-pscut$4.csv  $2 $3
+    ${PYENVPY} ${POINT}/sbc/python/py/knn/normalize.py $line 150 $2-$3-${line/[	]/-}-150-highpass$4.csv $2 $3 
+    echo $line is end
 done < $1

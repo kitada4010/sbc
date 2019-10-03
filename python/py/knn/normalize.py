@@ -1,13 +1,13 @@
-import pylab as p
+#import pylab as p
 import math,numpy,matplotlib
 import pickle
 import numpy as np
 import pandas as pd
 import sys
-import scipy
-from swan import pycwt
-from scipy import signal
-from pylab import *
+#import scipy
+#from swan import pycwt
+#from scipy import signal
+#from pylab import *
 #argv[1] : 開始時間データ
 #argv[2] : 終了時間データ
 #argv[3] : Hz数
@@ -17,7 +17,8 @@ from pylab import *
 
 #spec = pd.read_csv('/home/nodoka/18-kitada-bachelor-paper/knn/feature-data'+sys.argv[4], header=None)
 spec = pd.read_csv(sys.argv[4], header=None)
-spec = spec
+#spec = spec
+#print(spec)
 
 spec_new = pd.DataFrame(index=spec.T.index, columns=[])
 for i in range(0,len(spec)) :
