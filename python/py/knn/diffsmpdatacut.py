@@ -23,12 +23,13 @@ import sys
 
 with open('/home/nodoka/win/ubuntu/txt-data/' + sys.argv[3] + '/' + sys.argv[4] + '.pickle', mode='rb') as fp:
     df = pickle.load(fp)
-
 N = int(sys.argv[5])
 s = int(sys.argv[6])
 fs = float(sys.argv[7])
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
+
+
 if fs == 25000 :
     start = int((starttime*fs) - (N/2)+1)
     end = int((endtime*fs) + (N/2) -1)
@@ -51,6 +52,7 @@ else :
 
 specdatab = np.array(df[start:end])
 del df
+
 specdataa = specdatab.flatten()
 del specdatab
 fp.close
@@ -59,15 +61,15 @@ fp.close
 hammingWindow = np.hamming(N)
 length = (end - start)/fs
 
-print("before specgram")
+
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=fs, noverlap=N-s, window=hammingWindow, xextent=(starttime,endtime))
-print("after specgram")
-sys.exit()
+
 del starttime, endtime, freqs, bins, im
 spec = pd.DataFrame(pxx)
 del specdataa, pxx
 
 #print(len(df[start:end]))
+
 spec_new = pd.DataFrame(index=spec.index, columns=[])
 for i in range(0,len(spec.columns)) :
     spec1 = spec[i]

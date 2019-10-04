@@ -2,7 +2,7 @@
 #POINT="/home2/nodoka"
 POINT="/home/nodoka"
 PYENVPY="/home/nodoka/.pyenv/shims/python"
-rm $2
+[ -e $2 ] && rm $2
 #while read line
 for line in *$1*; do
 #    ${PYENVPY} ${POINT}/sbc/python/py/knn/datacut.py  $line
