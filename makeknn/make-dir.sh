@@ -1,6 +1,6 @@
 #!/bin/bash
 dirs=`find ./individual/*.txt`
-LABELDATAPATH="/tamesijikkou"
+LABELDATAPATH="/home/nodoka/win/ubuntu/kuttuketime-label"
 FREQLDATAPATH="/home/nodoka/win/ubuntu/123ms-data"
 #HZCUTS="3072"
 #HZCUTL="2048"
@@ -21,19 +21,22 @@ do
      do
 	 [ -d $episodehz/$line ] || mkdir $episodehz/$line
 	 while read indivi
-	 echo ~/sbc 
-	 echo $LABELDATAPATH/${file%-*}-$line-$indivi-label.csv 
-	 echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq.csv 
-	 
+	 do
+	     echo ~/sbc 
+	     echo $LABELDATAPATH/${file%-*}-$line-$indivi-label.csv 
+	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq.csv 
+	     
+	     
+	     echo ${file%-*}-$line-$indivi-$MODE.csv 
+	     
+	     
+	     echo $MODE.csv ${file%-*}-$line-$MODE.csv 
+	 done < $dir
 
-	 echo ${file%-*}-$line-$indivi-$MODE.csv 
-
-
-	 echo $MODE.csv ${file%-*}-$line-$MODE.csv 
-	 
+	 echo ${file%-*}-$line-$MODE.csv #>> jikkou.txt
 	 
      done < timing.txt
-     ${file%-*}-$line-$indivi-$MODE.csv #>> jikkou.txt
+
      
 done
 
