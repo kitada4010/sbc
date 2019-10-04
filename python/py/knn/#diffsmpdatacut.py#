@@ -59,10 +59,12 @@ fp.close
 hammingWindow = np.hamming(N)
 length = (end - start)/fs
 
-print("before specgram")
+
+#print("before specgram")
 pxx, freqs, bins, im = plt.specgram(specdataa, NFFT=N, Fs=fs, noverlap=N-s, window=hammingWindow, xextent=(starttime,endtime))
-print("after specgram")
-sys.exit()
+#print("after specgram")
+
+
 del starttime, endtime, freqs, bins, im
 spec = pd.DataFrame(pxx)
 del specdataa, pxx
