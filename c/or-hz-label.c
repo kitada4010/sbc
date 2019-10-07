@@ -71,7 +71,7 @@ int main(int argc, char *argv[]){
   //leng+=(1.0/fs);
   
   leng *= fs;
-  leng = leng+step-1;
+  //  leng = leng+step;
   //  leng += 0.99;
   
   double startleng;
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]){
   
   printf("%d\n", (int)leng/step);
   
-  for(i=0; i<(int)leng; i+=step){
+  for(i=0; i<((int)leng); i+=step){
     //    printf("%d\n",(int)((startleng-grayarea)*fs));
     //printf("%d\n",(int)((startleng+grayarea)*fs));
     //printf("%d\n",(int)((endleng-grayarea)*fs));

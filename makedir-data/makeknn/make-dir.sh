@@ -22,11 +22,19 @@ do
 	 [ -d $episodehz/$line ] || mkdir $episodehz/$line
 	 while read indivi
 	 do
-	     echo ~/sbc 
-	     echo $LABELDATAPATH/${file%-*}-$line-$indivi-label.csv 
-	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq.csv 
 	     
-	     
+	     if [ ${episodehz##*-} = "25000" ]; then
+		 range=$(( HZCUT * 3))
+	     else
+		 range=$(( HZCUT * 2))
+	     fi
+
+	     echo $LABELDATAPATH/${file%-*}-$line-$indivi-label$range.csv 
+	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq-pscut$range.csv 
+	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq-150-highpass$range.csv 
+	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq-all-nomalize$range.csv 
+	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq-150-nomalize$range.csv 
+	     echo
 	     echo ${file%-*}-$line-$indivi-$MODE.csv 
 	     
 	     
