@@ -7,8 +7,10 @@
 #引数5 : 飛ばすデータ数(s) 例) 25000 : 90 | 16666.666016 : 60
 #引数6 : サンプリング周波数
 
-POINT="/home/nodoka"
-PYENVPY="/home/nodoka/.pyenv/shims/python"
+#POINT="/home/nodoka"
+POINT="/mnt/export1/st9/b009vb"
+#PYENVPY="/home/nodoka/.pyenv/shims/python"
+PYENVPY="/usr/local/anaconda3/bin/python3.6"
 
 while read line
 do

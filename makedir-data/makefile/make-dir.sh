@@ -1,6 +1,7 @@
 #!/bin/bash
 dirs=`find ./individual/*.txt`
 TIMEDATAPATH="/home/nodoka/win/ubuntu/kuttuketime-label"
+#TIMEDATAPATH="/mnt/export1/st9/b009vb/yuni/kuttuketime-label"
 #HZCUTS="3072"
 #HZCUTL="2048"
 HZCUT="1024"
@@ -46,8 +47,8 @@ do
 	     fi
 	     
 	     
-
-
+	     
+	     
 	     echo ~/sbc/shell/group.sh ${file%-*} ${file%-*}-$line-$indivi-$MODE.csv >> jikkou.txt
 	     rsync ./okiba/Makefile  $episodehz/$line/$indivi/
 	     cat shell-head.txt jikkou.txt > $episodehz/$line/$indivi/conduct.sh

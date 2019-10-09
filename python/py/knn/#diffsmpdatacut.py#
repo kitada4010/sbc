@@ -9,7 +9,6 @@ import pickle
 import numpy as np
 import pandas as pd
 import sys
-import os
 #import scipy
 #from swan import pycwt
 #from scipy import signal
@@ -22,9 +21,7 @@ import os
 #sys.argv[6] : 飛ばすデータ数(s) 例) N=2048 → s=100
 #sys.argv[7] : サンプリング周波数
 
-#with open('/home/nodoka/win/ubuntu/txt-data/' + sys.argv[3] + '/' + sys.argv[4] + '.pickle', mode='rb') as fp:
-#with open('/mnt/export1/st9/b009vb/yuni/txt-data/' + sys.argv[3] + '/' + sys.argv[4] + '.pickle', mode='rb') as fp:
-with open(os.environ['HOME'] + '/data/txt-data/' + sys.argv[3] + '/' + sys.argv[4] + '.pickle', mode='rb') as fp:
+with open('/st9/b009vb/yunihome/nodoka/win/ubuntu/txt-data/' + sys.argv[3] + '/' + sys.argv[4] + '.pickle', mode='rb') as fp:
     df = pickle.load(fp)
 N = int(sys.argv[5])
 s = int(sys.argv[6])
