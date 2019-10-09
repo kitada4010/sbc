@@ -65,6 +65,13 @@ do
 	 
      done < timing.txt
      
-     
+     echo ~/sbc/shell/group.sh -$MODE.csv $episodehz-$MODE.csv > jikkou.txt
+     cat shell-head.txt jikkou.txt > $episodehz/conduct.sh
+     chmod +x $episodehz/conduct.sh
+     rsync ./okiba/Makefile  $episodehz/
+     make -C $episodehz/
+     rsync $episodehz/$episodehz-$MODE*.csv ./
+          
 done
 
+~/sbc/shell/group.sh  $MODE.csv $MODE.csv  
