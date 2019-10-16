@@ -58,7 +58,7 @@ do
 	     rsync ./okiba/Makefile  $episodehz/$line/$indivi/
 	     cat shell-head.txt jikkou.txt > $episodehz/$line/$indivi/conduct.sh
 	     chmod +x $episodehz/$line/$indivi/conduct.sh
-	     make -C $episodehz/$line/$indivi/
+#	     make -C $episodehz/$line/$indivi/
 	     rsync $episodehz/$line/$indivi/${file%-*}-$line-$indivi-$MODE*.csv $episodehz/$line/
 
 	     
@@ -66,31 +66,43 @@ do
 	 if [ $MODE = "label" ]; then 	 #ラベル作成
 	     echo ~/sbc/shell/group.sh  $MODE.csv ${file%-*}-$line-$MODE.csv > jikkou.txt     
 	 elif [ $MODE = "freq" ]; then    #周波強度データのグループ化
-	     echo ~/sbc/shell/group.sh  $MODE-pscut ${file%-*}-$line-$MODE-pscut.csv #> jikkou.txt
-	     echo ~/sbc/shell/group.sh  $MODE-150-highpass ${file%-*}-$line-$MODE-150-highpass.csv #>> jikkou.txt 
-	     echo ~/sbc/shell/group.sh  $MODE-150-nomalize ${file%-*}-$line-$MODE-150-nomalize.csv #>> jikkou.txt 
-	     echo ~/sbc/shell/group.sh  $MODE-all-nomalize ${file%-*}-$line-$MODE-all-nomalize.csv #>> jikkou.txt 
+	     echo ~/sbc/shell/group.sh  $MODE-pscut ${file%-*}-$line-$MODE-pscut.csv > jikkou.txt
+	     echo ~/sbc/shell/group.sh  $MODE-150-highpass ${file%-*}-$line-$MODE-150-highpass.csv >> jikkou.txt 
+	     echo ~/sbc/shell/group.sh  $MODE-150-nomalize ${file%-*}-$line-$MODE-150-nomalize.csv >> jikkou.txt 
+	     echo ~/sbc/shell/group.sh  $MODE-all-nomalize ${file%-*}-$line-$MODE-all-nomalize.csv >> jikkou.txt 
 	 fi
 	 cat shell-head.txt jikkou.txt > $episodehz/$line/conduct.sh
 	 rsync ./okiba/Makefile  $episodehz/$line/	 
 	 chmod +x $episodehz/$line/conduct.sh
-	 make -C $episodehz/$line/
+#	 make -C $episodehz/$line/
 	 rsync $episodehz/$line/${file%-*}-$line-$MODE*.csv $episodehz/
 	 
      done < timing.txt
      if [ $MODE = "label" ]; then 	 #ラベル作成
 	 echo ~/sbc/shell/group.sh -$MODE.csv $episodehz-$MODE.csv > jikkou.txt
      elif [ $MODE = "freq" ]; then    #周波強度データのグループ化
-	 echo ~/sbc/shell/group.sh ${file%-*}-*-$MODE-pscut.csv $episodehz-$MODE-pscut.csv > jikkou.txt
-	 echo ~/sbc/shell/group.sh ${file%-*}-*-$MODE-150-highpass.csv $episodehz-$MODE-150-highpass.csv >> jikkou.txt
-	 echo ~/sbc/shell/group.sh ${file%-*}-*-$MODE-150-nomalize.csv $episodehz-$MODE-150-nomalize.csv >> jikkou.txt
-	 echo ~/sbc/shell/group.sh ${file%-*}-*-$MODE-all-nomalize.csv $episodehz-$MODE-all-nomalize.csv >> jikkou.txt
+	 echo ~/sbc/shell/group.sh $MODE-pscut.csv $episodehz-$MODE-pscut.csv > jikkou.txt
+	 echo ~/sbc/shell/group.sh $MODE-150-highpass.csv $episodehz-$MODE-150-highpass.csv >> jikkou.txt
+	 echo ~/sbc/shell/group.sh $MODE-150-nomalize.csv $episodehz-$MODE-150-nomalize.csv >> jikkou.txt
+	 echo ~/sbc/shell/group.sh $MODE-all-nomalize.csv $episodehz-$MODE-all-nomalize.csv >> jikkou.txt
      fi
      cat shell-head.txt jikkou.txt > $episodehz/conduct.sh
      chmod +x $episodehz/conduct.sh
      rsync ./okiba/Makefile  $episodehz/
-     make -C $episodehz/
+ #    make -C $episodehz/
      rsync $episodehz/$episodehz-$MODE*.csv ./
      
 done
 
+if [ $MODE = "label" ]; then 	 #ラベル作成
+    echo ~/sbc/shell/group.sh -$MODE.csv $MODE.csv > jikkou.txt
+elif [ $MODE = "freq" ]; then    #周波強度データのグループ化
+    echo ~/sbc/shell/group.sh $MODE-pscut.csv $episodehz-$MODE-pscut.csv > jikkou.txt
+    echo ~/sbc/shell/group.sh $MODE-150-highpass.csv $MODE-150-highpass.csv >> jikkou.txt
+    echo ~/sbc/shell/group.sh $MODE-150-nomalize.csv $MODE-150-nomalize.csv >> jikkou.txt
+    echo ~/sbc/shell/group.sh $MODE-all-nomalize.csv $MODE-all-nomalize.csv >> jikkou.txt
+fi
+cat shell-head.txt jikkou.txt > ./conduct.sh
+chmod +x ./conduct.sh
+rsync ./okiba/Makefile  ./
+make conduct
