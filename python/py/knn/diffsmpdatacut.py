@@ -31,7 +31,7 @@ s = int(sys.argv[6])
 fs = float(sys.argv[7])
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
-
+#print(df.dtypes)
 
 if fs == 25000 :
     start = int((starttime*fs) - (N/2)+1)
@@ -59,6 +59,10 @@ del df
 specdataa = specdatab.flatten()
 del specdatab
 fp.close
+
+#print(specdataa.dtype)
+specdataa = specdataa.astype(float)
+#print(specdataa.dtype)
 
 
 hammingWindow = np.hamming(N)
