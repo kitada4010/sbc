@@ -1,6 +1,7 @@
 #!/bin/bash
 dirs=`find ./individual/*.txt`
 TIMEDATAPATH="/home/nodoka/win/ubuntu/kuttuketime-label"
+TIMEDATAPATH="/st9/b009vb/data/kuttuketime-label"
 #HZCUTS="3072"
 #HZCUTL="2048"
 HZCUT="1024"
@@ -46,10 +47,10 @@ do
 	     
 
 
-		 echo ~/sbc/shell/group.sh ${file%-*}*pscut ${file%-*}-$line-$indivi-$MODE-pscut$range.csv #> jikkou.txt
-		 echo ~/sbc/shell/group.sh ${file%-*}*150-highpass ${file%-*}-$line-$indivi-$MODE-150-highpass$range.csv #>> jikkou.txt
-		 echo ~/sbc/shell/group.sh ${file%-*}*150-nomalize ${file%-*}-$line-$indivi-$MODE-150-nomalize$range.csv #>> jikkou.txt
-		 echo ~/sbc/shell/group.sh ${file%-*}*all-nomalize ${file%-*}-$line-$indivi-$MODE-all-nomalize$range.csv #>> jikkou.txt
+		 echo ~/sbc/shell/group.sh ${file%-*}*pscut ${file%-*}-$line-$indivi-$MODE-pscut$range.csv >> jikkou.txt
+		 echo ~/sbc/shell/group.sh ${file%-*}*150-highpass ${file%-*}-$line-$indivi-$MODE-150-highpass$range.csv >> jikkou.txt
+		 echo ~/sbc/shell/group.sh ${file%-*}*150-nomalize ${file%-*}-$line-$indivi-$MODE-150-nomalize$range.csv >> jikkou.txt
+		 echo ~/sbc/shell/group.sh ${file%-*}*all-nomalize ${file%-*}-$line-$indivi-$MODE-all-nomalize$range.csv >> jikkou.txt
 
 	     
 	     else
@@ -74,7 +75,7 @@ do
 	 cat shell-head.txt jikkou.txt > $episodehz/$line/conduct.sh
 	 rsync ./okiba/Makefile  $episodehz/$line/	 
 	 chmod +x $episodehz/$line/conduct.sh
-#	 make -C $episodehz/$line/
+	 make -C $episodehz/$line/
 	 rsync $episodehz/$line/${file%-*}-$line-$MODE*.csv $episodehz/
 	 
      done < timing.txt
@@ -89,20 +90,8 @@ do
      cat shell-head.txt jikkou.txt > $episodehz/conduct.sh
      chmod +x $episodehz/conduct.sh
      rsync ./okiba/Makefile  $episodehz/
- #    make -C $episodehz/
+     make -C $episodehz/
      rsync $episodehz/$episodehz-$MODE*.csv ./
      
 done
 
-if [ $MODE = "label" ]; then 	 #ラベル作成
-    echo ~/sbc/shell/group.sh -$MODE.csv $MODE.csv > jikkou.txt
-elif [ $MODE = "freq" ]; then    #周波強度データのグループ化
-    echo ~/sbc/shell/group.sh $MODE-pscut.csv $episodehz-$MODE-pscut.csv > jikkou.txt
-    echo ~/sbc/shell/group.sh $MODE-150-highpass.csv $MODE-150-highpass.csv >> jikkou.txt
-    echo ~/sbc/shell/group.sh $MODE-150-nomalize.csv $MODE-150-nomalize.csv >> jikkou.txt
-    echo ~/sbc/shell/group.sh $MODE-all-nomalize.csv $MODE-all-nomalize.csv >> jikkou.txt
-fi
-cat shell-head.txt jikkou.txt > ./conduct.sh
-chmod +x ./conduct.sh
-rsync ./okiba/Makefile  ./
-make conduct
