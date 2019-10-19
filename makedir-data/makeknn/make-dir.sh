@@ -1,7 +1,9 @@
 #!/bin/bash
 dirs=`find ./individual/*.txt`
-LABELDATAPATH="/home/nodoka/win/ubuntu/kuttuketime-label"
+#LABELDATAPATH="/home/nodoka/win/ubuntu/kuttuketime-label"
+LABELDATAPATH="/st9/b009vb/data/kuttuketime-label"
 FREQLDATAPATH="/home/nodoka/win/ubuntu/123ms-data"
+FREQLDATAPATH="/st9/b009vb/analysis/123ms-data"
 #HZCUTS="3072"
 #HZCUTL="2048"
 HZCUT="1024"
