@@ -34,8 +34,8 @@ endtime = float(sys.argv[2])
 #print(df.dtypes)
 
 if fs == 25000 :
-    start = int((starttime*fs) - (N/2)+1)
-    end = int((endtime*fs) + (N/2) -1)
+    start = int((starttime*fs) - (N/2))
+    end = int((endtime*fs) + (N/2))
 elif fs == 16666.6666667 :
     a = starttime//3.0
     b = starttime%3.0
