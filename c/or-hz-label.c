@@ -84,7 +84,7 @@ int main(int argc, char *argv[]){
   
   printf("%d\n", (int)leng/step);
   
-  for(i=0; i<=((int)leng)-4; i+=step){
+  for(i=0; i<=((int)leng); i+=step){
     //    printf("%d\n",(int)((startleng-grayarea)*fs));
     //printf("%d\n",(int)((startleng+grayarea)*fs));
     //printf("%d\n",(int)((endleng-grayarea)*fs));
