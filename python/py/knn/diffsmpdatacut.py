@@ -35,11 +35,11 @@ endtime = float(sys.argv[2])
 
 if fs == 25000 :
     start = int((starttime*fs) - (N/2))
-    end = int((endtime*fs) + (N/2))
+    end = int((endtime*fs) + (N/2)-1)
 elif fs == 16666.6666667 :
     a = starttime//3.0
     b = starttime%3.0
-    c = ((a*50000) + (b*fs) - (N/2)-1)
+    c = ((a*50000) + (b*fs) - (N/2))
     start = int(c)
     a = endtime//3.0
     b = endtime%3.0
