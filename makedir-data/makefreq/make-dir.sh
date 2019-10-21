@@ -37,10 +37,10 @@ do
 		 echo ${episodehz##*-}
 		 if [ ${episodehz##*-} = "25000" ]; then
 		     range=$(( HZCUT * 3))
-		     echo ~/sbc/shell/diff-samp-psnormalize.sh $TIMEDATAPATH/${file%-*}/${indivi%-*}${indivi##*H}/${indivi%-*}-${file%-*}-${indivi##*H}${line}_time_data.txt ${file%-*} $indivi $range $(( $STEPTIME / 4)) ${episodehz##*-} #> jikkou.txt
+		     echo ~/sbc/shell/diff-samp-psnormalize.sh $TIMEDATAPATH/${file%-*}/${indivi%-*}${indivi##*H}/${indivi%-*}-${file%-*}-${indivi##*H}${line}_time_data.txt ${file%-*} $indivi $range $(( $STEPTIME / 4)) ${episodehz##*-} > jikkou.txt
 		 else
 		     range=$(( HZCUT * 2))
-		     echo ~/sbc/shell/diff-samp-psnormalize.sh $TIMEDATAPATH/${file%-*}/${indivi%-*}${indivi##*H}/${indivi%-*}-${file%-*}-${indivi##*H}${line}_time_data.txt ${file%-*} $indivi $range $(( $STEPTIME / 6)) ${episodehz##*-} #> jikkou.txt
+		     echo ~/sbc/shell/diff-samp-psnormalize.sh $TIMEDATAPATH/${file%-*}/${indivi%-*}${indivi##*H}/${indivi%-*}-${file%-*}-${indivi##*H}${line}_time_data.txt ${file%-*} $indivi $range $(( $STEPTIME / 6)) ${episodehz##*-} > jikkou.txt
 		 fi
 		 
 	     

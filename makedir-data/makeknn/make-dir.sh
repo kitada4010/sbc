@@ -1,8 +1,10 @@
 #!/bin/bash
 dirs=`find ./individual/*.txt`
+#自宅pc
 #LABELDATAPATH="/home/nodoka/win/ubuntu/kuttuketime-label"
-LABELDATAPATH="/st9/b009vb/data/kuttuketime-label"
-FREQLDATAPATH="/home/nodoka/win/ubuntu/123ms-data"
+#FREQLDATAPATH="/home/nodoka/win/ubuntu/123ms-data"
+#大学計算機サーバ
+LABELDATAPATH="/st9/b009vb/analysis/label-data"
 FREQLDATAPATH="/st9/b009vb/analysis/123ms-data"
 #HZCUTS="3072"
 #HZCUTL="2048"
@@ -31,11 +33,12 @@ do
 		 range=$(( HZCUT * 2))
 	     fi
 
-	     echo $LABELDATAPATH/${file%-*}-$line-$indivi-label$range.csv 
+	     echo $LABELDATAPATH/${file%-*}-$line-$indivi-label.csv 
 	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq-pscut$range.csv 
 	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq-150-highpass$range.csv 
 	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq-all-nomalize$range.csv 
-	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq-150-nomalize$range.csv 
+	     echo $FREQLDATAPATH/${file%-*}-$line-$indivi-freq-150-nomalize$range.csv
+	     echo 
 	     echo
 	     echo ${file%-*}-$line-$indivi-$MODE.csv 
 	     

@@ -82,10 +82,11 @@ int main(int argc, char *argv[]){
   
   double grayleng;
 
-  //printf("%d\n", (int)leng);
-  //  printf("%d\n", (int)leng/step);
+  printf("%d\n", (int)leng);
+  printf("%d\n", (int)leng/step);
+  printf("%d\n", (int)((int)leng/step));
   
-  for(i=0; i<=((int)leng)+1; i+=step){
+  for(i=0; i<=((int)leng); i+=step){
     //    printf("%d\n",(int)((startleng-grayarea)*fs));
     //printf("%d\n",(int)((startleng+grayarea)*fs));
     //printf("%d\n",(int)((endleng-grayarea)*fs));
