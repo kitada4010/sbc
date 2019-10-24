@@ -37,23 +37,14 @@ if fs == 25000 :
     start = int((starttime*fs) - (N/2))
     end = int((endtime*fs) + (N/2)-1)
 elif fs == 16666.6666667 :
-    a = starttime//3.0
-    b = starttime%3.0
-    b *=100000
-    b = int(b)
-    b /= 100000
+    a = int(starttime * 100000) // 6
     print(a)
-    print(b)
-    c = ((a*50000) + (b*fs) - (N/2))
-    print(c)
-    start = int(c)
-    a = endtime//3.0
-    b = endtime%3.0
+    b = a - (N/2)
+    start = int(b)
+    a = int(endtime * 100000) // 6
     print(a)
-    print(b)
-    c = ((a*50000) + (b*fs) + (N/2)-1)
-    print(c)
-    end = int(c)
+    b = a + (N/2) - 1
+    end = int(b)
 else :
     print("not found smp data")
     sys.exit()
