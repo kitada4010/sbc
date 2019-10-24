@@ -32,19 +32,30 @@ fs = float(sys.argv[7])
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
 #print(df.dtypes)
+#print(type(starttime))
 
 if fs == 25000 :
-    start = int((starttime*fs) - (N/2))
-    end = int((endtime*fs) + (N/2)-1)
+    start = (starttime*fs)
+    start = round(start, 0)
+    start = start - (N/2)
+    end = (endtime*fs)
+    end = round(end, 0)
+    end = end + (N/2)-1
 elif fs == 16666.6666667 :
-    a = int(starttime * 100000) // 6
-    print(a)
-    b = a - (N/2)
-    start = int(b)
-    a = int(endtime * 100000) // 6
-    print(a)
-    b = a + (N/2) - 1
-    end = int(b)
+    a = starttime * 100000
+    b = round(a, 0)
+    b = b // 6
+#    print(a)
+#    print(b)
+    c = b - (N/2)
+    start = int(c)
+    a = endtime * 100000
+    b = round(a, 0)
+#    print(a)
+    b = b // 6
+#    print(b)
+    c = b + (N/2)
+    end = int(c)
 else :
     print("not found smp data")
     sys.exit()
