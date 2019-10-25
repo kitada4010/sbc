@@ -35,12 +35,20 @@ endtime = float(sys.argv[2])
 #print(type(starttime))
 
 if fs == 25000 :
-    start = (starttime*fs)
-    start = round(start, 0)
-    start = start - (N/2)
-    end = (endtime*fs)
-    end = round(end, 0)
-    end = end + (N/2)-1
+    a = starttime * 100000
+    b = round(a, 0)
+    b = b // 4
+#    print(a)
+#    print(b)
+    c = b - (N/2)
+    start = int(c)
+    a = endtime * 100000
+    b = round(a, 0)
+#    print(a)
+    b = b // 4
+    #    print(b)
+    c = b + (N/2) - 1
+    end = int(c)  
 elif fs == 16666.6666667 :
     a = starttime * 100000
     b = round(a, 0)
@@ -54,7 +62,7 @@ elif fs == 16666.6666667 :
 #    print(a)
     b = b // 6
 #    print(b)
-    c = b + (N/2)
+    c = b + (N/2) - 1
     end = int(c)
 else :
     print("not found smp data")
