@@ -32,7 +32,7 @@ fs = float(sys.argv[7])
 starttime = float(sys.argv[1])
 endtime = float(sys.argv[2])
 #print(df.dtypes)
-#print(type(starttime))
+print(type(starttime))
 
 if fs == 25000 :
     a = starttime * 100000
