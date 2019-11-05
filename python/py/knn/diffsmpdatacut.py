@@ -29,17 +29,19 @@ with open(os.environ['HOME'] + '/data/txt-data/' + sys.argv[3] + '/' + sys.argv[
 N = int(sys.argv[5])
 s = int(sys.argv[6])
 fs = float(sys.argv[7])
-starttime = float(sys.argv[1])
-endtime = float(sys.argv[2])
+starttime = np.array(sys.argv[1], dtype='float128')
+endtime = np.array(sys.argv[2], dtype='float128')
+#endtime = float(sys.argv[2])
 #print(df.dtypes)
 print(type(starttime))
+print(starttime.dtype)
 
 if fs == 25000 :
     a = starttime * 100000
     b = round(a, 0)
+    print(b)
     b = b // 4
 #    print(a)
-#    print(b)
     c = b - (N/2)
     start = int(c)
     a = endtime * 100000
@@ -47,22 +49,23 @@ if fs == 25000 :
 #    print(a)
     b = b // 4
     #    print(b)
-    c = b + (N/2) - 1
+    c = b + (N/2)
     end = int(c)  
 elif fs == 16666.6666667 :
     a = starttime * 100000
     b = round(a, 0)
+    print(b)
     b = b // 6
 #    print(a)
-#    print(b)
     c = b - (N/2)
     start = int(c)
     a = endtime * 100000
     b = round(a, 0)
+    print(b)
 #    print(a)
     b = b // 6
-#    print(b)
-    c = b + (N/2) - 1
+
+    c = b + (N/2)
     end = int(c)
 else :
     print("not found smp data")

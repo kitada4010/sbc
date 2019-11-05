@@ -9,8 +9,8 @@
 
 #POINT="/home/nodoka"
 #POINT="/mnt/export1/st9/b009vb"
-PYENVPY="/home/nodoka/.pyenv/shims/python"
-#PYENVPY="/usr/local/anaconda3/bin/python3.6"
+#PYENVPY="/home/nodoka/.pyenv/shims/python"
+PYENVPY="/usr/local/anaconda3/bin/python3.6"
 
 while read line
 do

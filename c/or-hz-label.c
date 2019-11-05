@@ -73,7 +73,8 @@ int main(int argc, char *argv[]){
   leng *= fs;
   //  leng = leng+step;
   //  leng += 0.99;
-  
+
+  leng += 0.5;
   double startleng;
   startleng = startevent - starttime;
     
