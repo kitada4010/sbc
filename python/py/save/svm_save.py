@@ -8,6 +8,10 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 #spec = pd.read_csv('150Hzhpassdata.csv', header=None)
 
+#sys.argv[1]  特徴量
+#sys.argv[2] 目的変数
+#sys.argv[3] 出力ファイル名
+
 #ubuntu
 # 特徴量
 X = np.loadtxt(sys.argv[1],delimiter=",")
