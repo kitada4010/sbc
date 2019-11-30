@@ -2,7 +2,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-%matplotlib inline
 import sys
 import math
 
@@ -95,7 +94,7 @@ def inspect(time_leng, pattern_leng, top_print):
     plt.bar(print_pattern, print_probability1, color="blue")
     plt.xlim(-0.5, top_print-0.5)
     ax.set_xticklabels(print_pattern, rotation=90)
-    plt.savefig("/st9/b009vb/seminar-graph/pattern-leng/" + str(pattern_leng) + ".png")
+    plt.savefig(str(pattern_leng) + ".png")
     return pattern_information
 
 parameter = int(sys.argv[3])
@@ -103,4 +102,4 @@ kullback = np.zeros(parameter, float)
 for i in range(1, parameter+1):
     kullback[i-1] = inspect(10, i, 20)
 
-np.savetxt("kullback-" + str(pattern_leng) +".txt", kullback)
+np.savetxt("kullback-1-" + sys.argv[3] +".txt", kullback)
