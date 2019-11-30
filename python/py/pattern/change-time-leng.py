@@ -99,12 +99,12 @@ def inspect(time_leng, pattern_leng, top_print):
     plt.legend()
     #plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0, ncol=2)
     #fig.subplots_adjust(bottom=10)
-    plt.savefig(str(pattern_leng) + ".png", bbox_inches='tight')
+    plt.savefig(str(time_leng) + ".png", bbox_inches='tight')
     return pattern_information
 
 parameter = int(sys.argv[3])
 kullback = np.zeros(parameter, float)
 for i in range(1, parameter+1):
-    kullback[i-1] = inspect(10, i, 20)
+    kullback[i-1] = inspect(i, 50, 20)
     print("end"+str(i))
 np.savetxt("kullback-1-" + sys.argv[3] +".txt", kullback)
