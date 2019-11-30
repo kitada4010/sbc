@@ -90,9 +90,11 @@ def inspect(time_leng, pattern_leng, top_print):
     #グラフ出力
     fig = plt.figure(figsize=(10, 5), dpi=600)
     ax = fig.gca()
-    plt.bar(print_pattern, print_probability2, color="red")
-    plt.bar(print_pattern, print_probability1, color="blue")
+    plt.bar(print_pattern, print_probability2, color="red", label="after")
+    plt.bar(print_pattern, print_probability1, color="blue", label="before")
     plt.xlim(-0.5, top_print-0.5)
+    plt.xlabel("pattern")
+    plt.xlabel("probability")
     ax.set_xticklabels(print_pattern, rotation=90)
     plt.savefig(str(pattern_leng) + ".png")
     return pattern_information
