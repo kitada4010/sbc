@@ -94,8 +94,9 @@ def inspect(time_leng, pattern_leng, top_print):
     plt.bar(print_pattern, print_probability1, color="blue", label="before")
     plt.xlim(-0.5, top_print-0.5)
     plt.xlabel("pattern")
-    plt.xlabel("probability")
+    plt.ylabel("probability")
     ax.set_xticklabels(print_pattern, rotation=90)
+    plt.legend()
     plt.savefig(str(pattern_leng) + ".png")
     return pattern_information
 
