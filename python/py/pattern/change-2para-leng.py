@@ -109,12 +109,21 @@ def inspect(time_leng, pattern_leng, top_print):
     plt.savefig(str(time_leng) + "-" + str(pattern_leng) + ".png", bbox_inches='tight')
     return pattern_information
 
-parameter1 = int(sys.argv[3])
-parameter2 = int(sys.argv[4])
+parameter1_start = int(sys.argv[3])
+parameter1_end = int(sys.argv[4])
 
-kullback = np.zeros((parameter1, parameter2), float)
-for i in range(1, parameter1+1):
-    for j in range(1, parameter2+1):
-        kullback[i-1][j-1] = inspect(i, j, 20)
+parameter2_start = int(sys.argv[5])
+parameter2_end = int(sys.argv[6])
+
+step = int(sys.argv[7])
+
+file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
+
+
+#kullback = np.zeros((parameter1, parameter2), float)
+for i in range(parameter1_start, parameter1_end+1, step):
+    for j in range(parameter2_start, parameter2_end+1, step):
+#        kullback[i-1][j-1] = inspect(i, j, 20)
+        print(i, j , inspect(i, j, 20), file=file_kull)
     print("end"+str(i))
-np.savetxt("kullback-t1-" + sys.argv[3] +"-p1-"+ sys.argv[4] +".txt", kullback)
+#np.savetxt("kullback-t1-" + sys.argv[3] +"-p1-"+ sys.argv[4] +".txt", kullback)
