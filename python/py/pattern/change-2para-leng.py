@@ -76,9 +76,9 @@ def inspect(time_leng, pattern_leng, top_print):
     top_dict = {}
     k = 0
     for i in (pattern_dict1.keys()) :
-        probability1[k] = (pattern_dict1[i]+1 / sum_pattern1)
+        probability1[k] = ((pattern_dict1[i]+1) / sum_pattern1)
         if(i in pattern_dict2) : 
-            probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
+            probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
         else :
             probability2[k] = (1 / sum_pattern2)
         info = probability1[k] * math.log2(probability1[k]/probability2[k])
@@ -94,9 +94,9 @@ def inspect(time_leng, pattern_leng, top_print):
     print_pattern = []
     k = 0
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1])[0:top_print] :
-        print_probability1[k] = (pattern_dict1[i]+1 / sum_pattern1)
+        print_probability1[k] = ((pattern_dict1[i]+1) / sum_pattern1)
         if(i in pattern_dict2) : 
-            print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
+            print_probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
         else :
             print_probability2[k] = (1 / sum_pattern2)
 #        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
