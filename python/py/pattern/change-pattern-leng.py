@@ -67,12 +67,16 @@ def inspect(time_leng, pattern_leng, top_print):
     top_dict = {}
     k = 0
     for i in (pattern_dict1.keys()) :
+        probability1[k] = (pattern_dict1[i] / sum_pattern1)
         if (i in pattern_dict2) :
-            probability1[k] = (pattern_dict1[i] / sum_pattern1)
             probability2[k] = (pattern_dict2[i] / sum_pattern2)
-            pattern_information += probability1[k] * math.log2(probability1[k]/probability2[k])
-            top_dict[i] = probability1[k] * math.log2(probability1[k]/probability2[k])
-            k += 1
+            info = probability1[k] * math.log2(probability1[k]/probability2[k])
+        else :
+            probability2[k] = 0
+            info = probability1[k] * math.log2(probability1[k])
+        pattern_information += info
+        top_dict[i] = info
+        k += 1
 
     if (k < top_print) :
         top_print = k
@@ -81,17 +85,21 @@ def inspect(time_leng, pattern_leng, top_print):
     print_probability2 = np.zeros(top_print, float)
     print_pattern = []
     k = 0
-    for i, v in sorted(top_dict.items(), key=lambda x:x[1])[0:top_print] :
+    for i, v in sorted(top_dict.items(), key=lambda x:-x[1])[0:top_print] :
         print_probability1[k] = (pattern_dict1[i] / sum_pattern1)
-        print_probability2[k] = (pattern_dict2[i] / sum_pattern2)
+        if(i in pattern_dict2) : 
+            print_probability2[k] = (pattern_dict2[i] / sum_pattern2)
+        else :
+            print_probability2[k] = 0
         print_pattern.append(i)
         k += 1
 
     #グラフ出力
     fig = plt.figure(dpi=600)
     ax = fig.gca()
-    plt.bar(print_pattern, print_probability2, color="red", label="after")
-    plt.bar(print_pattern, print_probability1, color="blue", label="before")
+
+    plt.bar(print_pattern, print_probability1, color="red", label="after")
+    plt.bar(print_pattern, print_probability2, color="blue", label="before")
     plt.xlim(-0.5, top_print-0.5)
     plt.xlabel("pattern")
     plt.ylabel("probability")
