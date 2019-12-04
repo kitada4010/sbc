@@ -22,6 +22,8 @@ sheet_df2 = file2.parse(file2.sheet_names, header=None)
 sheet_names1 = file1.sheet_names
 sheet_names2 = file2.sheet_names
 
+
+
 def inspect(time_leng, pattern_leng, top_print):
     #ファイル1のデータカウント
     pattern_dict1 = {}
@@ -42,6 +44,7 @@ def inspect(time_leng, pattern_leng, top_print):
     
     #ファイル2のデータカウント
     pattern_dict2 = {}
+    sum_dict = pattern_dict1
     for i, name in enumerate(sheet_names2):
         sheet_df2[i] = file2.parse(name)
         end_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][1])
@@ -53,26 +56,35 @@ def inspect(time_leng, pattern_leng, top_print):
         for k in range(len(psth) - pattern_leng + 1) :
             if (str(psth[k : k+ pattern_leng]) in pattern_dict2) : 
                 pattern_dict2[str(psth[k : k+ pattern_leng])] += 1
+                sum_dict[str(psth[k : k+ pattern_leng])] += 1
             else : 
                 pattern_dict2[str(psth[k : k+ pattern_leng])] = 1
+                if (str(psth[k : k+ pattern_leng]) in sum_dict) : 
+                    sum_dict[str(psth[k : k+ pattern_leng])] += 1
+                else :
+                    sum_dict[str(psth[k : k+ pattern_leng])] = 1
 
 
     #情報量の計算準備
-    pattern_information =  0.0 
-    sum_pattern1 = sum(pattern_dict1.values())
-    sum_pattern2 = sum(pattern_dict2.values())
+    pattern_information =  0.0
+    sum_pattern1 = sum(pattern_dict1.values()) + len(sum_dict.keys())
+    sum_pattern2 = sum(pattern_dict2.values()) + len(sum_dict.keys())
+#    sum_pattern = sum(sum_dict.values()) 
     pattern1 = len(pattern_dict1.keys())
     probability1 = np.zeros(pattern1, float)
     probability2 = np.zeros(pattern1, float)
     top_dict = {}
     k = 0
     for i in (pattern_dict1.keys()) :
-        if (i in pattern_dict2) :
-            probability1[k] = (pattern_dict1[i] / sum_pattern1)
-            probability2[k] = (pattern_dict2[i] / sum_pattern2)
-            pattern_information += probability1[k] * math.log2(probability1[k]/probability2[k])
-            top_dict[i] = probability1[k] * math.log2(probability1[k]/probability2[k])
-            k += 1
+        probability1[k] = ((pattern_dict1[i]+1) / sum_pattern1)
+        if(i in pattern_dict2) : 
+            probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
+        else :
+            probability2[k] = (1 / sum_pattern2)
+        info = probability1[k] * math.log2(probability1[k]/probability2[k])
+        pattern_information += info
+        top_dict[i] = info
+        k += 1
 
     if (k < top_print) :
         top_print = k
@@ -81,17 +93,21 @@ def inspect(time_leng, pattern_leng, top_print):
     print_probability2 = np.zeros(top_print, float)
     print_pattern = []
     k = 0
-    for i, v in sorted(top_dict.items(), key=lambda x:x[1])[0:top_print] :
-        print_probability1[k] = (pattern_dict1[i] / sum_pattern1)
-        print_probability2[k] = (pattern_dict2[i] / sum_pattern2)
+    for i, v in sorted(top_dict.items(), key=lambda x:-x[1])[0:top_print] :
+        print_probability1[k] = ((pattern_dict1[i]+1) / sum_pattern1)
+        if(i in pattern_dict2) : 
+            print_probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
+        else :
+            print_probability2[k] = (1 / sum_pattern2)
+#        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
         print_pattern.append(i)
         k += 1
 
     #グラフ出力
     fig = plt.figure(dpi=600)
     ax = fig.gca()
-    plt.bar(print_pattern, print_probability2, color="red", label="after")
-    plt.bar(print_pattern, print_probability1, color="blue", label="before")
+    plt.bar(print_pattern, print_probability1, color="red", label="after")
+    plt.bar(print_pattern, print_probability2, color="blue", label="before")
     plt.xlim(-0.5, top_print-0.5)
     plt.xlabel("pattern")
     plt.ylabel("probability")
@@ -102,12 +118,22 @@ def inspect(time_leng, pattern_leng, top_print):
     plt.savefig(str(time_leng) + "-" + str(pattern_leng) + ".png", bbox_inches='tight')
     return pattern_information
 
-parameter1 = int(sys.argv[3])
-parameter2 = int(sys.argv[4])
+parameter1_start = int(sys.argv[3])
+parameter1_end = int(sys.argv[4])
 
-kullback = np.zeros((parameter1, parameter2), float)
-for i in range(1, parameter1+1):
-    for j in range(1, parameter2+1):
-        kullback[i-1][j-1] = inspect(i, j, 20)
+parameter2_start = int(sys.argv[5])
+parameter2_end = int(sys.argv[6])
+
+step = int(sys.argv[7])
+
+file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
+
+
+#kullback = np.zeros((parameter1, parameter2), float)
+for i in range(parameter1_start, parameter1_end+1, step):
+    for j in range(parameter2_start, parameter2_end+1, step):
+#        kullback[i-1][j-1] = inspect(i, j, 20)
+        print(i, j , inspect(i, j, 20), file=file_kull)
     print("end"+str(i))
-np.savetxt("kullback-t1-" + sys.argv[3] +"-p1-"+ sys.argv[4] +".txt", kullback)
+#np.savetxt("kullback-t1-" + sys.argv[3] +"-p1-"+ sys.argv[4] +".txt", kullback)
+file_kull.close()
