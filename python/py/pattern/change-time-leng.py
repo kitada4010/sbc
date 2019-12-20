@@ -33,12 +33,16 @@ def inspect(time_leng, pattern_leng, top_print):
         psth = np.empty(leng, dtype=np.int)
         for k in range(leng) :
             psth[k] = sig1[k : k+time_leng].sum()
+        psth = np.trim_zeros(psth)
+        print(psth[0])
         for k in range(len(psth) - pattern_leng + 1) :
             if (str(psth[k : k+ pattern_leng]) in pattern_dict1) : 
                 pattern_dict1[str(psth[k : k+ pattern_leng])] += 1
             else : 
                 pattern_dict1[str(psth[k : k+ pattern_leng])] = 1
 
+
+                
     
     #ファイル2のデータカウント
     pattern_dict2 = {}
@@ -48,6 +52,7 @@ def inspect(time_leng, pattern_leng, top_print):
         sig1 = (sheet_df2[i]['Unnamed: 3'][24:end_number-5])
         leng = end_number - 5 -24 - time_leng
         psth = np.empty(leng, dtype=np.int)
+        psth = np.trim_zeros(psth)
         for k in range(leng) :
             psth[k] = sig1[k : k+time_leng].sum()
         for k in range(len(psth) - pattern_leng + 1) :

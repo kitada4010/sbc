@@ -23,17 +23,19 @@ sheet_names1 = file1.sheet_names
 sheet_names2 = file2.sheet_names
 
 cannel_start = 10
+cannel_end = 5
 
 def inspect(time_leng, pattern_leng, top_print):
     #ファイル1のデータカウント
     pattern_dict1 = {}
     for i, name in enumerate(sheet_names1):
         sheet_df1[i] = file1.parse(name)
-        start_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][0])
-        end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1])
-        sig1 = (sheet_df1[i]['Unnamed: 3'][start_number+cannel_start : end_number-5])
+        #print(sheet_df1[i][1][1])
+        start_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][0]) +cannel_start
+        end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
+        sig1 = (sheet_df1[i]['Unnamed: 3'][start_number : end_number])
         sig1 = sig1.astype("int")
-        leng = end_number - 5 -(start_number+cannel_start)
+        leng = end_number  -start_number
         psth = np.zeros(int((leng/time_leng)+1), dtype=np.int)
         l = 0
         for k in range(0, leng, time_leng) :
@@ -53,11 +55,11 @@ def inspect(time_leng, pattern_leng, top_print):
     sum_dict = pattern_dict1
     for i, name in enumerate(sheet_names2):
         sheet_df2[i] = file2.parse(name)
-        start_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][0])
-        end_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][1])
-        sig1 = (sheet_df2[i]['Unnamed: 3'][start_number+cannel_start : end_number-5])
+        start_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][0]) + cannel_start
+        end_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
+        sig1 = (sheet_df2[i]['Unnamed: 3'][start_number : end_number])
         sig1 = sig1.astype("int")
-        leng = end_number - 5 -(start_number+cannel_start)
+        leng = end_number  - start_number
         psth = np.zeros(int((leng/time_leng)+1), dtype=np.int)
         l = 0
         for k in range(j, leng, time_leng) :
@@ -145,7 +147,7 @@ def inspect(time_leng, pattern_leng, top_print):
     plt.close()
     del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict, print_pattern
     
-    return pattern_information
+    return pattern_information, sum_pattern1, sum_pattern2
 
 parameter1_start = int(sys.argv[3])
 parameter1_end = int(sys.argv[4])
@@ -156,14 +158,18 @@ parameter2_end = int(sys.argv[6])
 step = int(sys.argv[7])
 
 file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
-
+file_data = open("data-ab.txt", "w")
 
 #kullback = np.zeros((parameter1, parameter2), float)
 for i in range(parameter1_start, parameter1_end+1, step):
     for j in range(parameter2_start, parameter2_end+1, step):
 #        kullback[i-1][j-1] = inspect(i, j, 20)
-        print(i, j , inspect(i, j, 20), file=file_kull)
+        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, 20)
+        print(i, j, pattern_information, file=file_kull)
+        print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
     print("", file=file_kull)
+    print("", file=file_data)
     print("end"+str(i))
 #np.savetxt("kullback-t1-" + sys.argv[3] +"-p1-"+ sys.argv[4] +".txt", kullback)
 file_kull.close()
+file_data.close()
