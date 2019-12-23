@@ -1,0 +1,4 @@
+途中までのプログラムにバグを発見
+vartion2.0に移行して, 作りなおすことに
+使い方
+$ python ./prog file1 file2 windowsize_min max pattern_lenmin max 刻み幅 

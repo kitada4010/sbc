@@ -25,19 +25,9 @@ sheet_names2 = file2.sheet_names
 cannel_start = 10
 cannel_end = 5
 
-error_line = 10 #[ms]
-sampling_rate = 25000
-error_num = (25000 * error_line) / 1000
-
-
-
-def import_file(file_name, pattern_dict, ba_data):
-    file1 = pd.ExcelFile(file_name)
-    sheet_df1 = file1.parse(file1.sheet_names, header=None)
-    sheet_names1 = file1.sheet_names
-    sum_dict = pattern_dict.copy()
-    pattern_dict = {}
-    print(pattern_dict)
+def inspect(time_leng, pattern_leng, top_print):
+    #ファイル1のデータカウント
+    pattern_dict1 = {}
     sumpsth = 0
     for i, name in enumerate(sheet_names1):
         sheet_df1[i] = file1.parse(name)
@@ -55,22 +45,16 @@ def import_file(file_name, pattern_dict, ba_data):
         for k in range(0, leng, time_leng) :
             psth[l] = sig1[k : k+time_leng].sum()
             l += 1
-        if(len(psth) > pattern_leng) :
-            if():
-                for k in range(len(psth) - pattern_leng +1) :   # PSTHデータからはパターンを重ねて検索している    
-                    if (str(psth[k : k + pattern_leng]) in pattern_dict1) : 
-                        pattern_dict1[str(psth[k : k + pattern_leng])] += 1
-                    else : 
-                        pattern_dict1[str(psth[k : k + pattern_leng])] = 1
-                    sumpsth += (len(psth) -pattern_leng+1)
-
-
-
-def inspect(time_leng, pattern_leng, top_print):
-    #ファイル1のデータカウント
 #        print(sig1[len(psth)-1])
-
-
+        if(len(psth) > pattern_leng) : 
+            for k in range(len(psth) - pattern_leng +1) :   # PSTHデータからはパターンを重ねて検索している
+                if (str(psth[k : k + pattern_leng]) in pattern_dict1) : 
+                    pattern_dict1[str(psth[k : k + pattern_leng])] += 1
+                else : 
+                    pattern_dict1[str(psth[k : k + pattern_leng])] = 1
+            sumpsth += (len(psth) -pattern_leng+1)
+#    print()
+#    print(sumpsth)
 
     #ファイル2のデータカウント
     pattern_dict2 = {}
@@ -107,15 +91,15 @@ def inspect(time_leng, pattern_leng, top_print):
                             
     #情報量の計算準備
     pattern_information =  0.0
-    print()
-    print()
-    print(sum(pattern_dict1.values()))
+#    print()
+#    print()
+#    print(sum(pattern_dict1.values()))
 #    print(sum(sum_dict.values()))
-    print()
+#    print()
     sum_pattern1 = sum(pattern_dict1.values()) + len(sum_dict.keys())
     sum_pattern2 = sum(pattern_dict2.values()) + len(sum_dict.keys())
-    print(sum_pattern1)
-    print(sum_pattern2)
+#    print(sum_pattern1)
+#    print(sum_pattern2)
 #    sum_pattern = sum(sum_dict.values()) 
     pattern1 = len(pattern_dict1.keys())
     probability1 = np.zeros(pattern1, float)
@@ -186,7 +170,7 @@ def inspect(time_leng, pattern_leng, top_print):
     plt.ylabel("probability")
     ax.set_xticklabels(print_pattern, rotation=90)
     plt.legend()
-    print(print_kullback)
+    #print(print_kullback)
     #plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0, ncol=2)
     #fig.subplots_adjust(bottom=10)
     plt.savefig(str(time_leng) + "-" + str(pattern_leng) + "-kullback.png", bbox_inches='tight')
