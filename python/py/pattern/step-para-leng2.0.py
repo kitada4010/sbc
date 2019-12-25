@@ -11,17 +11,6 @@ import math
 #file1 = pd.ExcelFile(file_name1+'.xlsx')
 #file2 = pd.ExcelFile(file_name2+'.xlsx')
 
-file1 = pd.ExcelFile(sys.argv[1])
-file2 = pd.ExcelFile(sys.argv[2])
-
-sheet_df1 = file1.parse(file1.sheet_names, header=None)
-sheet_df2 = file2.parse(file2.sheet_names, header=None)
-
-#cmap = plt.get_cmap("tab20")
-
-sheet_names1 = file1.sheet_names
-sheet_names2 = file2.sheet_names
-
 cannel_start = 10
 cannel_end = 5
 
