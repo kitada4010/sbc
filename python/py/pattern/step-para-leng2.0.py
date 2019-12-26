@@ -20,10 +20,11 @@ error_num = (25000 * error_line) / 1000
 
 
 
-def import_file(file_name, pattern_dict, ba_data, time_leng, pattern_leng):
+def import_file(file_name, data_dict, ba_data, time_leng, pattern_leng):
     file1 = pd.ExcelFile(file_name)
     sheet_df1 = file1.parse(file1.sheet_names, header=None)
     sheet_names1 = file1.sheet_names
+    sum_dict = data_dict.copy()
     pattern_dict = {}
     sumpsth = 0
     for i, name in enumerate(sheet_names1):
@@ -51,7 +52,6 @@ def import_file(file_name, pattern_dict, ba_data, time_leng, pattern_leng):
                         pattern_dict[str(psth[k : k + pattern_leng])] = 1
                     sumpsth += (len(psth) -pattern_leng+1)
             else :
-                sum_dict = pattern_dict.copy()
                 for k in range(len(psth) - pattern_leng +1) :
                     if (str(psth[k : k+ pattern_leng]) in pattern_dict) : 
                         pattern_dict[str(psth[k : k+ pattern_leng])] += 1
@@ -79,14 +79,14 @@ def inspect(file_name1, file_name2, time_leng, pattern_leng, top_print) :
 #    if((pattern_dict1 = import_file(sys.argv[1], pattern_dict1, 0)) == 0) :
 #        return 0;
     if(pattern_dict1 == 0) or (len(pattern_dict1.keys()) == 0):
-        return 0
+        return 0, 0, 0
 
     #ファイル2のデータカウント
     pattern_dict2 = {}
-    pattern_dict2, sum_dict = import_file(file_name2, pattern_dict2, 1, time_leng, pattern_leng)
+    pattern_dict2, sum_dict = import_file(file_name2, pattern_dict1, 1, time_leng, pattern_leng)
     
     if(pattern_dict2 == 0) :
-        return 0;
+        return 0, 0, 0
 
 
                             
@@ -192,6 +192,7 @@ for i in range(parameter1_start, parameter1_end+1, step):
 #        kullback[i-1][j-1] = inspect(i, j, 20)
         pattern_information, sum_pattern1, sum_pattern2 = inspect(sys.argv[1], sys.argv[2], i, j, 20)
         print(i, j, pattern_information, file=file_kull)
+        print(i, j, pattern_information)
         print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
     print("", file=file_kull)
     print("", file=file_data)
