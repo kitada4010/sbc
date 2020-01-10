@@ -45,14 +45,14 @@ def import_file(file_name, data_dict, ba_data, time_leng, pattern_leng):
             l += 1
         if(len(psth) > pattern_leng) :
             if(ba_data == 0) :
-                for k in range(len(psth) - pattern_leng +1) :   # PSTHデータからはパターンを重ねて検索している    
+                for k in range(0, (len(psth) - pattern_leng +1), pattern_leng) :   # PSTHデータからはパターンを重ねず検索している    
                     if (str(psth[k : k + pattern_leng]) in pattern_dict) : 
                         pattern_dict[str(psth[k : k + pattern_leng])] += 1
                     else : 
                         pattern_dict[str(psth[k : k + pattern_leng])] = 1
                     sumpsth += (len(psth) -pattern_leng+1)
             else :
-                for k in range(len(psth) - pattern_leng +1) :
+                for k in range(0, (len(psth) - pattern_leng +1), pattern_leng) :   # PSTHデータからはパターンを重ねず検索している    
                     if (str(psth[k : k+ pattern_leng]) in pattern_dict) : 
                         pattern_dict[str(psth[k : k+ pattern_leng])] += 1
                         sum_dict[str(psth[k : k+ pattern_leng])] += 1

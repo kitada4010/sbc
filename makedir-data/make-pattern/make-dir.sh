@@ -24,6 +24,7 @@ do
     do
 	[ -d $episodehz/$inidivi ] || mkdir $episodehz/$indivi
 
+	# kullbackの計算
 <<CONDUCT
         echo $PYTHON $HOME/sbc/python/py/pattern/step-para-leng2.0.py  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}3.xlsx  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}2.xlsx $TIME_RANGE_S $TIME_RANGE_E $PATTERN_RANGE_S  $PATTERN_RANGE_E $SKIP > jikkou.txt
 	rsync ./okiba/Makefile $episodehz/$indivi/
@@ -32,8 +33,9 @@ do
 	make conduct -C $episodehz/$indivi/	
 CONDUCT
 
+
 	# gnuplotによるグラフの画像出力
-#<<GNUPLOT
+<<GNUPLOT
         echo set terminal png > plot.gp
 	echo set output \"$indivi-kullback.png\" >> plot.gp
 	echo set pm3d map >> plot.gp
@@ -41,18 +43,29 @@ CONDUCT
 	echo set ylabel \"pattern_leng\" >> plot.gp
 	#echo set cblabel \"Kullback-divergence\" >> plot.gp
 	#echo unset cbtics >> plot.gp
-	echo splot \"kullback-t${TIME_RANGE_S}${TIME_RANGE_E}p${PATTERN_RANGE_S}${PATTERN_RANGE_E}s${SKIP}.txt\" u \(\$1/25\):2:3 with pm3d title \"$indivi-kullback\">> plot.gp
+	echo splot \"kullback-t${TIME_RANGE_S}${TIME_RANGE_E}p${PATTERN_RANGE_S}${PATTERN_RANGE_E}s${SKIP}.txt\" 
+u \(\$1/25\):2:3 with pm3d title \"$indivi-kullback\">> plot.gp
 	#echo set label 1 at graph 0.1,0.9 STATS_max_z >> plot.gp
 	echo replot >> plot.gp
 	echo set terminal x11 >> plot.gp
 
 	rsync ./okiba/Makefile $episodehz/$indivi/
 	rsync ./plot.gp $episodehz/$indivi/
-	make plot -C $episodehz/$indivi/	
-#GNUPLOT
+	make plot -C $episodehz/$indivi/
+	
+GNUPLOT
+
+       # kullback値が上位である組み合わせを表示
+#<<SORT
+        echo $episodehz/$indivi
+	sort -r -g -k 3,3 $episodehz/$indivi/kullback-t${TIME_RANGE_S}${TIME_RANGE_E}p${PATTERN_RANGE_S}${PATTERN_RANGE_E}s${SKIP}.txt |head
+	echo 
+#SORT
+
 	
 
     done < $dir
     echo ${file%.*} "end"
+    echo
 done
 
