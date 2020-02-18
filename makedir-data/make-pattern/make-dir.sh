@@ -37,12 +37,13 @@ CONDUCT
 
 
 	# gnuplotによるグラフの画像出力
-<<GNUPLOT
+#<<GNUPLOT
         echo set terminal png > plot.gp
 	echo set output \"$indivi-kullback.png\" >> plot.gp
 	echo set pm3d map >> plot.gp
-	echo set xlabel \"time_leng \[ms\]\" >> plot.gp
+	echo set xlabel \"time leng \[ms\]\" >> plot.gp
 	echo set ylabel \"pattern_leng\" >> plot.gp
+	echo set cbrange\[0:0.85\] >> plot.gp 
 	#echo set cblabel \"Kullback-divergence\" >> plot.gp
 	#echo unset cbtics >> plot.gp
 	echo splot \"kullback-t${TIME_RANGE_S}${TIME_RANGE_E}p${PATTERN_RANGE_S}${PATTERN_RANGE_E}s${SKIP}.txt\" 
@@ -55,7 +56,7 @@ u \(\$1/25\):2:3 with pm3d title \"$indivi-kullback\">> plot.gp
 	rsync ./plot.gp $episodehz/$indivi/
 	make plot -C $episodehz/$indivi/
 	
-GNUPLOT
+#GNUPLOT
 
        # kullback値が上位である組み合わせを表示
 #<<SORT
