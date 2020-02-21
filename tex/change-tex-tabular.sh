@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ ${1##*.}!=".csv" ]; then
     sed -e "s/[ 	][	 ]*/,/g" $1 > ${1%.*}.csv
+    echo ok
 fi
 num=`awk -F ',' '{print NF}' ${1%.*}.csv |head -n 1`
 echo 列数は $num
