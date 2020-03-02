@@ -12,6 +12,10 @@ PATTERN_RANGE_S="1"
 PATTERN_RANGE_E="20"
 SKIP="1"
 
+EP_B="2"
+EP_A="3"
+
+
 [ -d okiba ] || mkdir okiba
 
 for dir in $dirs;
@@ -26,7 +30,7 @@ do
 
 	# kullbackの計算
 <<CONDUCT
-        echo $PYTHON $HOME/sbc/python/py/pattern/step-para-leng2.0.py  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}3.xlsx  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}2.xlsx $TIME_RANGE_S $TIME_RANGE_E $PATTERN_RANGE_S  $PATTERN_RANGE_E $SKIP > jikkou.txt
+        echo $PYTHON $HOME/sbc/python/py/pattern/step-para-leng2.0.py  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}$EP_A.xlsx  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}$EP_B.xlsx $TIME_RANGE_S $TIME_RANGE_E $PATTERN_RANGE_S  $PATTERN_RANGE_E $SKIP > jikkou.txt
 	rsync ./okiba/Makefile $episodehz/$indivi/
 	cat shell-head.txt jikkou.txt > $episodehz/$indivi/conduct.sh
 	chmod +x $episodehz/$indivi/conduct.sh
