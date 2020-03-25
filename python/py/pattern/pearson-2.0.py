@@ -1,4 +1,14 @@
-#エクセルファイルの変換を目指して
+# Pearson-Divergence の計算
+#引数一覧
+# 1 : 経験後ファイル名
+# 2 : 経験前ファイル名
+# 3 : 計算する最小のウィンドウサイズ(ステップ数)
+# 4 : 計算する最大のウィンドウサイズ(ステップ数)
+# 5 : 計算する最小のパターン長
+# 6 : 計算する最大のパターン長
+# 7 : ウィンドウサイズとパターン長に対する刻み幅
+# 8 : グラフ出力するパターン数(情報量が大きかったパターン順)
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -137,7 +147,7 @@ def inspect(time_leng, pattern_leng, top_print):
             print_probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
         else :
             print_probability2[k] = (1 / sum_pattern2)
-        print_kullback[k] = probability2[k] * ((probability1[k]/probability2[k] - 1) ** 2) #kullback項の保存
+        print_kullback[k] = print_probability2[k] * ((print_probability1[k]/print_probability2[k] - 1) ** 2) #kullback項の保存
         print_pattern.append(i)
         k += 1
 #        print(i)
