@@ -106,32 +106,32 @@ def inspect(time_leng, pattern_leng, top_print):
 #    print(sum(pattern_dict1.values()))
 #    print(sum(sum_dict.values()))
 #    print()
-    sum_pattern1 = sum(pattern_dict1.values()) + len(sum_dict.keys())
-    sum_pattern2 = sum(pattern_dict2.values()) + len(sum_dict.keys())
+    sum_pattern1 = sum(pattern_dict1.values()) #+ len(sum_dict.keys())
+    sum_pattern2 = sum(pattern_dict2.values()) #+ len(sum_dict.keys())
 #    print(sum_pattern1)
 #    print(sum_pattern2)
 #    sum_pattern = sum(sum_dict.values()) 
-    pattern1 = len(pattern_dict1.keys())
+    pattern1 = len(sum_dict.keys())
     probability1 = np.zeros(pattern1, float)
     probability2 = np.zeros(pattern1, float)
     top_dict = {}
     k = 0
+#    print(type(sum_dict.keys()))
     for i in (sum_dict.keys()) :
-        if(i in pattern_dict1[i]) : 
+#        print(type(i))
+        if(i in pattern_dict1) : 
             probability1[k] = (pattern_dict1[i] / sum_pattern1)
-            if(i in pattern_dict2[i]) : 
+            if(i in pattern_dict2) : 
                 probability2[k] = (pattern_dict2[i] / sum_pattern2)
                 denominator = (probability1[k]/2) + (probability2[k]/2)
                 info = ( probability1[k] * math.log2(probability1[k]/denominator) + probability2[k] * math.log2(probability2[k]/denominator) )/2
             else :
                 probability2[k] = 0
-                denominator = probability1[k]/2
-                info = ( probability1[k] * math.log2(probability1[k]/denominator) )/2
-        
+#                denominator = probability1[k]/2
+                info =  probability1[k]/2
         else :
             probability1[k] = 0
-            denominator = probability2[k]/2
-            info = ( probability2[k] * math.log2(probability2[k]/denominator) )/2
+            info = probability2[k]/2
 
 
         
@@ -154,21 +154,21 @@ def inspect(time_leng, pattern_leng, top_print):
     print_pattern = []
     k = 0
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1])[0:max_print] :
-        if(i in pattern_dict1[i]) : 
+        if(i in pattern_dict1) : 
             print_probability1[k] = (pattern_dict1[i] / sum_pattern1)
-            if(i in pattern_dict2[i]) : 
+            if(i in pattern_dict2) : 
                 print_probability2[k] = (pattern_dict2[i] / sum_pattern2)
                 denominator = (print_probability1[k]/2) + (print_probability2[k]/2)
                 print_kullback[k] = ( print_probability1[k] * math.log2(print_probability1[k]/denominator) + print_probability2[k] * math.log2(print_probability2[k]/denominator) )/2
             else :
                 print_probability2[k] = 0
-                denominator = print_probability1[k]/2
-                print_kullback[k] = ( print_probability1[k] * math.log2(print_probability1[k]/denominator) )/2
+                #denominator = print_probability1[k]/2
+                print_kullback[k] = print_probability1[k]/2
         
         else :
             print_probability1[k] = 0
-            denominator = print_probability2[k]/2
-            print_kullback[k] = ( print_probability2[k] * math.log2(print_probability2[k]/denominator) )/2
+            #denominator = print_probability2[k]/2
+            print_kullback[k] = print_probability2[k]/2
 
         print_pattern.append(i)
         k += 1
@@ -193,6 +193,7 @@ def inspect(time_leng, pattern_leng, top_print):
     ax.set_xticklabels(print_pattern, rotation=90)
     plt.legend()
     plt.savefig(str(time_leng) + "-" + str(pattern_leng) + ".png", bbox_inches='tight')
+    plt.close()
     #パターンのカルバックライブラー項比較
     fig = plt.figure(dpi=600)
     ax = fig.gca()
