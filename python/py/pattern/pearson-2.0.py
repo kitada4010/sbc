@@ -1,4 +1,4 @@
-# Kullback-Divergence の計算
+# Pearson-Divergence の計算
 #引数一覧
 # 1 : 経験後ファイル名
 # 2 : 経験前ファイル名
@@ -7,6 +7,7 @@
 # 5 : 計算する最小のパターン長
 # 6 : 計算する最大のパターン長
 # 7 : ウィンドウサイズとパターン長に対する刻み幅
+# 8 : グラフ出力するパターン数(情報量が大きかったパターン順)
 
 import pandas as pd
 import numpy as np
@@ -121,7 +122,7 @@ def inspect(time_leng, pattern_leng, top_print):
             probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
         else :
             probability2[k] = (1 / sum_pattern2)
-        info = probability1[k] * math.log2(probability1[k]/probability2[k])
+        info = probability2[k] * ((probability1[k]/probability2[k] - 1) ** 2)
         pattern_information += info
         top_dict[i] = info
 #        print(i)
@@ -146,7 +147,7 @@ def inspect(time_leng, pattern_leng, top_print):
             print_probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
         else :
             print_probability2[k] = (1 / sum_pattern2)
-        print_kullback[k] = print_probability1[k] * math.log2(print_probability1[k]/print_probability2[k]) #kullback項の保存
+        print_kullback[k] = print_probability2[k] * ((print_probability1[k]/print_probability2[k] - 1) ** 2) #kullback項の保存
         print_pattern.append(i)
         k += 1
 #        print(i)
@@ -196,6 +197,8 @@ parameter2_end = int(sys.argv[6])
 
 step = int(sys.argv[7])
 
+top_pattern = int(sys.argv[8])
+
 file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
 file_data = open("data-ab.txt", "w")
 
@@ -203,7 +206,7 @@ file_data = open("data-ab.txt", "w")
 for i in range(parameter1_start, parameter1_end+1, step):
     for j in range(parameter2_start, parameter2_end+1, step):
 #        kullback[i-1][j-1] = inspect(i, j, 20)
-        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, 20)
+        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, top_pattern)
         print(i, j, pattern_information, file=file_kull)
         print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
     print("", file=file_kull)

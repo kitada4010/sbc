@@ -1,4 +1,4 @@
-# Kullback-Divergence の計算
+# Pearson-Divergence の計算
 #引数一覧
 # 1 : 経験後ファイル名
 # 2 : 経験前ファイル名
@@ -7,6 +7,7 @@
 # 5 : 計算する最小のパターン長
 # 6 : 計算する最大のパターン長
 # 7 : ウィンドウサイズとパターン長に対する刻み幅
+# 8 : グラフ出力するパターン数(情報量が大きかったパターン順)
 
 import pandas as pd
 import numpy as np
@@ -105,23 +106,35 @@ def inspect(time_leng, pattern_leng, top_print):
 #    print(sum(pattern_dict1.values()))
 #    print(sum(sum_dict.values()))
 #    print()
-    sum_pattern1 = sum(pattern_dict1.values()) + len(sum_dict.keys())
-    sum_pattern2 = sum(pattern_dict2.values()) + len(sum_dict.keys())
+    sum_pattern1 = sum(pattern_dict1.values()) #+ len(sum_dict.keys())
+    sum_pattern2 = sum(pattern_dict2.values()) #+ len(sum_dict.keys())
 #    print(sum_pattern1)
 #    print(sum_pattern2)
 #    sum_pattern = sum(sum_dict.values()) 
-    pattern1 = len(pattern_dict1.keys())
+    pattern1 = len(sum_dict.keys())
     probability1 = np.zeros(pattern1, float)
     probability2 = np.zeros(pattern1, float)
     top_dict = {}
     k = 0
-    for i in (pattern_dict1.keys()) :
-        probability1[k] = ((pattern_dict1[i]+1) / sum_pattern1)
-        if(i in pattern_dict2) : 
-            probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
+#    print(type(sum_dict.keys()))
+    for i in (sum_dict.keys()) :
+#        print(type(i))
+        if(i in pattern_dict1) : 
+            probability1[k] = (pattern_dict1[i] / sum_pattern1)
+            if(i in pattern_dict2) : 
+                probability2[k] = (pattern_dict2[i] / sum_pattern2)
+                denominator = (probability1[k]/2) + (probability2[k]/2)
+                info = ( probability1[k] * math.log2(probability1[k]/denominator) + probability2[k] * math.log2(probability2[k]/denominator) )/2
+            else :
+                probability2[k] = 0
+#                denominator = probability1[k]/2
+                info =  probability1[k]/2
         else :
-            probability2[k] = (1 / sum_pattern2)
-        info = probability1[k] * math.log2(probability1[k]/probability2[k])
+            probability1[k] = 0
+            info = probability2[k]/2
+
+
+        
         pattern_information += info
         top_dict[i] = info
 #        print(i)
@@ -141,12 +154,22 @@ def inspect(time_leng, pattern_leng, top_print):
     print_pattern = []
     k = 0
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1])[0:max_print] :
-        print_probability1[k] = ((pattern_dict1[i]+1) / sum_pattern1)
-        if(i in pattern_dict2) : 
-            print_probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
+        if(i in pattern_dict1) : 
+            print_probability1[k] = (pattern_dict1[i] / sum_pattern1)
+            if(i in pattern_dict2) : 
+                print_probability2[k] = (pattern_dict2[i] / sum_pattern2)
+                denominator = (print_probability1[k]/2) + (print_probability2[k]/2)
+                print_kullback[k] = ( print_probability1[k] * math.log2(print_probability1[k]/denominator) + print_probability2[k] * math.log2(print_probability2[k]/denominator) )/2
+            else :
+                print_probability2[k] = 0
+                #denominator = print_probability1[k]/2
+                print_kullback[k] = print_probability1[k]/2
+        
         else :
-            print_probability2[k] = (1 / sum_pattern2)
-        print_kullback[k] = print_probability1[k] * math.log2(print_probability1[k]/print_probability2[k]) #kullback項の保存
+            print_probability1[k] = 0
+            #denominator = print_probability2[k]/2
+            print_kullback[k] = print_probability2[k]/2
+
         print_pattern.append(i)
         k += 1
 #        print(i)
@@ -170,13 +193,14 @@ def inspect(time_leng, pattern_leng, top_print):
     ax.set_xticklabels(print_pattern, rotation=90)
     plt.legend()
     plt.savefig(str(time_leng) + "-" + str(pattern_leng) + ".png", bbox_inches='tight')
+    plt.close()
     #パターンのカルバックライブラー項比較
     fig = plt.figure(dpi=600)
     ax = fig.gca()
     plt.bar(print_pattern, print_kullback, color="red", label="after")
     plt.xlim(-0.5, max_print-0.5)
     plt.xlabel("pattern")
-    plt.ylabel("probability")
+    plt.ylabel("divergence")
     ax.set_xticklabels(print_pattern, rotation=90)
     plt.legend()
     #print(print_kullback)
@@ -196,6 +220,8 @@ parameter2_end = int(sys.argv[6])
 
 step = int(sys.argv[7])
 
+top_pattern = int(sys.argv[8])
+
 file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
 file_data = open("data-ab.txt", "w")
 
@@ -203,7 +229,7 @@ file_data = open("data-ab.txt", "w")
 for i in range(parameter1_start, parameter1_end+1, step):
     for j in range(parameter2_start, parameter2_end+1, step):
 #        kullback[i-1][j-1] = inspect(i, j, 20)
-        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, 20)
+        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, top_pattern)
         print(i, j, pattern_information, file=file_kull)
         print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
     print("", file=file_kull)
