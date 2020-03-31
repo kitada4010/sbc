@@ -1,22 +1,21 @@
 #!/bin/bash
 dirs=`find ./individual/*.txt`
 #自宅pc
-#LABELDATAPATH="/home/nodoka/win/ubuntu/kuttuketime-label"
-#FREQLDATAPATH="/home/nodoka/win/ubuntu/123ms-data"
+LABELDATAPATH="/home/nodoka/win/ubuntu/kuttuketime-label"
+FREQLDATAPATH="/home/nodoka/win/ubuntu/01-data"
 #大学計算機サーバ
-LABELDATAPATH="/st9/b009vb/01data"
-PYTHON="/usr/local/anaconda3/bin/python3.6"
+#LABELDATAPATH="/st9/b009vb/01data"
+#PYTHON="/usr/local/anaconda3/bin/python3.6"
 TIME_RANGE_S="1"
 TIME_RANGE_E="30"
 PATTERN_RANGE_S="1"
 PATTERN_RANGE_E="20"
 SKIP="1"
 
-EP_B="2"
-EP_A="3"
-
-
 [ -d okiba ] || mkdir okiba
+# 結果まとめ出力先設定
+cp texhead.tex graph.tex
+cp texhead.tex top-com-probability.tex
 
 for dir in $dirs;
 do
@@ -30,7 +29,7 @@ do
 
 	# kullbackの計算
 <<CONDUCT
-        echo $PYTHON $HOME/sbc/python/py/pattern/step-para-leng2.0.py  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}$EP_A.xlsx  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}$EP_B.xlsx $TIME_RANGE_S $TIME_RANGE_E $PATTERN_RANGE_S  $PATTERN_RANGE_E $SKIP > jikkou.txt
+        echo $PYTHON $HOME/sbc/python/py/pattern/step-para-leng2.0.py  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}3.xlsx  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}2.xlsx $TIME_RANGE_S $TIME_RANGE_E $PATTERN_RANGE_S  $PATTERN_RANGE_E $SKIP > jikkou.txt
 	rsync ./okiba/Makefile $episodehz/$indivi/
 	cat shell-head.txt jikkou.txt > $episodehz/$indivi/conduct.sh
 	chmod +x $episodehz/$indivi/conduct.sh
@@ -59,18 +58,58 @@ CONDUCT
 	
 GNUPLOT
 
-       # kullback値が上位である組み合わせの表を作成
-#<<SORT
+# kullback値が上位である組み合わせの表を作成
+<<SORT
         echo $episodehz/$indivi
 	sort -r -g -k 3,3 $episodehz/$indivi/kullback-t${TIME_RANGE_S}${TIME_RANGE_E}p${PATTERN_RANGE_S}${PATTERN_RANGE_E}s${SKIP}.txt |head > $episodehz/$indivi/top-table.txt
 	$HOME/sbc/tex/change-tex-tabular.sh $episodehz/$indivi/top-table.txt
 	echo 
-#SORT
+SORT
 
-	
+# kullback値が上位である組み合わせの図まとめたファイルを作成
+#<<SORT_GRAPH
+	com=$(sort -r -g -k 3,3 $episodehz/$indivi/kullback-t${TIME_RANGE_S}${TIME_RANGE_E}p${PATTERN_RANGE_S}${PATTERN_RANGE_E}s${SKIP}.txt |head -n 1)
+	com=${com% *}
+	#echo ${com/ /-}.png
+	echo \\begin{figure}[htb] >> top-com-probability.tex
+	echo \\centering >> top-com-probability.tex
+	echo \\caption{${episodehz%-*}-$indivi} >> top-com-probability.tex
+        echo \\includegraphics[width=14cm]{$episodehz/$indivi/${com/ /-}.png} >> top-com-probability.tex
+	echo \\end{figure} >> top-com-probability.tex
+	echo >> top-com-probability.tex
+	echo >> top-com-probability.tex
+#SORT_GRAPH
 
+
+# 画像をまとめたtexファイルを作成
+<<GRAPH
+        
+        echo \\begin{figure}[htb] >> graph.tex
+	echo \\centering >> graph.tex
+	echo \\caption{${episodehz%-*}-$indivi} >> graph.tex
+        echo \\includegraphics[width=14cm]{$episodehz/$indivi/$indivi-kullback.png} >> graph.tex
+	echo \\end{figure} >> graph.tex
+	echo >> graph.tex
+	echo >> graph.tex
+GRAPH
+    
     done < $dir
     echo ${file%.*} "end"
     echo
 done
 
+echo \\end{document} >> graph.tex
+echo \\end{document} >> top-com-probability.tex
+
+
+<<COMP_GRAPH
+platex graph.tex
+platex graph.tex
+dvipdfmx graph.dvi
+COMP_GRAPH
+
+<<COMP_PROBABILITY_GRAPH
+platex top-com-probability.tex
+platex top-com-probability.tex
+dvipdfmx top-com-probability.dvi
+COMP_PROBABILITY_GRAPH
