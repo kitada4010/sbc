@@ -14,6 +14,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import math
+import gc
 
 #ファイルの読み込み
 #file_name1 = sys.argv[1]
@@ -95,9 +96,21 @@ def inspect(time_leng, pattern_leng, top_print):
                     else :
                         sum_dict[str(psth[k : k+ pattern_leng])] = 1
 
-            
-    if(len(pattern_dict1.keys()) == 0 ):
-        return 0
+    sum_pattern1 = sum(pattern_dict1.values()) #+ len(sum_dict.keys())
+    sum_pattern2 = sum(pattern_dict2.values()) #+ len(sum_dict.keys())            
+    if(len(pattern_dict1.keys()) == 0) :
+        del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern1
+        if(len(pattern_dict2.keys()) == 0 ):
+            gc.collect()
+            return 0, 0, 0
+        else :
+            gc.collect()
+            return 0, 0, sum_pattern2
+    elif(len(pattern_dict2.keys()) == 0 ):
+        del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern2
+        gc.collect()
+        return 0, sum_pattern1, 0
+
                             
     #情報量の計算準備
     pattern_information =  0.0
@@ -106,8 +119,7 @@ def inspect(time_leng, pattern_leng, top_print):
 #    print(sum(pattern_dict1.values()))
 #    print(sum(sum_dict.values()))
 #    print()
-    sum_pattern1 = sum(pattern_dict1.values()) #+ len(sum_dict.keys())
-    sum_pattern2 = sum(pattern_dict2.values()) #+ len(sum_dict.keys())
+
 #    print(sum_pattern1)
 #    print(sum_pattern2)
 #    sum_pattern = sum(sum_dict.values()) 
@@ -208,8 +220,7 @@ def inspect(time_leng, pattern_leng, top_print):
     #fig.subplots_adjust(bottom=10)
     plt.savefig(str(time_leng) + "-" + str(pattern_leng) + "-kullback.png", bbox_inches='tight')
     plt.close()
-    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict, print_pattern
-    
+    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2,  print_probability1, print_probability2, print_kullback, denominator, top_dict, print_pattern, leng, psth, start_number, end_number, sig1, i, l, k, x, w
     return pattern_information, sum_pattern1, sum_pattern2
 
 parameter1_start = int(sys.argv[3])
