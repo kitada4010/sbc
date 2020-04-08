@@ -188,7 +188,7 @@ def inspect(time_leng, pattern_leng, top_print):
     plt.bar(x, print_count2, width=w, color="blue", label="before")
     plt.xlim(-(w/2), max_print-(w/2))
     plt.xlabel("pattern")
-    plt.ylabel("number")
+    plt.ylabel("number(before-" + str(sum_pattern2) + ", after-"+ str(sum_pattern1) + ")" )
     plt.xticks(x + w/2, print_pattern)
     ax.set_xticklabels(print_pattern, rotation=90)
     plt.legend()
