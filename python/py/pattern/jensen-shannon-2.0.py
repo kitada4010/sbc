@@ -78,7 +78,6 @@ def inspect(time_leng, pattern_leng, top_print):
         sig1 = sig1.astype("int")
         sig1 = np.trim_zeros(sig1)
         leng = len(sig1)
-#        print(sig1[0])
         psth = np.zeros(int((leng/time_leng)+1), dtype=np.int)
         l = 0
         for k in range(j, leng, time_leng) :
@@ -224,7 +223,7 @@ def inspect(time_leng, pattern_leng, top_print):
     plt.bar(x, print_count2, width=w, color="blue", label="before")
     plt.xlim(-(w/2), max_print-(w/2))
     plt.xlabel("pattern")
-    plt.ylabel("number")
+    plt.ylabel("number(before-" + str(sum_pattern2) + ", after-"+ str(sum_pattern1) + ")" )
     plt.xticks(x + w/2, print_pattern)
     ax.set_xticklabels(print_pattern, rotation=90)
     plt.legend()
@@ -245,7 +244,7 @@ def inspect(time_leng, pattern_leng, top_print):
     #fig.subplots_adjust(bottom=10)
     plt.savefig(str(time_leng) + "-" + str(pattern_leng) + "-kullback.png", bbox_inches='tight')
     plt.close()
-    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2,  print_probability1, print_probability2, print_count1, print_count2, print_kullback, denominator, top_dict, print_pattern, leng, psth, start_number, end_number, sig1, i, l, k, x, w
+    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2,  print_probability1, print_probability2, print_count1, print_count2, print_kullback, top_dict, print_pattern, leng, psth, start_number, end_number, sig1, i, l, k, x, w
     return pattern_information, sum_pattern1, sum_pattern2
 
 parameter1_start = int(sys.argv[3])
