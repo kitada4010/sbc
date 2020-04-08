@@ -138,15 +138,20 @@ def inspect(time_leng, pattern_leng, top_print):
     #グラフ出力の準備
     print_probability1 = np.zeros(max_print, float)
     print_probability2 = np.zeros(max_print, float)
+    print_count1 = np.zeros(max_print, float)
+    print_count2 = np.zeros(max_print, float)
     print_kullback = np.zeros(max_print, float)
     print_pattern = []
     k = 0
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1])[0:max_print] :
         print_probability1[k] = ((pattern_dict1[i]+1) / sum_pattern1)
+        print_count1[k] = pattern_dict1[i]
         if(i in pattern_dict2) : 
             print_probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
+            print_count2[k] = pattern_dict2[i]
         else :
             print_probability2[k] = (1 / sum_pattern2)
+            print_count2[k] = 0
         print_kullback[k] = print_probability1[k] * math.log2(print_probability1[k]/print_probability2[k]) #kullback項の保存
         print_pattern.append(i)
         k += 1
@@ -171,6 +176,25 @@ def inspect(time_leng, pattern_leng, top_print):
     ax.set_xticklabels(print_pattern, rotation=90)
     plt.legend()
     plt.savefig(str(time_leng) + "-" + str(pattern_leng) + ".png", bbox_inches='tight')
+
+     #   print(print_pattern)
+    #グラフ出力
+    #パターンの出現回数比較
+    fig = plt.figure(dpi=600)
+    ax = fig.gca()
+    x = np.arange(len(print_pattern))
+    w = 0.4
+    plt.bar(x+w, print_count1, width=w, color="red", label="after")
+    plt.bar(x, print_count2, width=w, color="blue", label="before")
+    plt.xlim(-(w/2), max_print-(w/2))
+    plt.xlabel("pattern")
+    plt.ylabel("number")
+    plt.xticks(x + w/2, print_pattern)
+    ax.set_xticklabels(print_pattern, rotation=90)
+    plt.legend()
+    plt.savefig(str(time_leng) + "-" + str(pattern_leng) + "-number.png", bbox_inches='tight')
+    plt.close()
+
     #パターンのカルバックライブラー項比較
     fig = plt.figure(dpi=600)
     ax = fig.gca()
