@@ -266,7 +266,15 @@ for i in range(parameter1_start, parameter1_end+1, step):
 #        kullback[i-1][j-1] = inspect(i, j, 20)
         pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, top_pattern)
         print(i, j, pattern_information, file=file_kull)
-        print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
+        if (sum_pattern1 == 0) :
+            if (sum_pattern2 == 0) :
+                print(i, j, 0, 0, 0, 0, file=file_data)
+            else :
+                print(i, j, 0, 0, sum_pattern2, 1/sum_pattern2, file=file_data)
+        elif(sum_pattern2 == 0) :
+            print(i, j, sum_pattern1, 1/sum_pattern1, 0, 0, file=file_data)
+        else : 
+            print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
     print("", file=file_kull)
     print("", file=file_data)
     print("end"+str(i))
