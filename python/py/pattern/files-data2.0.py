@@ -1,8 +1,19 @@
-#エクセルファイルの変換を目指して
+# Kullback-Divergence の計算
+#引数一覧
+# 1 : 経験後ファイル名
+# 2 : 経験前ファイル名
+# 3 : 計算する最小のウィンドウサイズ(ステップ数)
+# 4 : 計算する最大のウィンドウサイズ(ステップ数)
+# 5 : 計算する最小のパターン長
+# 6 : 計算する最大のパターン長
+# 7 : ウィンドウサイズとパターン長に対する刻み幅
+# 8 : グラフ出力するパターン数(情報量が大きかったパターン順)
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import os
 import math
 
 #ファイルの読み込み
@@ -25,7 +36,7 @@ sheet_names2 = file2.sheet_names
 cannel_start = 10
 cannel_end = 5
 
-def inspect(time_leng, pattern_leng, top_print):
+def inspect(time_leng, pattern_leng, top_print, count_data):
     #ファイル1のデータカウント
     pattern_dict1 = {}
     sumpsth = 0
@@ -107,7 +118,7 @@ def inspect(time_leng, pattern_leng, top_print):
     top_dict = {}
     k = 0
     for i in (pattern_dict1.keys()) :
-        probability1[k] = ((pattern_dict1[i]+1) / sum_pattern1)
+        probability1[k] = ((pattern_dict1[i]) / sum_pattern1)
         if(i in pattern_dict2) : 
             probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
         else :
@@ -126,57 +137,29 @@ def inspect(time_leng, pattern_leng, top_print):
         max_print =top_print
     
     #グラフ出力の準備
-    print_probability1 = np.zeros(max_print, float)
-    print_probability2 = np.zeros(max_print, float)
-    print_kullback = np.zeros(max_print, float)
-    print_pattern = []
+#    print_probability1 = np.zeros(max_print, float)
+#    print_probability2 = np.zeros(max_print, float)
+#    print_count1 = np.zeros(max_print, float)
+#    print_count2 = np.zeros(max_print, float)
+#    print_kullback = np.zeros(max_print, float)
+#    print_pattern = []
     k = 0
+    print(time_leng, pattern_leng, sum_pattern1, sum_pattern_2, file=count_data)
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1])[0:max_print] :
-        print_probability1[k] = ((pattern_dict1[i]+1) / sum_pattern1)
+        print_probability1 = ((pattern_dict1[i]) / sum_pattern1)
         if(i in pattern_dict2) : 
-            print_probability2[k] = ((pattern_dict2[i]+1) / sum_pattern2)
+            print_probability2 = ((pattern_dict2[i]+1) / sum_pattern2)
         else :
-            print_probability2[k] = (1 / sum_pattern2)
-        print_kullback[k] = print_probability1[k] * math.log2(print_probability1[k]/print_probability2[k]) #kullback項の保存
-        print_pattern.append(i)
+            print_probability2 = (1 / sum_pattern2)
+        print(i, pattern_dict1[i], pattern_dict2[i], pattern_probability1, pattern_probability2, top_dict[i], file=count_data)
+#        print_pattern.append(i)
         k += 1
 #        print(i)
 #        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
 
-
         
- #   print(print_pattern)
-    #グラフ出力
-    #パターンの確率比較
-    fig = plt.figure(dpi=600)
-    ax = fig.gca()
-    x = np.arange(len(print_pattern))
-    w = 0.4
-    plt.bar(x+w, print_probability1, width=w, color="red", label="after")
-    plt.bar(x, print_probability2, width=w, color="blue", label="before")
-    plt.xlim(-(w/2), max_print-(w/2))
-    plt.xlabel("pattern")
-    plt.ylabel("probability")
-    plt.xticks(x + w/2, print_pattern)
-    ax.set_xticklabels(print_pattern, rotation=90)
-    plt.legend()
-    plt.savefig(str(time_leng) + "-" + str(pattern_leng) + ".png", bbox_inches='tight')
-    #パターンのカルバックライブラー項比較
-    fig = plt.figure(dpi=600)
-    ax = fig.gca()
-    plt.bar(print_pattern, print_kullback, color="red", label="after")
-    plt.xlim(-0.5, max_print-0.5)
-    plt.xlabel("pattern")
-    plt.ylabel("probability")
-    ax.set_xticklabels(print_pattern, rotation=90)
-    plt.legend()
-    #print(print_kullback)
-    #plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0, ncol=2)
-    #fig.subplots_adjust(bottom=10)
-    plt.savefig(str(time_leng) + "-" + str(pattern_leng) + "-kullback.png", bbox_inches='tight')
-    plt.close()
     del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict, print_pattern
-    
+    print("", file=count_data)
     return pattern_information, sum_pattern1, sum_pattern2
 
 parameter1_start = int(sys.argv[3])
@@ -191,14 +174,17 @@ top_pattern = int(sys.argv[8])
 
 file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
 file_data = open("data-ab.txt", "w")
+os.remove("count_data.txt")
 
 #kullback = np.zeros((parameter1, parameter2), float)
 for i in range(parameter1_start, parameter1_end+1, step):
     for j in range(parameter2_start, parameter2_end+1, step):
 #        kullback[i-1][j-1] = inspect(i, j, 20)
-        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, top_pattern)
+        count_data = open("count_data.txt", "a")
+        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, top_pattern, count_data)
         print(i, j, pattern_information, file=file_kull)
         print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
+        count_data.close()
     print("", file=file_kull)
     print("", file=file_data)
     print("end"+str(i))
