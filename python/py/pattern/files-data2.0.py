@@ -13,7 +13,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
-import os
 import math
 
 #ファイルの読み込み
@@ -144,22 +143,24 @@ def inspect(time_leng, pattern_leng, top_print, count_data):
 #    print_kullback = np.zeros(max_print, float)
 #    print_pattern = []
     k = 0
-    print(time_leng, pattern_leng, sum_pattern1, sum_pattern_2, file=count_data)
+    #print(time_leng, pattern_leng, sum_pattern1, sum_pattern2, file=count_data)
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1])[0:max_print] :
         print_probability1 = ((pattern_dict1[i]) / sum_pattern1)
         if(i in pattern_dict2) : 
             print_probability2 = ((pattern_dict2[i]+1) / sum_pattern2)
         else :
             print_probability2 = (1 / sum_pattern2)
-        print(i, pattern_dict1[i], pattern_dict2[i], pattern_probability1, pattern_probability2, top_dict[i], file=count_data)
+            pattern_dict2[i] = 0
+        print(type(i))
+        print(time_leng, pattern_leng, str(i), pattern_dict1[i], pattern_dict2[i], print_probability1, print_probability2, top_dict[i], file=count_data)
 #        print_pattern.append(i)
         k += 1
 #        print(i)
 #        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
 
         
-    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict, print_pattern
-    print("", file=count_data)
+    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict#, print_pattern
+#    print("", file=count_data)
     return pattern_information, sum_pattern1, sum_pattern2
 
 parameter1_start = int(sys.argv[3])
@@ -174,7 +175,6 @@ top_pattern = int(sys.argv[8])
 
 file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
 file_data = open("data-ab.txt", "w")
-os.remove("count_data.txt")
 
 #kullback = np.zeros((parameter1, parameter2), float)
 for i in range(parameter1_start, parameter1_end+1, step):
