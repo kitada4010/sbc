@@ -39,7 +39,7 @@ sheet_names2 = file2.sheet_names
 cannel_start = 10
 cannel_end = 5
 
-def inspect(time_leng, pattern_leng, top_print):
+def inspect(time_leng, pattern_leng, count_data):
     #ファイル1のデータカウント
     pattern_dict1 = {}
     sumpsth = 0
@@ -156,39 +156,27 @@ def inspect(time_leng, pattern_leng, top_print):
 
 
 
-    if (len(pattern_dict1.keys()) < top_print) :
-        max_print = len(pattern_dict1.keys())
-    else :
-        max_print =top_print
-    
     #グラフ出力の準備
-    print_count1 = np.zeros(max_print, float)
-    print_count2 = np.zeros(max_print, float)
-    print_kullback = np.zeros(max_print, float)
-    print_pattern = []
+#    print_count1 = np.zeros(max_print, float)
+#    print_count2 = np.zeros(max_print, float)
+#    print_kullback = np.zeros(max_print, float)
+#    print_pattern = []
     k = 0
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1]) :
         if(i in pattern_dict1) : 
-            print_probability1[k] = (pattern_dict1[i] / sum_pattern1)
-            print_count1[k] = pattern_dict1[i]
+            print_probability1 = (pattern_dict1[i] / sum_pattern1)
             if(i in pattern_dict2) : 
-                print_probability2[k] = (pattern_dict2[i] / sum_pattern2)
-                print_count2[k] = pattern_dict2[i]
+                print_probability2 = (pattern_dict2[i] / sum_pattern2)
                 denominator = (print_probability1[k]/2) + (print_probability2[k]/2)
-                print_kullback[k] = ( print_probability1[k] * math.log2(print_probability1[k]/denominator) + print_probability2[k] * math.log2(print_probability2[k]/denominator) )/2
             else :
-                print_probability2[k] = 0
-                print_count2[k] = 0
-                #denominator = print_probability1[k]/2
-                print_kullback[k] = print_probability1[k]/2
-        
+                print_probability2 = 0
         else :
-            print_probability1[k] = 0
-            print_count1[k] = 0
+            print_probability1 = 0
             #denominator = print_probability2[k]/2
-            print_kullback[k] = print_probability2[k]/2
-
-        print_pattern.append(i)
+            #print_kullback[k] = print_probability2[k]/2
+            
+        print(time_leng, pattern_leng, str(i), pattern_dict1[i], pattern_dict2[i], print_probability1, print_probability2, top_dict[i], file=count_data)
+#        print_pattern.append(i)
         k += 1
 #        print(i)
 #        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
@@ -206,7 +194,7 @@ parameter2_end = int(sys.argv[6])
 
 step = int(sys.argv[7])
 
-top_pattern = int(sys.argv[8])
+
 
 #file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
 file_kull = open("divergence.txt", "a")
@@ -217,7 +205,7 @@ for i in range(parameter1_start, parameter1_end+1, step):
     for j in range(parameter2_start, parameter2_end+1, step):
 #        kullback[i-1][j-1] = inspect(i, j, 20)
         count_data = open("count_data.txt", "a")
-        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, top_pattern, count_data)
+        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, count_data)
         print(i, j, pattern_information, file=file_kull)
         if (sum_pattern1 == 0) :
             if (sum_pattern2 == 0) :
