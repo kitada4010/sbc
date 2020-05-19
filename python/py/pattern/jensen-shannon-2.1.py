@@ -9,6 +9,8 @@
 # 7 : ウィンドウサイズとパターン長に対する刻み幅
 # 8 : グラフ出力するパターン数(情報量が大きかったパターン順)
 
+#注意
+# divergence.txt は上書きではなく追記
 
 import pandas as pd
 import numpy as np
@@ -258,9 +260,9 @@ step = int(sys.argv[7])
 
 top_pattern = int(sys.argv[8])
 
-file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
-#file_kull = open("divergence.txt", "a")
-file_data = open("data-ab.txt", "w")
+#file_kull = open("kullback-t" + sys.argv[3] + sys.argv[4] + "p" + sys.argv[5] + sys.argv[6] + "s" + sys.argv[7] +".txt", "w")
+file_kull = open("divergence.txt", "a")
+file_data = open("data-ab.txt", "a")
 
 #kullback = np.zeros((parameter1, parameter2), float)
 for i in range(parameter1_start, parameter1_end+1, step):
