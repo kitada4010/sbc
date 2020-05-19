@@ -8,6 +8,7 @@
 #パス指定
 #自宅pc
 LABELDATAPATH="/home/nodoka/win/ubuntu/01-data"
+PYTHON="/home/nodoka/.pyenv/shims/python"
 #FREQLDATAPATH="/home/nodoka/win/ubuntu/123ms-data"
 #大学計算機サーバ
 #LABELDATAPATH="/st9/b009vb/01data"
@@ -69,7 +70,7 @@ do
 	rsync ./okiba/Makefile $episodehz/$indivi/
 	cat shell-head.txt jikkou.txt > $episodehz/$indivi/conduct.sh
 	chmod +x $episodehz/$indivi/conduct.sh
-	#make conduct -C $episodehz/$indivi/	
+	make conduct -C $episodehz/$indivi/	
 #CONDUCT
 	
 	
