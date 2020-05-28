@@ -157,7 +157,7 @@ def inspect(time_leng, pattern_leng, count_data):
         else :
             print_probability2 = (1 / sum_pattern2)
             pattern_dict2[i] = 0
-        print(type(i))
+#        print(type(i))
         print(time_leng, pattern_leng, str(i), pattern_dict1[i], pattern_dict2[i], print_probability1, print_probability2, top_dict[i], file=count_data)
 #        print_pattern.append(i)
         k += 1
@@ -200,7 +200,7 @@ for i in range(parameter1_start, parameter1_end+1, step):
         else :
             print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
         count_data.close()
-        print("", file=file_kull)
+        #print("", file=file_kull)
     print("", file=file_data)
     print("end"+str(i))
 #np.savetxt("kullback-t1-" + sys.argv[3] +"-p1-"+ sys.argv[4] +".txt", kullback)
