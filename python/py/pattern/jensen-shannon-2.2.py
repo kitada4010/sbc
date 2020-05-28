@@ -140,6 +140,7 @@ def inspect(time_leng, pattern_leng, count_data):
 #                denominator = probability1[k]/2
                 info =  probability1[i]/2
         else :
+            probability2[i] = (pattern_dict2[i] / sum_pattern2)
             probability1[i] = 0
             info = probability2[i]/2
 
