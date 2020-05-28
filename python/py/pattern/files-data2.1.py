@@ -200,7 +200,7 @@ for i in range(parameter1_start, parameter1_end+1, step):
         else :
             print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
         count_data.close()
-        #print("", file=file_kull)
+    print("", file=file_kull)
     print("", file=file_data)
     print("end"+str(i))
 #np.savetxt("kullback-t1-" + sys.argv[3] +"-p1-"+ sys.argv[4] +".txt", kullback)
