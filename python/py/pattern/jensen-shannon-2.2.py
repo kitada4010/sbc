@@ -101,13 +101,13 @@ def inspect(time_leng, pattern_leng, count_data):
     sum_pattern1 = sum(pattern_dict1.values()) #+ len(sum_dict.keys())
     sum_pattern2 = sum(pattern_dict2.values()) #+ len(sum_dict.keys())            
     if(len(pattern_dict1.keys()) == 0) :
-        del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern1
+        del pattern_dict1, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern1
         if(len(pattern_dict2.keys()) == 0 ):
             return 0, 0, 0
         else :
             return 0, 0, sum_pattern2
     elif(len(pattern_dict2.keys()) == 0 ):
-        del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern2
+        del pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern2
         return 0, sum_pattern1, 0
 
                             
