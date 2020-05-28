@@ -164,7 +164,7 @@ def inspect(time_leng, pattern_leng, count_data):
 
 
 
-    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict, leng, psth, start_number, end_number, sig1, i, l, w
+    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict, leng, psth, start_number, end_number, sig1
     return pattern_information, sum_pattern1, sum_pattern2
 
 parameter1_start = int(sys.argv[3])
