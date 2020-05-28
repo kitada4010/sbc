@@ -126,7 +126,6 @@ def inspect(time_leng, pattern_leng, count_data):
     probability1 = {}
     probability2 = {}
     top_dict = {}
-    k = 0
 #    print(type(sum_dict.keys()))
     for i in (sum_dict.keys()) :
 #        print(type(i))
@@ -135,7 +134,7 @@ def inspect(time_leng, pattern_leng, count_data):
             if(i in pattern_dict2) : 
                 probability2[i] = (pattern_dict2[i] / sum_pattern2)
                 denominator = (probability1[i]/2) + (probability2[i]/2)
-                info = ( probability1[k] * math.log2(probability1[i]/denominator) + probability2[i] * math.log2(probability2[i]/denominator) )/2
+                info = ( probability1[i] * math.log2(probability1[i]/denominator) + probability2[i] * math.log2(probability2[i]/denominator) )/2
             else :
                 probability2[i] = 0
 #                denominator = probability1[k]/2
@@ -149,7 +148,6 @@ def inspect(time_leng, pattern_leng, count_data):
         pattern_information += info
         top_dict[i] = info
 #        print(i)
-        k += 1
 
 
 
