@@ -100,8 +100,6 @@ def inspect(time_leng, pattern_leng, count_data):
                         sum_dict[str(psth[k : k+ pattern_leng])] = 1
 
             
-    if(len(pattern_dict1.keys()) == 0 ):
-        return 0
                             
     #情報量の計算準備
     pattern_information =  0.0
@@ -112,6 +110,14 @@ def inspect(time_leng, pattern_leng, count_data):
 #    print()
     sum_pattern1 = sum(pattern_dict1.values()) + len(sum_dict.keys())
     sum_pattern2 = sum(pattern_dict2.values()) + len(sum_dict.keys())
+    if(len(pattern_dict1.keys()) == 0 ):
+        if(len(pattern_dict2.keys()) == 0 ):
+            return 0, 0, 0
+        else :
+            return 0, 0, sum_pattern2
+    elif(len(pattern_dict2.keys()) == 0 ):
+        return 0, sum_pattern1, 0
+
 #    print(sum_pattern1)
 #    print(sum_pattern2)
 #    sum_pattern = sum(sum_dict.values()) 
@@ -184,9 +190,17 @@ for i in range(parameter1_start, parameter1_end+1, step):
         count_data = open("count_data.txt", "a")
         pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, count_data)
         print(i, j, pattern_information, file=file_kull)
-        print(i, j, sum_pattern1, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
+        if(sum_pattern1 == 0) :
+            if(sum_pattern2 == 0) : 
+                print(i, j, 0, 0, 0, 0, file=file_data)
+            else : 
+                print(i, j, 0, 0, sum_pattern2, 1/sum_pattern2, file=file_data)
+        elif(sum_pattern2 == 0) :
+            print(i, j, sum_pattern, 1/sum_pattern1, 0, 0, file=file_data)
+        else :
+            print(i, j, sum_pattern, 1/sum_pattern1, sum_pattern2, 1/sum_pattern2, file=file_data)
         count_data.close()
-    print("", file=file_kull)
+        print("", file=file_kull)
     print("", file=file_data)
     print("end"+str(i))
 #np.savetxt("kullback-t1-" + sys.argv[3] +"-p1-"+ sys.argv[4] +".txt", kullback)
