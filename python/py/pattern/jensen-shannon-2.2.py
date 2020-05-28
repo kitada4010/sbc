@@ -7,7 +7,7 @@
 # 5 : 計算する最小のパターン長
 # 6 : 計算する最大のパターン長
 # 7 : ウィンドウサイズとパターン長に対する刻み幅
-# 8 : グラフ出力するパターン数(情報量が大きかったパターン順)
+
 
 #注意
 # divergence.txt は上書きではなく追記
@@ -103,14 +103,11 @@ def inspect(time_leng, pattern_leng, count_data):
     if(len(pattern_dict1.keys()) == 0) :
         del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern1
         if(len(pattern_dict2.keys()) == 0 ):
-            gc.collect()
             return 0, 0, 0
         else :
-            gc.collect()
             return 0, 0, sum_pattern2
     elif(len(pattern_dict2.keys()) == 0 ):
         del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern2
-        gc.collect()
         return 0, sum_pattern1, 0
 
                             
@@ -126,26 +123,26 @@ def inspect(time_leng, pattern_leng, count_data):
 #    print(sum_pattern2)
 #    sum_pattern = sum(sum_dict.values()) 
     pattern1 = len(sum_dict.keys())
-    probability1 = np.zeros(pattern1, float)
-    probability2 = np.zeros(pattern1, float)
+    probability1 = {}
+    probability2 = {}
     top_dict = {}
     k = 0
 #    print(type(sum_dict.keys()))
     for i in (sum_dict.keys()) :
 #        print(type(i))
         if(i in pattern_dict1) : 
-            probability1[k] = (pattern_dict1[i] / sum_pattern1)
+            probability1[i] = (pattern_dict1[i] / sum_pattern1)
             if(i in pattern_dict2) : 
-                probability2[k] = (pattern_dict2[i] / sum_pattern2)
-                denominator = (probability1[k]/2) + (probability2[k]/2)
-                info = ( probability1[k] * math.log2(probability1[k]/denominator) + probability2[k] * math.log2(probability2[k]/denominator) )/2
+                probability2[i] = (pattern_dict2[i] / sum_pattern2)
+                denominator = (probability1[i]/2) + (probability2[i]/2)
+                info = ( probability1[k] * math.log2(probability1[i]/denominator) + probability2[i] * math.log2(probability2[i]/denominator) )/2
             else :
-                probability2[k] = 0
+                probability2[i] = 0
 #                denominator = probability1[k]/2
-                info =  probability1[k]/2
+                info =  probability1[i]/2
         else :
-            probability1[k] = 0
-            info = probability2[k]/2
+            probability1[i] = 0
+            info = probability2[i]/2
 
 
         
@@ -163,19 +160,7 @@ def inspect(time_leng, pattern_leng, count_data):
 #    print_pattern = []
     k = 0
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1]) :
-        if(i in pattern_dict1) : 
-            print_probability1 = (pattern_dict1[i] / sum_pattern1)
-            if(i in pattern_dict2) : 
-                print_probability2 = (pattern_dict2[i] / sum_pattern2)
-                denominator = (print_probability1[k]/2) + (print_probability2[k]/2)
-            else :
-                print_probability2 = 0
-        else :
-            print_probability1 = 0
-            #denominator = print_probability2[k]/2
-            #print_kullback[k] = print_probability2[k]/2
-            
-        print(time_leng, pattern_leng, str(i), pattern_dict1[i], pattern_dict2[i], print_probability1, print_probability2, top_dict[i], file=count_data)
+        print(time_leng, pattern_leng, str(i), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data)
 #        print_pattern.append(i)
         k += 1
 #        print(i)
