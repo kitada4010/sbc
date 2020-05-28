@@ -156,17 +156,15 @@ def inspect(time_leng, pattern_leng, count_data):
 #    print_count2 = np.zeros(max_print, float)
 #    print_kullback = np.zeros(max_print, float)
 #    print_pattern = []
-    k = 0
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1]) :
         print(time_leng, pattern_leng, str(i), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data)
 #        print_pattern.append(i)
-        k += 1
 #        print(i)
 #        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
 
 
 
-    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict, leng, psth, start_number, end_number, sig1, i, l, k, x, w
+    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict, leng, psth, start_number, end_number, sig1, i, l, w
     return pattern_information, sum_pattern1, sum_pattern2
 
 parameter1_start = int(sys.argv[3])
