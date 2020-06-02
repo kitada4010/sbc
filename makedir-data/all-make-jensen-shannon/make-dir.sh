@@ -23,7 +23,7 @@ TIME_RANGE_E="101"
 PATTERN_RANGE_S="1"
 PATTERN_RANGE_E="51"
 SKIP="1"
-TOP_PATTERN="20"
+#TOP_PATTERN="20"
 #入力ファイル指定 2:経験前, 3:経験後0~10分間, 4:経験後10~20分間, 5:経験後20~30分間
 EP_B="2"
 EP_A="3"
@@ -65,7 +65,7 @@ do
 	for ((i=1; i<TIME_RANGE_E; i+=SKIP))
 	do
 	    # 実行文の出力
-            echo $PYTHON $HOME$PROG  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}$EP_A.xlsx  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}$EP_B.xlsx $i $i $PATTERN_RANGE_S  $PATTERN_RANGE_E $SKIP $TOP_PATTERN >> jikkou.txt
+            echo $PYTHON $HOME$PROG  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}$EP_A.xlsx  $LABELDATAPATH/${file%.*}/${indivi}/${indivi%-*}-${file%-*}-${indivi##*H}$EP_B.xlsx $i $i $PATTERN_RANGE_S  $PATTERN_RANGE_E $SKIP >> jikkou.txt
 	done
 	rsync ./okiba/Makefile $episodehz/$indivi/
 	cat shell-head.txt jikkou.txt > $episodehz/$indivi/conduct.sh
