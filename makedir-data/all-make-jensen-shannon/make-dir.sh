@@ -23,7 +23,12 @@ TIME_RANGE_E="101"
 PATTERN_RANGE_S="1"
 PATTERN_RANGE_E="51"
 SKIP="1"
+TABLE_NUM="10"
 #TOP_PATTERN="20"
+GNUPLOT_MIN="0"
+GNUPLOT_MAX="0.85"
+GNUPLOT_TITLE="kullback"
+
 #入力ファイル指定 2:経験前, 3:経験後0~10分間, 4:経験後10~20分間, 5:経験後20~30分間
 EP_B="2"
 EP_A="3"
@@ -74,13 +79,29 @@ do
 #CONDUCT
 	
 	
+<<GNUPLOT
+        echo set terminal png > plot.gp
+	echo set output \"$indivi-kullback.png\" >> plot.gp
+	echo set pm3d map >> plot.gp
+	echo set xlabel \"time_leng \[ms\]\" >> plot.gp
+	echo set ylabel \"pattern_leng\" >> plot.gp
+	echo set cbrange\[$GNUPLOT_MIN:$GNUPLOT_MAX\] >> plot.gp
+	#echo set cblabel \"Kullback-divergence\" >> plot.gp
+	#echo unset cbtics >> plot.gp
+	echo splot \"divergence.txt\" u \(\$1/25\):2:3 with pm3d title \"$indivi-$GNUPLOT_TITLE\">> plot.gp
+	#echo set label 1 at graph 0.1,0.9 STATS_max_z >> plot.gp
+	echo replot >> plot.gp
+	echo set terminal x11 >> plot.gp
 
-#GNUPLOT
+	rsync ./okiba/Makefile $episodehz/$indivi/
+	rsync ./plot.gp $episodehz/$indivi/
+	make plot -C $episodehz/$indivi/
+GNUPLOT
 
        # kullback値が上位である組み合わせの表を作成
 <<SORT
         echo $episodehz/$indivi
-	sort -r -g -k 3,3 $episodehz/$indivi/kullback-t${TIME_RANGE_S}${TIME_RANGE_E}p${PATTERN_RANGE_S}${PATTERN_RANGE_E}s${SKIP}.txt |head > $episodehz/$indivi/top-table.txt
+	sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n $TABLE_NUM > $episodehz/$indivi/top-table.txt
 	$HOME/sbc/tex/change-tex-tabular.sh $episodehz/$indivi/top-table.txt
 	echo 
 SORT
