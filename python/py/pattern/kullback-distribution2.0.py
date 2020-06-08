@@ -33,6 +33,8 @@ def inspect(time_leng, pattern_leng, top_print):
     sumpsth = 0
     for i, name in enumerate(sheet_names1):
         sheet_df1[i] = file1.parse(name)
+        if(sheet_df1[i] == NaN) :
+            break
         #print(sheet_df1[i][1][1])
         start_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][0]) +cannel_start
         end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
