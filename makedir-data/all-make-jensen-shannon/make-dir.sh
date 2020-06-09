@@ -51,9 +51,9 @@ do
     episodehz=${file%.*}
     [ -d $episodehz ] || mkdir $episodehz
 #divergence の計算
-#<<CONDUCT 
     while read indivi
     do
+#<<CONDUCT 
 	[ -d $episodehz/$indivi ] || mkdir $episodehz/$indivi
 	[ -f jikkou.txt ] && rm jikkou.txt
 	#divergence.txt を削除
