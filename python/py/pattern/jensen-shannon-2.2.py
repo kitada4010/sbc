@@ -45,28 +45,33 @@ def inspect(time_leng, pattern_leng, count_data):
     sumpsth = 0
     for i, name in enumerate(sheet_names1):
         sheet_df1[i] = file1.parse(name)
-        #print(sheet_df1[i][1][1])
-        start_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][0]) +cannel_start
-        end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
-        sig1 = (sheet_df1[i]['Unnamed: 3'][start_number : end_number]).values
+        try :
+            #print(sheet_df1[i][1][1])
+            start_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][0]) +cannel_start
+            end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
+            sig1 = (sheet_df1[i]['Unnamed: 3'][start_number : end_number]).values
+        except KeyError :
+            print("not max data number")
+            break
         sig1 = sig1.astype("int")
         #print(len(sig1))
         sig1 = np.trim_zeros(sig1)
-#        print()
+        #        print()
         leng = len(sig1)
         psth = np.zeros(int((leng/time_leng)+1), dtype=np.int)
         l = 0
         for k in range(0, leng, time_leng) :
             psth[l] = sig1[k : k+time_leng].sum()
             l += 1
-#        print(sig1[len(psth)-1])
+            #        print(sig1[len(psth)-1])
         if(len(psth) > pattern_leng) : 
             for k in range(len(psth) - pattern_leng +1) :   # PSTHデータからはパターンを重ねて検索している
                 if (str(psth[k : k + pattern_leng]) in pattern_dict1) : 
                     pattern_dict1[str(psth[k : k + pattern_leng])] += 1
                 else : 
                     pattern_dict1[str(psth[k : k + pattern_leng])] = 1
-            sumpsth += (len(psth) -pattern_leng+1)
+                    sumpsth += (len(psth) -pattern_leng+1)
+
 #    print()
 #    print(sumpsth)
 
@@ -75,9 +80,13 @@ def inspect(time_leng, pattern_leng, count_data):
     sum_dict = pattern_dict1.copy()
     for i, name in enumerate(sheet_names2):
         sheet_df2[i] = file2.parse(name)
-        start_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][0]) + cannel_start
-        end_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
-        sig1 = (sheet_df2[i]['Unnamed: 3'][start_number : end_number]).values
+        try : 
+            start_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][0]) + cannel_start
+            end_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
+            sig1 = (sheet_df2[i]['Unnamed: 3'][start_number : end_number]).values
+        except KeyError :
+            print("not max data number")
+            break
         sig1 = sig1.astype("int")
         sig1 = np.trim_zeros(sig1)
         leng = len(sig1)
@@ -97,7 +106,7 @@ def inspect(time_leng, pattern_leng, count_data):
                         sum_dict[str(psth[k : k+ pattern_leng])] += 1
                     else :
                         sum_dict[str(psth[k : k+ pattern_leng])] = 1
-
+            
     sum_pattern1 = sum(pattern_dict1.values()) #+ len(sum_dict.keys())
     sum_pattern2 = sum(pattern_dict2.values()) #+ len(sum_dict.keys())            
     if(len(pattern_dict1.keys()) == 0) :

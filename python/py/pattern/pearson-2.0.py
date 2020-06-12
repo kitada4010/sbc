@@ -42,9 +42,13 @@ def inspect(time_leng, pattern_leng, top_print):
     for i, name in enumerate(sheet_names1):
         sheet_df1[i] = file1.parse(name)
         #print(sheet_df1[i][1][1])
-        start_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][0]) +cannel_start
-        end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
-        sig1 = (sheet_df1[i]['Unnamed: 3'][start_number : end_number]).values
+        try :
+            start_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][0]) +cannel_start
+            end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
+            sig1 = (sheet_df1[i]['Unnamed: 3'][start_number : end_number]).values
+        except KeyError :
+            print("not max data number")
+            break
         sig1 = sig1.astype("int")
         #print(len(sig1))
         sig1 = np.trim_zeros(sig1)
@@ -71,9 +75,13 @@ def inspect(time_leng, pattern_leng, top_print):
     sum_dict = pattern_dict1.copy()
     for i, name in enumerate(sheet_names2):
         sheet_df2[i] = file2.parse(name)
-        start_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][0]) + cannel_start
-        end_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
-        sig1 = (sheet_df2[i]['Unnamed: 3'][start_number : end_number]).values
+        try :
+            start_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][0]) + cannel_start
+            end_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
+            sig1 = (sheet_df2[i]['Unnamed: 3'][start_number : end_number]).values
+        except KeyError :
+            print("not max data number")
+            break
         sig1 = sig1.astype("int")
         sig1 = np.trim_zeros(sig1)
         leng = len(sig1)
@@ -96,8 +104,20 @@ def inspect(time_leng, pattern_leng, top_print):
                         sum_dict[str(psth[k : k+ pattern_leng])] = 1
 
             
-    if(len(pattern_dict1.keys()) == 0 ):
-        return 0
+    sum_pattern1 = sum(pattern_dict1.values()) #+ len(sum_dict.keys())
+    sum_pattern2 = sum(pattern_dict2.values()) #+ len(sum_dict.keys())            
+    if(len(pattern_dict1.keys()) == 0) :
+        del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern1
+        if(len(pattern_dict2.keys()) == 0 ):
+            gc.collect()
+            return 0, 0, 0
+        else :
+            gc.collect()
+            return 0, 0, sum_pattern2
+    elif(len(pattern_dict2.keys()) == 0 ):
+        del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern2
+        gc.collect()
+        return 0, sum_pattern1, 0
                             
     #情報量の計算準備
     pattern_information =  0.0
