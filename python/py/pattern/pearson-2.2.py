@@ -1,4 +1,4 @@
-]# Pearson-Divergence の計算
+# Pearson-Divergence の計算
 #引数一覧
 # 1 : 経験後ファイル名
 # 2 : 経験前ファイル名
