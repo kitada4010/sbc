@@ -1,4 +1,4 @@
-# Pearson-Divergence の計算
+]# Pearson-Divergence の計算
 #引数一覧
 # 1 : 経験後ファイル名
 # 2 : 経験前ファイル名
@@ -7,7 +7,6 @@
 # 5 : 計算する最小のパターン長
 # 6 : 計算する最大のパターン長
 # 7 : ウィンドウサイズとパターン長に対する刻み幅
-# 8 : グラフ出力するパターン数(情報量が大きかったパターン順)
 
 #注意
 # divergence.txt は上書きではなく追記
@@ -38,7 +37,7 @@ sheet_names2 = file2.sheet_names
 cannel_start = 10
 cannel_end = 5
 
-def inspect(time_leng, pattern_leng, top_print, count_data):
+def inspect(time_leng, pattern_leng, count_data):
     #ファイル1のデータカウント
     pattern_dict1 = {}
     sumpsth = 0
@@ -151,13 +150,9 @@ def inspect(time_leng, pattern_leng, top_print, count_data):
 
 
 
-    if (len(pattern_dict1.keys()) < top_print) :
-        max_print = len(pattern_dict1.keys())
-    else :
-        max_print =top_print
     
     #グラフ出力の準備
-    for i, v in sorted(top_dict.items(), key=lambda x:-x[1])[0:max_print] :
+    for i, v in sorted(top_dict.items(), key=lambda x:-x[1]) :
         if(i in pattern_dict1) : 
             if(i in pattern_dict2) : 
                 print(time_leng, pattern_leng, str(i), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data)
@@ -170,7 +165,7 @@ def inspect(time_leng, pattern_leng, top_print, count_data):
 
 
         
-    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2,  print_probability1, print_probability2, print_count1, print_count2, print_kullback, top_dict, print_pattern, leng, psth, start_number, end_number, sig1, i, l, k, x, w
+    del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict, leng, psth, start_number, end_number, sig1
     return pattern_information, sum_pattern1, sum_pattern2
 
 parameter1_start = int(sys.argv[3])
@@ -181,7 +176,6 @@ parameter2_end = int(sys.argv[6])
 
 step = int(sys.argv[7])
 
-top_pattern = int(sys.argv[8])
 
 file_kull = open("divergence.txt", "a")
 file_data = open("data-ab.txt", "a")
@@ -191,7 +185,7 @@ for i in range(parameter1_start, parameter1_end+1, step):
     for j in range(parameter2_start, parameter2_end+1, step):
 #        kullback[i-1][j-1] = inspect(i, j, 20)
         count_data = open("count_data.txt", "a")        
-        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, top_pattern, count_data)
+        pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, count_data)
         print(i, j, pattern_information, file=file_kull)
         if (sum_pattern1 == 0) :
             if (sum_pattern2 == 0) :
