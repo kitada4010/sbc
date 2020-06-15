@@ -139,17 +139,19 @@ GRAPH
     echo
 done
 
-#echo \\end{document} >> graph.tex
-#echo \\end{document} >> top-com-probability.tex
+
+
 
 
 <<COMP_GRAPH
+echo \\end{document} >> graph.tex
 platex graph.tex
 platex graph.tex
 dvipdfmx graph.dvi
 COMP_GRAPH
 
 <<COMP_PROBABILITY_GRAPH
+echo \\end{document} >> top-com-probability.tex
 platex top-com-probability.tex
 platex top-com-probability.tex
 dvipdfmx top-com-probability.dvi

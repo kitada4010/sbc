@@ -169,11 +169,18 @@ def inspect(time_leng, pattern_leng, count_data):
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1]) :
         if(i in pattern_dict1) : 
             if(i in pattern_dict2) : 
-                print(time_leng, pattern_leng, str(i), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data)
+                print(time_leng, pattern_leng, file=count_data, end="", flush=True)
+                print(str(i), file=count_data, end="", flush=True)
+                print(pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data, end="", flush=True)
             else :
-                print(time_leng, pattern_leng, str(i), pattern_dict1[i], 0, probability1[i], 0, top_dict[i], file=count_data)
+                print(time_leng, pattern_leng, file=count_data, end="", flush=True)
+                print(str(i), file=count_data, end="", flush=True)
+                print(pattern_dict1[i], 0, probability1[i], 0, top_dict[i], file=count_data, end="", flush=True)
         elif(i in pattern_dict2) :
-            print(time_leng, pattern_leng, str(i), 0, pattern_dict2[i], 0, probability2[i], top_dict[i], file=count_data)
+                print(time_leng, pattern_leng, file=count_data, end="", flush=True)
+                print(str(i), file=count_data, end="", flush=True)
+                print(0, pattern_dict2[i], 0, probability2[i], top_dict[i], file=count_data, end="", flush=True)
+        print("", file=count_data)
 #        print_pattern.append(i)
 #        print(i)
 #        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)

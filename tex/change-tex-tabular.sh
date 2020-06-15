@@ -15,11 +15,7 @@ do
 done
 begin_tabular="$begin_tabular}"
 echo $begin_tabular > ${1%.*}.tex
-<<<<<<< HEAD
 sed -e "s/,/ \& /g" -e 's/$/\\\\/g' ${1%.*}.csv  >> ${1%.*}.tex
-=======
-sed -e "s/,/ \& /g" -e  's/$/\\\\/g' ${1%.*}.csv  >> ${1%.*}.tex
->>>>>>> a41ced93b4bea2a33d3f5d9a6be2a2f86ccccdc2
 sed -i -e 's/$/ \\hline/g' ${1%.*}.tex 
 echo "\end{tabular}" >> ${1%.*}.tex
 
