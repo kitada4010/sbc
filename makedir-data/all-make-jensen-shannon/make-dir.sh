@@ -15,7 +15,7 @@ PYTHON="/home/nodoka/.pyenv/shims/python"
 #PYTHON="/usr/local/anaconda3/bin/python3.6"
 
 #プログラムの指定
-PROG="/sbc/python/py/pattern/jensen-shannon-2.1.py"
+PROG="/sbc/python/py/pattern/jensen-shannon-2.2.py"
 
 #パラメータの範囲指定
 TIME_RANGE_S="1"
@@ -39,6 +39,8 @@ EP_A="3"
 # 結果まとめ出力先設定
 #cp texhead.tex graph.tex
 #cp texhead.tex top-com-probability.tex
+#cp texhead.tex top-com-table.tex
+
 
 #検索をかける個体を読み込み
 #ファイル名:経験とサンプリング周波数
@@ -53,7 +55,7 @@ do
 #divergence の計算
     while read indivi
     do
-#<<CONDUCT 
+<<CONDUCT 
 	[ -d $episodehz/$indivi ] || mkdir $episodehz/$indivi
 	[ -f jikkou.txt ] && rm jikkou.txt
 	#divergence.txt を削除
@@ -76,8 +78,8 @@ do
 	cat shell-head.txt jikkou.txt > $episodehz/$indivi/conduct.sh
 	chmod +x $episodehz/$indivi/conduct.sh
 	make conduct -C $episodehz/$indivi/	
-#CONDUCT
-	
+CONDUCT
+
 	
 <<GNUPLOT
         echo set terminal png > plot.gp
@@ -98,16 +100,36 @@ do
 	make plot -C $episodehz/$indivi/
 GNUPLOT
 
+
        # kullback値が上位である組み合わせの表を作成
-<<SORT
+#<<SORT
         echo $episodehz/$indivi
 	sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n $TABLE_NUM > $episodehz/$indivi/top-table.txt
-	$HOME/sbc/tex/change-tex-tabular.sh $episodehz/$indivi/top-table.txt
+	[ -f table.txt ] && rm table.txt
+	rsync ./okiba/Makefile $episodehz/$indivi/
+	$HOME/sbc/tex/change-tex-tabular.sh $episodehz/$indivi/top-table.txt > table.txt
+	cat shell-head.txt table.txt  > $episodehz/$indivi/table.sh
+	make table -C $episodehz/$indivi/
 	echo 
-SORT
+#SORT
+
+# divergence値が上位である組み合わせの表をまとめたファイルを作成
+<<SORT_TABLE
+	com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
+	com=${com% *}
+	#echo ${com/ /-}.png
+	echo \\begin{table}[htb] >> top-com-table.tex
+	echo \\centering >> top-com-table.tex
+	echo \\caption{${episodehz%-*}-$indivi} >> top-com-table.tex
+        echo \\input{$episodehz/$indivi/top-table.tex} >> top-com-table.tex
+	echo \\end{table} >> top-com-table.tex
+	echo >> top-com-table.tex
+	echo >> top-com-table.tex
+SORT_TABLE
+
 
 	
-# kullback値が上位である組み合わせの図まとめたファイルを作成
+# kullback値が上位である組み合わせの図をまとめたファイルを作成
 <<SORT_GRAPH
 	com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
 	com=${com% *}
@@ -120,6 +142,7 @@ SORT
 	echo >> top-com-probability.tex
 	echo >> top-com-probability.tex
 SORT_GRAPH
+
 
 
 # 画像をまとめたtexファイルを作成
@@ -141,9 +164,17 @@ done
 
 
 
+<<COMP_TABLE
+#最初のコンパイル時には1行目が必要
+echo \\end{document} >> top-com-table.tex
+platex top-com-table.tex
+platex top-com-table.tex
+dvipdfmx top-com-table.dvi
+COMP_TABLE
 
 
 <<COMP_GRAPH
+#最初のコンパイル時には1行目が必要
 echo \\end{document} >> graph.tex
 platex graph.tex
 platex graph.tex
@@ -151,6 +182,7 @@ dvipdfmx graph.dvi
 COMP_GRAPH
 
 <<COMP_PROBABILITY_GRAPH
+#最初のコンパイル時には1行目が必要
 echo \\end{document} >> top-com-probability.tex
 platex top-com-probability.tex
 platex top-com-probability.tex
