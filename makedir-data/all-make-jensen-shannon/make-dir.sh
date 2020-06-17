@@ -52,9 +52,9 @@ do
     echo ${file%.*}
     episodehz=${file%.*}
     [ -d $episodehz ] || mkdir $episodehz
-#divergence の計算
     while read indivi
     do
+#divergence の計算
 <<CONDUCT 
 	[ -d $episodehz/$indivi ] || mkdir $episodehz/$indivi
 	[ -f jikkou.txt ] && rm jikkou.txt
@@ -80,7 +80,7 @@ do
 	make conduct -C $episodehz/$indivi/	
 CONDUCT
 
-	
+# divergence の分布図を作成	
 <<GNUPLOT
         echo set terminal png > plot.gp
 	echo set output \"$indivi-kullback.png\" >> plot.gp
@@ -101,8 +101,8 @@ CONDUCT
 GNUPLOT
 
 
-       # kullback値が上位である組み合わせの表を作成
-#<<SORT
+# kullback値が上位である組み合わせの表を作成
+<<SORT
         echo $episodehz/$indivi
 	sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n $TABLE_NUM > $episodehz/$indivi/top-table.txt
 	[ -f table.txt ] && rm table.txt
@@ -111,9 +111,10 @@ GNUPLOT
 	cat shell-head.txt table.txt  > $episodehz/$indivi/table.sh
 	make table -C $episodehz/$indivi/
 	echo 
-#SORT
+SORT
 
-# divergence値が上位である組み合わせの表をまとめたファイルを作成
+
+# divergence が上位である組み合わせの表をまとめたファイルを作成
 <<SORT_TABLE
 	com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
 	com=${com% *}
@@ -128,11 +129,27 @@ GNUPLOT
 SORT_TABLE
 
 
-	
-# kullback値が上位である組み合わせの図をまとめたファイルを作成
+
+
+#作成中
+#----------------------------------------------------------------------------------------------------	
+# divergence が上位である組み合わせの確率分布図を作成
+<<DIVERGENCE_SORT
+        com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
+	com=${com% *}
+	grep -E "^${com/ /,} " $episodehz/$indivi/count_data.csv > top-com-probability.txt
+	top-com-probability
+	mv ${com/ /-}.png $episodehz/$indivi/
+DIVERGENCE_SORT
+
+#----------------------------------------------------------------------------------------------------	
+
+# divergence が上位である組み合わせの確率分布図をまとめたファイルを作成
 <<SORT_GRAPH
 	com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
 	com=${com% *}
+	grep -E "^$com " $episodehz/$indivi/count.txt | cat -n > gg.txt
+	echo 
 	#echo ${com/ /-}.png
 	echo \\begin{figure}[htb] >> top-com-probability.tex
 	echo \\centering >> top-com-probability.tex
@@ -145,7 +162,7 @@ SORT_GRAPH
 
 
 
-# 画像をまとめたtexファイルを作成
+# 分布の画像をまとめたtexファイルを作成
 <<GRAPH
         
         echo \\begin{figure}[htb] >> graph.tex
@@ -156,6 +173,8 @@ SORT_GRAPH
 	echo >> graph.tex
 	echo >> graph.tex
 GRAPH
+
+
 
     done < $dir
     echo ${file%.*} "end"
