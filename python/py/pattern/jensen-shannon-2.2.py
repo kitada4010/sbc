@@ -51,7 +51,7 @@ def inspect(time_leng, pattern_leng, count_data):
             end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
             sig1 = (sheet_df1[i]['Unnamed: 3'][start_number : end_number]).values
         except KeyError :
-            print("not max data number")
+#            print("not max data number")
             break
         sig1 = sig1.astype("int")
         #print(len(sig1))

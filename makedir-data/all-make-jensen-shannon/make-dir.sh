@@ -16,6 +16,7 @@ PYTHON="/home/nodoka/.pyenv/shims/python"
 
 #プログラムの指定
 PROG="/sbc/python/py/pattern/jensen-shannon-2.2.py"
+PLOT_PROG="/sbc/python/py/pattern/plot_probability.py"
 
 #パラメータの範囲指定
 TIME_RANGE_S="1"
@@ -24,7 +25,7 @@ PATTERN_RANGE_S="1"
 PATTERN_RANGE_E="51"
 SKIP="1"
 TABLE_NUM="10"
-#TOP_PATTERN="20"
+TOP_PRINT="20"
 GNUPLOT_MIN="0"
 GNUPLOT_MAX="0.85"
 GNUPLOT_TITLE="kullback"
@@ -38,7 +39,7 @@ EP_A="3"
 [ -d okiba ] || mkdir okiba
 # 結果まとめ出力先設定
 #cp texhead.tex graph.tex
-#cp texhead.tex top-com-probability.tex
+cp texhead.tex top-com-probability.tex
 #cp texhead.tex top-com-table.tex
 
 
@@ -131,18 +132,17 @@ SORT_TABLE
 
 
 
-#作成中
-#----------------------------------------------------------------------------------------------------	
+
 # divergence が上位である組み合わせの確率分布図を作成
 <<DIVERGENCE_SORT
         com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
 	com=${com% *}
-	grep -E "^${com/ /,} " $episodehz/$indivi/count_data.csv > top-com-probability.txt
-	top-com-probability
+	grep -E "^${com/ /,}," $episodehz/$indivi/count_data.csv > top-com-probability.csv
+	$PYTHON $HOME/$PLOT_PROG top-com-probability.csv $TOP_PRINT
 	mv ${com/ /-}.png $episodehz/$indivi/
+	mv top-com-probability.csv $episodehz/$indivi/
 DIVERGENCE_SORT
 
-#----------------------------------------------------------------------------------------------------	
 
 # divergence が上位である組み合わせの確率分布図をまとめたファイルを作成
 <<SORT_GRAPH

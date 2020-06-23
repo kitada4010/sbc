@@ -105,19 +105,17 @@ def inspect(time_leng, pattern_leng, count_data):
                     else :
                         sum_dict[str(psth[k : k+ pattern_leng])] = 1
 
+
     sum_pattern1 = sum(pattern_dict1.values()) #+ len(sum_dict.keys())
     sum_pattern2 = sum(pattern_dict2.values()) #+ len(sum_dict.keys())            
     if(len(pattern_dict1.keys()) == 0) :
-        del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern1
+        del pattern_dict1, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern1
         if(len(pattern_dict2.keys()) == 0 ):
-            gc.collect()
             return 0, 0, 0
         else :
-            gc.collect()
             return 0, 0, sum_pattern2
     elif(len(pattern_dict2.keys()) == 0 ):
-        del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern2
-        gc.collect()
+        del pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern2
         return 0, sum_pattern1, 0            
 
                             
@@ -155,11 +153,11 @@ def inspect(time_leng, pattern_leng, count_data):
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1]) :
         if(i in pattern_dict1) : 
             if(i in pattern_dict2) : 
-                print(time_leng, pattern_leng, str(i), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data)
+                print(time_leng, pattern_leng, i.replace('\n', ''), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data, sep=",")
             else :
-                print(time_leng, pattern_leng, str(i), pattern_dict1[i], 0, probability1[i], 0, top_dict[i], file=count_data)
+                print(time_leng, pattern_leng, i.replace('\n', ''), pattern_dict1[i], 0, probability1[i], 0, top_dict[i], file=count_data, sep=",")
         elif(i in pattern_dict2) :
-            print(time_leng, pattern_leng, str(i), 0, pattern_dict2[i], 0, probability2[i], top_dict[i], file=count_data)
+            print(time_leng, pattern_leng, i.replace('\n', ''), 0, pattern_dict2[i], 0, probability2[i], top_dict[i], file=count_data, sep=",")
 #        print(i)
 #        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
 
@@ -184,7 +182,7 @@ file_data = open("data-ab.txt", "a")
 for i in range(parameter1_start, parameter1_end+1, step):
     for j in range(parameter2_start, parameter2_end+1, step):
 #        kullback[i-1][j-1] = inspect(i, j, 20)
-        count_data = open("count_data.txt", "a")        
+        count_data = open("count_data.csv", "a")        
         pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, count_data)
         print(i, j, pattern_information, file=file_kull)
         if (sum_pattern1 == 0) :
