@@ -18,7 +18,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import math
+import time
 
+starttime = time.time()
 #ファイルの読み込み
 #file_name1 = sys.argv[1]
 #file_name2 = sys.argv[2]
@@ -41,6 +43,10 @@ cannel_end = 5
 
 def inspect(time_leng, pattern_leng, count_data):
     #ファイル1のデータカウント
+    defstart_time = time.time()
+    print("def start")
+    print(defstart_time - starttime)
+    print()
     pattern_dict1 = {}
     sumpsth = 0
     for i, name in enumerate(sheet_names1):
@@ -108,9 +114,15 @@ def inspect(time_leng, pattern_leng, count_data):
                             sum_dict[str(psth[k : k+ pattern_leng])] += 1
                         else :
                             sum_dict[str(psth[k : k+ pattern_leng])] = 1
-            
+
+    countend_time = time.time()
+    print("count end")
+    print(countend_time - defstart_time)
+    print()
+    pattern_dict1 = {}
+    sumpsth = 0
     sum_pattern1 = sum(pattern_dict1.values()) #+ len(sum_dict.keys())
-    sum_pattern2 = sum(pattern_dict2.values()) + len(sum_dict.keys())            
+    sum_pattern2 = sum(pattern_dict2.values()) #+ len(sum_dict.keys())            
     if(len(pattern_dict1.keys()) == 0) :
         del pattern_dict1, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern1
         if(len(pattern_dict2.keys()) == 0 ):
@@ -121,6 +133,9 @@ def inspect(time_leng, pattern_leng, count_data):
         del pattern_dict1, pattern_dict2, sum_dict, leng, psth, start_number, end_number, sig1, i, l, k, sum_pattern2
         return 0, sum_pattern1, 0
      
+
+    sum_pattern2 = sum(pattern_dict2.values()) + len(sum_dict.keys())            
+
     #情報量の計算準備
     pattern_information =  0.0
 
@@ -128,13 +143,14 @@ def inspect(time_leng, pattern_leng, count_data):
     probability1 = {}#np.zeros(pattern1, float)
     probability2 = {}#np.zeros(pattern1, float)
     top_dict = {}
+    probability2_1 = 1 / sum_pattern2
 #    k = 0
     for i in (pattern_dict1.keys()) :
         probability1[i] = ((pattern_dict1[i]) / sum_pattern1)
         if(i in pattern_dict2) : 
             probability2[i] = ((pattern_dict2[i]+1) / sum_pattern2)
         else :
-            probability2[i] = (1 / sum_pattern2)
+            probability2[i] = probability2_1
         info = probability1[i] * math.log2(probability1[i]/probability2[i])
         pattern_information += info
         top_dict[i] = info
@@ -143,6 +159,10 @@ def inspect(time_leng, pattern_leng, count_data):
 
 
 
+    dataend_time = time.time()
+    print("data end")
+    print(dataend_time - countend_time)
+    print()
     
     #グラフ出力の準備
 #    print_probability1 = np.zeros(max_print, float)
@@ -153,12 +173,18 @@ def inspect(time_leng, pattern_leng, count_data):
 #    print_pattern = []
     #print(time_leng, pattern_leng, sum_pattern1, sum_pattern2, file=count_data)
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1]) :
-        print(time_leng, pattern_leng, i.replace('\n', ''), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data, sep=",")
+        if(i in pattern_dict2) :
+           print(time_leng, pattern_leng, i.replace('\n', ''), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data, sep=",")
+        else :
+           print(time_leng, pattern_leng, i.replace('\n', ''), pattern_dict1[i], 0, probability1[i], probability2[i], top_dict[i], file=count_data, sep=",")
 #        print_pattern.append(i)
 #        k += 1
 #        print(i)
 #        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
-
+    defend_time = time.time()
+    print("def end")
+    print(defend_time - countend_time)
+    print()
         
     del pattern_dict1, pattern_dict2, sum_dict, probability1, probability2, top_dict#, print_pattern
 #    print("", file=count_data)

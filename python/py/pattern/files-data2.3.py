@@ -153,7 +153,10 @@ def inspect(time_leng, pattern_leng, count_data):
 #    print_pattern = []
     #print(time_leng, pattern_leng, sum_pattern1, sum_pattern2, file=count_data)
     for i, v in sorted(top_dict.items(), key=lambda x:-x[1]) :
-        print(time_leng, pattern_leng, i.replace('\n', ''), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data, sep=",")
+        if(i in pattern_dict2) :
+           print(time_leng, pattern_leng, i.replace('\n', ''), pattern_dict1[i], pattern_dict2[i], probability1[i], probability2[i], top_dict[i], file=count_data, sep=",")
+        else :
+           print(time_leng, pattern_leng, i.replace('\n', ''), pattern_dict1[i], 0, probability1[i], probability2[i], top_dict[i], file=count_data, sep=",")
 #        print_pattern.append(i)
 #        k += 1
 #        print(i)
