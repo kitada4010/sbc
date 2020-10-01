@@ -17,6 +17,9 @@ PYTHON="/home/nodoka/.pyenv/shims/python"
 #プログラムの指定
 PROG="/sbc/python/py/pattern/pearson-2.2.py"
 PLOT_PROG="/sbc/python/py/pattern/plot_probability.py"
+PLOT_PROG_DIV="/sbc/python/py/pattern/plot_probability3.0.py"
+PLOT_PROG_NUM="/sbc/python/py/pattern/plot_probability2.0.py"
+PLOT_HIST="/sbc/python/py/pattern/plot_hist3.0.py"
 
 #パラメータの範囲指定
 TIME_RANGE_S="1"
@@ -40,6 +43,10 @@ EP_A="3"
 # 結果まとめ出力先設定
 #cp texhead.tex graph.tex
 #cp texhead.tex top-com-probability.tex
+#cp texhead.tex top-com-probability-divergence.tex
+#cp texhead.tex top-com-num.tex
+#cp texhead.tex top-com-after-hist.tex
+#cp texhead.tex top-com-before-hist.tex
 #cp texhead.tex top-com-table.tex
 #[ -f top-table.txt ] && rm top-table.txt
 
@@ -111,6 +118,7 @@ GNUPLOT
 	rsync ./okiba/Makefile $episodehz/$indivi/
 	echo $HOME/sbc/tex/change-tex-tabular.sh top-table-display.txt > table.txt
 	cat shell-head.txt table.txt  > $episodehz/$indivi/table.sh
+	chmod +x $episodehz/$indivi/table.sh
 	make table -C $episodehz/$indivi/
 	echo 
 SORT
@@ -127,7 +135,7 @@ SORT
 	echo \\begin{table}[htb] >> top-com-table.tex
 	echo \\centering >> top-com-table.tex
 	echo \\caption{${episodehz%-*}-$indivi} >> top-com-table.tex
-        echo \\input{$episodehz/$indivi/top-table.tex} >> top-com-table.tex
+        echo \\input{$episodehz/$indivi/top-table-display.tex} >> top-com-table.tex
 	echo \\end{table} >> top-com-table.tex
 	echo >> top-com-table.tex
 	echo >> top-com-table.tex
@@ -142,7 +150,14 @@ SORT_TABLE
 	com=${com% *}
 	grep -E "^${com/ /,}," $episodehz/$indivi/count_data.csv > top-com-probability.csv
 	$PYTHON $HOME/$PLOT_PROG top-com-probability.csv $TOP_PRINT
+	$PYTHON $HOME/$PLOT_PROG_NUM top-com-probability.csv $TOP_PRINT
+	$PYTHON $HOME/$PLOT_PROG_DIV top-com-probability.csv $TOP_PRINT
+	$PYTHON $HOME/$PLOT_HIST top-com-probability.csv 
 	mv ${com/ /-}.png $episodehz/$indivi/
+	mv ${com/ /-}-num.png $episodehz/$indivi/
+	mv ${com/ /-}-divergence.png $episodehz/$indivi/
+	mv ${com/ /-}-before-hist.png $episodehz/$indivi/
+	mv ${com/ /-}-after-hist.png $episodehz/$indivi/
 	mv top-com-probability.csv $episodehz/$indivi/
 DIVERGENCE_SORT
 
@@ -151,7 +166,7 @@ DIVERGENCE_SORT
 <<SORT_GRAPH
 	com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
 	com=${com% *}
-	grep -E "^$com " $episodehz/$indivi/count.txt | cat -n > gg.txt
+	grep -E "^$com " $episodehz/$indivi/count_data.csv | cat -n > gg.txt
 	echo 
 	#echo ${com/ /-}.png
 	echo \\begin{figure}[htb] >> top-com-probability.tex
@@ -163,6 +178,73 @@ DIVERGENCE_SORT
 	echo >> top-com-probability.tex
 SORT_GRAPH
 
+
+# divergence が上位である組み合わせの確率分布図(divergence つき)をまとめたファイルを作成
+<<SORT_GRAPH_DIV
+	com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
+	com=${com% *}
+	grep -E "^$com " $episodehz/$indivi/count_data.csv | cat -n > gg.txt
+	echo 
+	#echo ${com/ /-}.png
+	echo \\begin{figure}[htb] >> top-com-probability-divergence.tex
+	echo \\centering >> top-com-probability-divergence.tex
+	echo \\caption{${episodehz%-*}-$indivi} >> top-com-probability-divergence.tex
+        echo \\includegraphics[width=14cm]{$episodehz/$indivi/${com/ /-}-divergence.png} >> top-com-probability-divergence.tex
+	echo \\end{figure} >> top-com-probability-divergence.tex
+	echo >> top-com-probability-divergence.tex
+	echo >> top-com-probability-divergence.tex
+SORT_GRAPH_DIV
+
+
+# divergence が上位である組み合わせの回数分布図をまとめたファイルを作成
+<<SORT_GRAPH_NUM
+	com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
+	com=${com% *}
+	#grep -E "^$com " $episodehz/$indivi/count.txt | cat -n > gg.txt
+	echo 
+	#echo ${com/ /-}.png
+	echo \\begin{figure}[htb] >> top-com-num.tex
+	echo \\centering >> top-com-num.tex
+	echo \\caption{${episodehz%-*}-$indivi} >> top-com-num.tex
+        echo \\includegraphics[width=14cm]{$episodehz/$indivi/${com/ /-}-num.png} >> top-com-num.tex
+	echo \\end{figure} >> top-com-num.tex
+	echo >> top-com-num.tex
+	echo >> top-com-num.tex
+SORT_GRAPH_NUM
+
+
+# divergence が上位である組み合わせのヒストグラムをまとめたファイルを作成
+<<GRAPH_AFTER_HIST
+	com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
+	com=${com% *}
+	#grep -E "^$com " $episodehz/$indivi/count.txt | cat -n > gg.txt
+	echo 
+	#echo ${com/ /-}.png
+	echo \\begin{figure}[htb] >> top-com-after-hist.tex
+	echo \\centering >> top-com-after-hist.tex
+	echo \\caption{${episodehz%-*}-$indivi} >> top-com-after-hist.tex
+        echo \\includegraphics[width=14cm]{$episodehz/$indivi/${com/ /-}-after-hist.png} >> top-com-after-hist.tex
+	echo \\end{figure} >> top-com-after-hist.tex
+	echo >> top-com-after-hist.tex
+	echo >> top-com-after-hist.tex
+GRAPH_AFTER_HIST
+
+
+# divergence が上位である組み合わせのヒストグラムをまとめたファイルを作成
+<<GRAPH_BEFORE_HIST
+	com=$(sort -r -g -k 3,3 $episodehz/$indivi/divergence.txt |head -n 1)
+	com=${com% *}
+	#grep -E "^$com " $episodehz/$indivi/count.txt | cat -n > gg.txt
+	echo 
+	#echo ${com/ /-}.png
+	echo \\begin{figure}[htb] >> top-com-before-hist.tex
+	echo \\centering >> top-com-before-hist.tex
+	echo \\caption{${episodehz%-*}-$indivi} >> top-com-before-hist.tex
+        echo \\includegraphics[width=14cm]{$episodehz/$indivi/${com/ /-}-before-hist.png} >> top-com-before-hist.tex
+	echo \\end{figure} >> top-com-before-hist.tex
+	echo >> top-com-before-hist.tex
+	echo >> top-com-before-hist.tex
+GRAPH_BEFORE_HIST
 
 
 # 分布の画像をまとめたtexファイルを作成
@@ -211,3 +293,35 @@ platex top-com-probability.tex
 platex top-com-probability.tex
 dvipdfmx top-com-probability.dvi
 COMP_PROBABILITY_GRAPH
+
+<<COMP_GRAPH_DIV
+#最初のコンパイル時には1行目が必要
+echo \\end{document} >> top-com-probability-divergence.tex
+platex top-com-probability-divergence.tex
+platex top-com-probability-divergence.tex
+dvipdfmx top-com-probability.dvi
+COMP_GRAPH_DIV
+
+<<COMP_NUM_GRAPH
+#最初のコンパイル時には1行目が必要
+echo \\end{document} >> top-com-num.tex
+platex top-com-num.tex
+platex top-com-num.tex
+dvipdfmx top-com-num.dvi
+COMP_NUM_GRAPH
+
+<<COMP_AFTER_HIST_GRAPH
+#最初のコンパイル時には1行目が必要
+echo \\end{document} >> top-com-after-hist.tex
+platex top-com-after-hist.tex
+platex top-com-after-hist.tex
+dvipdfmx top-com-after-hist.dvi
+COMP_AFTER_HIST_GRAPH
+
+<<COMP_BEFORE_HIST_GRAPH
+#最初のコンパイル時には1行目が必要
+echo \\end{document} >> top-com-before-hist.tex
+platex top-com-before-hist.tex
+platex top-com-before-hist.tex
+dvipdfmx top-com-before-hist.dvi
+COMP_BEFORE_HIST_GRAPH
