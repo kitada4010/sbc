@@ -1,0 +1,2 @@
+conduct:
+	make -C okiba
