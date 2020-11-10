@@ -7,7 +7,9 @@
 
 #パス指定
 #自宅pc
-READPATH="/home/nodoka/win/ubuntu/01-data"
+READPATH="/home/nodoka/win/ubuntu/01-data/"
+WRITEPATH=$(cd $(dirname $0);pwd)
+WRITEPATH=$WRITEPATH/
 PYTHON="/home/nodoka/.pyenv/shims/python"
 #FREQLDATAPATH="/home/nodoka/win/ubuntu/123ms-data"
 #大学計算機サーバ
@@ -15,28 +17,10 @@ PYTHON="/home/nodoka/.pyenv/shims/python"
 #PYTHON="/usr/local/anaconda3/bin/python3.6"
 
 #プログラムの指定
-PROG="/sbc/python/py/pattern/pearson-2.2.py"
-PLOT_PROG="/sbc/python/py/pattern/plot_probability.py"
-PLOT_PROG_DIV="/sbc/python/py/pattern/plot_probability3.0.py"
-PLOT_PROG_NUM="/sbc/python/py/pattern/plot_probability2.0.py"
-PLOT_HIST="/sbc/python/py/pattern/plot_hist3.0.py"
+PROG="/sbc/python/py/change-xlsx/change-newtype.py"
 
 #パラメータの範囲指定
-TIME_RANGE_S="1"
-TIME_RANGE_E="101"
-PATTERN_RANGE_S="1"
-PATTERN_RANGE_E="51"
-SKIP="1"
-TABLE_NUM="10"
-TOP_PRINT="20"
-GNUPLOT_MIN="0"
-GNUPLOT_MAX="0.85"
-GNUPLOT_TITLE="kullback"
 TIMING="5"
-
-#入力ファイル指定 2:経験前, 3:経験後0~10分間, 4:経験後10~20分間, 5:経験後20~30分間
-EP_B="2"
-EP_A="3"
 
 
 
@@ -81,11 +65,14 @@ do
 	for ((i=2; i<=TIMING; i+=1))
 	do
 	    # 実行文の出力
-            echo $PYTHON $HOME$PROG  $READPATH ./ ${file%.*}/${indivi}/ ${indivi%-*}-${file%-*}-${indivi##*H}$i.xlsx >> jikkou.txt
+            echo $PYTHON $HOME$PROG  $READPATH $WRITEPATH ${file%.*}/${indivi}/ ${indivi%-*}-${file%-*}-${indivi##*H}$i.xlsx >> jikkou.txt
 	done
 	rsync ./okiba/Makefile $episodehz/$indivi/
 	cat shell-head.txt jikkou.txt > $episodehz/$indivi/conduct.sh
 	chmod +x $episodehz/$indivi/conduct.sh
 	make conduct -C $episodehz/$indivi/	
 #CONDUCT
-
+    done< $dir
+    echo ${file%.*} "end"
+    echo
+done

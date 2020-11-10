@@ -6,6 +6,8 @@ import openpyxl
 import math
 from matplotlib.backends.backend_pdf import PdfPages
 
+
+
 #ファイルの読み込み                                                                                                                         
 
 def write_data(wb_sheet, sig, column_point, start_row, value_title) :
@@ -19,7 +21,7 @@ def write_data(wb_sheet, sig, column_point, start_row, value_title) :
 
 
 
-def inspect(wb, ):
+def inspect(wb, file1):
     #ファイル1のデータカウント
     sheet_df1 = file1.parse(file1.sheet_names, header=None)
     sheet_names1 = file1.sheet_names
@@ -37,7 +39,6 @@ def inspect(wb, ):
 #        sig_fire = [ 1 if(sig_smooth[i-3] > sig_smooth[i-2]) & (sig_smooth[i-2] > sig_smooth[i-1]) & (sig_smooth[i-1] > sig_smooth[i]) \
 #                   & (sig_smooth[i] < sig_smooth[i+1]) & (sig_smooth[i+1] < sig_smooth[i+2]) & (sig_smooth[i+2] < sig_smooth[i+3]) else 0 for i in range(3, len(sig_smooth)-3)]
 
-    pdf.close()
     
 #read_path = "/st9/b009vb/01data"
 read_path = sys.argv[1]
