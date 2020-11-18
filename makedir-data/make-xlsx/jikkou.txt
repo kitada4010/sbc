@@ -1,0 +1,1 @@
+/usr/local/anaconda3/bin/python3.6 /st9/b009vb/sbc/python/py/pattern/1step-para-leng.py /st9/b009vb/01data/restraint-25000/B39-HR/B39-restraint-R3.xlsx /st9/b009vb/01data/restraint-25000/B39-HR/B39-restraint-R2.xlsx 10 510 10 510 50

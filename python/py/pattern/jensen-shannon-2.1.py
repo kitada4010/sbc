@@ -45,10 +45,14 @@ def inspect(time_leng, pattern_leng, top_print):
     sumpsth = 0
     for i, name in enumerate(sheet_names1):
         sheet_df1[i] = file1.parse(name)
-        #print(sheet_df1[i][1][1])
-        start_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][0]) +cannel_start
-        end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
-        sig1 = (sheet_df1[i]['Unnamed: 3'][start_number : end_number]).values
+        try :
+            #print(sheet_df1[i][1][1])
+            start_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][0]) +cannel_start
+            end_number = (np.where(sheet_df1[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
+            sig1 = (sheet_df1[i]['Unnamed: 3'][start_number : end_number]).values
+        except KeyError :
+            print("not max data number")
+            break
         sig1 = sig1.astype("int")
         #print(len(sig1))
         sig1 = np.trim_zeros(sig1)
@@ -75,9 +79,13 @@ def inspect(time_leng, pattern_leng, top_print):
     sum_dict = pattern_dict1.copy()
     for i, name in enumerate(sheet_names2):
         sheet_df2[i] = file2.parse(name)
-        start_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][0]) + cannel_start
-        end_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
-        sig1 = (sheet_df2[i]['Unnamed: 3'][start_number : end_number]).values
+        try :
+            start_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][0]) + cannel_start
+            end_number = (np.where(sheet_df2[i]['INFORMATION']=="CHANNEL")[0][1]) - cannel_end
+            sig1 = (sheet_df2[i]['Unnamed: 3'][start_number : end_number]).values
+        except KeyError :
+            print("not max data number")
+            break
         sig1 = sig1.astype("int")
         sig1 = np.trim_zeros(sig1)
         leng = len(sig1)
