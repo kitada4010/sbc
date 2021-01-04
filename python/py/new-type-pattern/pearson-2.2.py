@@ -44,23 +44,19 @@ def inspect(time_leng, pattern_leng, count_data):
     for i, name in enumerate(sheet_names1):
         sheet_df1[i] = file1.parse(name)
         try :
-        #print(sheet_df1[i][1][1])
-            sig1 = (sheet_df1[i]["spike"]).values
+            sig1 = (sheet_df1[i]["spike_data"]).values
             sig1 = sig1[~np.isnan(sig1)]
         except KeyError :
             print("not max data number")
             break
         sig1 = sig1.astype("int")
-        #print(len(sig1))
         sig1 = np.trim_zeros(sig1)
-#        print()
         leng = len(sig1)
         psth = np.zeros(int((leng/time_leng)+1), dtype=np.int)
         l = 0
         for k in range(0, leng, time_leng) :
             psth[l] = sig1[k : k+time_leng].sum()
             l += 1
-#        print(sig1[len(psth)-1])
         if(len(psth) > pattern_leng) : 
             for k in range(len(psth) - pattern_leng +1) :   # PSTHデータからはパターンを重ねて検索している
                 if (str(psth[k : k + pattern_leng]) in pattern_dict1) : 
@@ -68,8 +64,7 @@ def inspect(time_leng, pattern_leng, count_data):
                 else : 
                     pattern_dict1[str(psth[k : k + pattern_leng])] = 1
             sumpsth += (len(psth) -pattern_leng+1)
-#    print()
-#    print(sumpsth)
+
 
     #ファイル2のデータカウント
     pattern_dict2 = {}
@@ -77,15 +72,15 @@ def inspect(time_leng, pattern_leng, count_data):
     for i, name in enumerate(sheet_names2):
         sheet_df2[i] = file2.parse(name)
         try :
-            sig1 = (sheet_df2[i]["spike"]).values
+            sig1 = (sheet_df2[i]["spike_data"]).values
             sig1 = sig1[~np.isnan(sig1)]
         except KeyError :
             print("not max data number")
+            print(name)
             break
         sig1 = sig1.astype("int")
         sig1 = np.trim_zeros(sig1)
         leng = len(sig1)
-#        print(sig1[0])
         psth = np.zeros(int((leng/time_leng)+1), dtype=np.int)
         l = 0
         for k in range(j, leng, time_leng) :
@@ -119,16 +114,8 @@ def inspect(time_leng, pattern_leng, count_data):
                             
     #情報量の計算準備
     pattern_information =  0.0
-#    print()
-#    print()
-#    print(sum(pattern_dict1.values()))
-#    print(sum(sum_dict.values()))
-#    print()
     sum_pattern1 = sum(pattern_dict1.values()) + len(sum_dict.keys())
     sum_pattern2 = sum(pattern_dict2.values()) + len(sum_dict.keys())
-#    print(sum_pattern1)
-#    print(sum_pattern2)
-#    sum_pattern = sum(sum_dict.values()) 
     pattern1 = len(pattern_dict1.keys())
     probability1 = {}
     probability2 = {}
@@ -142,7 +129,6 @@ def inspect(time_leng, pattern_leng, count_data):
         info = probability2[i] * ((probability1[i]/probability2[i] - 1) ** 2)
         pattern_information += info
         top_dict[i] = info
-#        print(i)
 
 
 
@@ -156,8 +142,7 @@ def inspect(time_leng, pattern_leng, count_data):
                 print(time_leng, pattern_leng, i.replace('\n', ''), pattern_dict1[i], 0, probability1[i], 0, top_dict[i], file=count_data, sep=",")
         elif(i in pattern_dict2) :
             print(time_leng, pattern_leng, i.replace('\n', ''), 0, pattern_dict2[i], 0, probability2[i], top_dict[i], file=count_data, sep=",")
-#        print(i)
-#        print_probability2[k] = (pattern_dict2[i]+1 / sum_pattern2)
+
 
 
         
@@ -176,10 +161,8 @@ step = int(sys.argv[7])
 file_kull = open("divergence.txt", "a")
 file_data = open("data-ab.txt", "a")
 
-#kullback = np.zeros((parameter1, parameter2), float)
 for i in range(parameter1_start, parameter1_end+1, step):
     for j in range(parameter2_start, parameter2_end+1, step):
-#        kullback[i-1][j-1] = inspect(i, j, 20)
         count_data = open("count_data.csv", "a")        
         pattern_information, sum_pattern1, sum_pattern2 = inspect(i, j, count_data)
         print(i, j, pattern_information, file=file_kull)
@@ -196,6 +179,5 @@ for i in range(parameter1_start, parameter1_end+1, step):
     print("", file=file_kull)
     print("", file=file_data)
     print("end"+str(i))
-#np.savetxt("kullback-t1-" + sys.argv[3] +"-p1-"+ sys.argv[4] +".txt", kullback)
 file_kull.close()
 file_data.close()

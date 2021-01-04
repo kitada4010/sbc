@@ -35,7 +35,7 @@ def inspect(time_leng, pattern_leng, top_print):
         sheet_df1[i] = file1.parse(name)
         try :
         #print(sheet_df1[i][1][1])
-            sig1 = (sheet_df1[i]["spike"]).values
+            sig1 = (sheet_df1[i]["spike_data"]).values
             sig1 = sig1[~np.isnan(sig1)]
         except KeyError :
             print("not max data number")
@@ -67,7 +67,7 @@ def inspect(time_leng, pattern_leng, top_print):
     for i, name in enumerate(sheet_names2):
         sheet_df2[i] = file2.parse(name)
         try :
-            sig1 = (sheet_df2[i]["spike"]).values
+            sig1 = (sheet_df2[i]["spike_data"]).values
             sig1 = sig1[~np.isnan(sig1)]
         except KeyError :
             print("not max data number")
